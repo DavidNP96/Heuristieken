@@ -6,20 +6,21 @@ import numpy as np
 
 INPUT_CSV = "wijk1_huizen.csv"
 
-with open('wijk1_huizen.csv', newline='') as csvfile:
+with open(INPUT_CSV, newline='') as csvfile:
     reader = csv.DictReader(csvfile)
-    xas = []
-    yas = []
+    x = []
+    y = []
     max_output= []
     for row in reader:
-        xas.append(int(row["x"]))
-        yas.append(int(row["y"]))
+        x.append(int(row["x"]))
+        y.append(int(row["y"]))
         max_output.append(row["max. output"])
-    print(xas)
-    print(yas)
+    print(x)
+    print(y)
 
+# plots house position in grid for visualization and control
 plt.xlabel('x')
 plt.ylabel('y')
 plt.title('SmartGrid')
-plt.scatter(xas, yas)
+plt.scatter(x, y)
 plt.show()

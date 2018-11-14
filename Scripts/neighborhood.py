@@ -22,7 +22,7 @@ class Neighborhood(object):
         self.cable_list = []
 
     def load_houses(self):
-        # opens csv and creates a reader
+        """opens csv and creates a reader"""
         with open(INPUT_CSV, newline='') as csvfile:
             reader = csv.DictReader(csvfile)
 
@@ -64,12 +64,13 @@ class Neighborhood(object):
             return(batteries)
 
     def connect(house, battery):
+        """Connects houses to batteries"""
         x_distance = abs(house.x_location - battery.x_location)
         y_distance = abs(house.y_location - battery.y_location)
         pass
 
     def get_cable_length():
-
+        """Returns the total length of all cables"""
         total_length = 0
 
         for cable in cable_list:
@@ -80,7 +81,7 @@ class Neighborhood(object):
         pass
 
     def get_cable_costs():
-
+        """Returns the total costs for all cables"""
         cable_costs = 0
 
         for cable in cable_list:
@@ -90,7 +91,7 @@ class Neighborhood(object):
 
         pass
     def get_total_costs():
-
+        """Returns the total costs for all cables and batteries"""
         cable_costs = 0
         battery_costs = 0
 
@@ -105,5 +106,6 @@ class Neighborhood(object):
         return total_costs
 
         pass
+        
 if __name__ == "__main__":
     neighborhood = Neighborhood()

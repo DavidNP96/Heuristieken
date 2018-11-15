@@ -14,9 +14,9 @@ class Neighborhood(object):
     """Neighborhood class containing grid and connect function"""
     def __init__(self, neighborhood):
         # MAAK DIT VARIABEL!
-        GRID_SIZE = 50
-        TOTAL_HOUSES = 50
-        TOTAL_BATTERIES = 5
+        # GRID_SIZE = 50
+        # TOTAL_HOUSES = 50
+        # TOTAL_BATTERIES = 5
 
         self.houses = self.load_houses(f"Data/{neighborhood}_huizen.csv")
         self.batteries = self.load_batteries(f"Data/{neighborhood}_batterijen.txt")
@@ -173,24 +173,28 @@ class Neighborhood(object):
 
         return total_costs
 
-# def simple_connect(self):
-#     """Connects each house to closest battery until battery's capacity is used"""
-#
-#     # find furthest battery for each house and then connect
-#     for house in self.houses:
-#         distance = self.batteries[0]
-#         for battery in self.batteries:
-#             current_distance = self.cal_distance(house, battery)
-#             if current_distance < distance:
-#                 distance = current_distance
-#                 close_battery = battery
-#         self.connect(house, close_battery)
-#
-#     total_costs = self.get_total_costs()
-#
-#     self.disconnect_all()
-#
-#     return total_costs
+    def simple_connect(self):
+        """Connects each house to closest battery until battery's capacity is used"""
+
+        close_battery = self.batteries[0]
+
+        # find closest battery for each house and then connect
+        for house in self.houses:
+            distance = float("inf")
+            for battery in self.batteries:
+                if battery.remainder > house.output:
+                    current_distance = self.cal_distance(house, battery)
+                    if current_distance < distance:
+                        distance = current_distance
+                        close_battery = battery
+            self.connect(house, close_battery)
+
+            # put this into connect function!
+            battery.remainder = battery.remainder - house.output
+
+        total_costs = self.get_total_costs()
+
+        return total_costs
 
 if __name__ == "__main__":
     neighborhood1 = Neighborhood("wijk1")
@@ -204,3 +208,5 @@ if __name__ == "__main__":
     print(f"wijk1 lower bound: {neighborhood1.lower_bound()}")
     print(f"wijk2 lower bound: {neighborhood2.lower_bound()}")
     print(f"wijk3 lower bound: {neighborhood3.lower_bound()}")
+
+    print(f"simple_connect voor wijk1: {neighborhood1.simple_connect()}")

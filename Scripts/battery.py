@@ -6,5 +6,9 @@ class Battery(object):
         self.capacity = capacity
         self.id = id
 
+        self.remainder = capacity
+
+
+
         # Pas dit aan voor variabele prijs!
         self.price = 5000

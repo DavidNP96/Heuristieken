@@ -18,8 +18,8 @@ class Neighborhood(object):
         TOTAL_HOUSES = 50
         TOTAL_BATTERIES = 5
 
-        self.houses = self.load_houses(f"{neighborhood}_huizen.csv")
-        self.batteries = self.load_batteries(f"{neighborhood}_batterijen.txt")
+        self.houses = self.load_houses(f"Data/{neighborhood}_huizen.csv")
+        self.batteries = self.load_batteries(f"Data/{neighborhood}_batterijen.txt")
         self.cables = []
 
 
@@ -137,8 +137,6 @@ class Neighborhood(object):
         """Returns the neighborhoods upper bound by connecting
         each house to furthest battery"""
 
-        closest_battery = 0
-
         # find furthest battery for each house and then connect
         for house in self.houses:
             distance = 0
@@ -155,6 +153,44 @@ class Neighborhood(object):
 
         return total_costs
 
+    def lower_bound(self):
+        """Returns the neighborhoods lower bound by connecting
+        each house to closest battery"""
+
+        # find closest battery for each house and then connect
+        for house in self.houses:
+            distance = float("inf")
+            for battery in self.batteries:
+                current_distance = self.cal_distance(house, battery)
+                if current_distance < distance:
+                    distance = current_distance
+                    close_battery = battery
+            self.connect(house, close_battery)
+
+        total_costs = self.get_total_costs()
+
+        self.disconnect_all()
+
+        return total_costs
+
+# def simple_connect(self):
+#     """Connects each house to closest battery until battery's capacity is used"""
+#
+#     # find furthest battery for each house and then connect
+#     for house in self.houses:
+#         distance = self.batteries[0]
+#         for battery in self.batteries:
+#             current_distance = self.cal_distance(house, battery)
+#             if current_distance < distance:
+#                 distance = current_distance
+#                 close_battery = battery
+#         self.connect(house, close_battery)
+#
+#     total_costs = self.get_total_costs()
+#
+#     self.disconnect_all()
+#
+#     return total_costs
 
 if __name__ == "__main__":
     neighborhood1 = Neighborhood("wijk1")
@@ -162,5 +198,9 @@ if __name__ == "__main__":
     neighborhood3 = Neighborhood("wijk3")
 
     print(f"wijk1 upper bound: {neighborhood1.upper_bound()}")
-    print(f"wijk1 upper bound: {neighborhood2.upper_bound()}")
-    print(f"wijk1 upper bound: {neighborhood3.upper_bound()}")
+    print(f"wijk2 upper bound: {neighborhood2.upper_bound()}")
+    print(f"wijk3 upper bound: {neighborhood3.upper_bound()}")
+
+    print(f"wijk1 lower bound: {neighborhood1.lower_bound()}")
+    print(f"wijk2 lower bound: {neighborhood2.lower_bound()}")
+    print(f"wijk3 lower bound: {neighborhood3.lower_bound()}")

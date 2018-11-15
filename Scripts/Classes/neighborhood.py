@@ -36,7 +36,6 @@ class Neighborhood(object):
                 output = row["max. output"]
                 house = House(x_location, y_location, output)
                 houses.append(house)
-            # print(houses)
             return(houses)
 
 
@@ -105,5 +104,16 @@ class Neighborhood(object):
         return total_costs
 
         pass
+
+    def visualize():
+        x = []
+        y = []
+        for house in self.houses:
+            x.append(house["x_location"])
+            y.append(house["y_location"])
+        print(x)
+        print(y)
+
+
 if __name__ == "__main__":
     neighborhood = Neighborhood()

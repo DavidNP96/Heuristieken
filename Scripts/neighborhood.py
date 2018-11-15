@@ -4,6 +4,7 @@ import csv
 from house import House
 from battery import Battery
 from cable import Cable
+import random_grid.py
 
 # selects proper csv file
 # INPUT_CSV = "wijk1_huizen.csv"

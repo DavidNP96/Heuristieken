@@ -51,6 +51,27 @@ class Neighborhood(object):
             # print(houses)
             return(houses)
 
+    def batt_house_plot(self):
+        x_houses = []
+        y_houses = []
+        x_batteries = []
+        y_batteries = []
+
+        for cable in self.cables:
+            x_houses.append(cable.house.x_location)
+            y_houses.append(cable.house.y_location)
+            x_batteries.append(cable.battery.x_location)
+            y_batteries.append(cable.battery.y_location)
+
+
+        # plt.xlabel('x')
+        # plt.ylabel('y')
+        # plt.title('SmartGrid')
+        # plt.scatter(x_houses, y_houses,  c="b", alpha=0.5, marker=r'^', label="Luck")
+        # plt.plot(x_batteries, y_batteries, 'rs')
+        # plt.plot()
+        # plt.show()
+
 
     def load_batteries(self, input_txt):
         """
@@ -95,7 +116,7 @@ class Neighborhood(object):
         """
 
         if (battery.remainder - house.output < 0):
-            raise ValueError
+            return 0
 
         battery.remainder = battery.remainder - house.output
 
@@ -188,7 +209,7 @@ class Neighborhood(object):
                 if current_distance > distance:
                     distance = current_distance
                     far_battery = battery
-            self.connect(house, far_battery)
+            self.connect_unlimited(house, far_battery)
 
         total_costs = self.get_total_costs()
 
@@ -210,7 +231,7 @@ class Neighborhood(object):
                 if current_distance < distance:
                     distance = current_distance
                     close_battery = battery
-            self.connect(house, close_battery)
+            self.connect_unlimited(house, close_battery)
 
         total_costs = self.get_total_costs()
 
@@ -270,7 +291,7 @@ if __name__ == "__main__":
     neighborhood1 = Neighborhood("wijk1")
     neighborhood2 = Neighborhood("wijk2")
     neighborhood3 = Neighborhood("wijk3")
-    #
+
     print(f"wijk1 upper bound: {neighborhood1.upper_bound()}")
     print(f"wijk2 upper bound: {neighborhood2.upper_bound()}")
     print(f"wijk3 upper bound: {neighborhood3.upper_bound()}")
@@ -279,8 +300,13 @@ if __name__ == "__main__":
     print(f"wijk2 lower bound: {neighborhood2.lower_bound()}")
     print(f"wijk3 lower bound: {neighborhood3.lower_bound()}")
 
-    neighborhood1.make_connections()
-    neighborhood1.make_hist(neighborhood1.costs_random)
+    neighborhood1.lower_bound()
+    neighborhood1.batt_house_plot()
+
+
+
+    # neighborhood1.make_connections()
+    # neighborhood1.make_hist(neighborhood1.costs_random)
     #
     # print(f"wijk1 simple connect: {neighborhood1.simple_connect()}")
     # print(f"wijk2 simple connect: {neighborhood2.simple_connect()}")

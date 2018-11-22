@@ -182,15 +182,13 @@ class Neighborhood(object):
         for house in self.houses:
             distance = float("inf")
             for battery in self.batteries:
+                # only check for distance if battery has enough remainder
                 if battery.remainder > house.output:
                     current_distance = self.cal_distance(house, battery)
                     if current_distance < distance:
                         distance = current_distance
                         close_battery = battery
             self.connect(house, close_battery)
-
-            # put this into connect function!
-            battery.remainder = battery.remainder - house.output
 
         total_costs = self.get_total_costs()
 

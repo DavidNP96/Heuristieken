@@ -3,10 +3,10 @@ class Battery(object):
     def __init__(self, x_location, y_location, capacity, id):
         self.x_location = x_location
         self.y_location = y_location
-        self.capacity = capacity
+        self.capacity = float(capacity)
         self.id = id
 
-        self.remainder = capacity
+        self.remainder = self.capacity
 
 
 

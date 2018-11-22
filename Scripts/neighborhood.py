@@ -4,7 +4,8 @@ import csv
 from house import House
 from battery import Battery
 from cable import Cable
-import random_grid.py
+
+
 
 # selects proper csv file
 # INPUT_CSV = "wijk1_huizen.csv"
@@ -32,13 +33,15 @@ class Neighborhood(object):
             # initialize return list
             houses = []
 
+            id = 0
             # creates house object list and uses row for house id
             for row in reader:
                 x_location = int(row["x"])
                 y_location = int(row["y"])
                 output = row["max. output"]
-                house = House(x_location, y_location, output, row)
+                house = House(x_location, y_location, output, id)
                 houses.append(house)
+                id += 1
             # print(houses)
             return(houses)
 
@@ -55,14 +58,17 @@ class Neighborhood(object):
             # list which will contain all battery objects
             batteries = []
 
+            id = 0
+
             # creates battery object list and uses row for battery id
             for row in text:
                 row = row.strip("\n")
                 x, y, cap = row.split()
                 x = int(x.strip("[ ,"))
                 y = int(y.strip("]"))
-                battery = Battery(x, y, cap, row)
+                battery = Battery(x, y, cap, id)
                 batteries.append(battery)
+                id += 1
             return(batteries)
 
 
@@ -75,8 +81,24 @@ class Neighborhood(object):
 
         return total_distance
 
-
     def connect(self, house, battery):
+        """Connects houses to batteries"""
+
+        if (battery.remainder - house.output < 0):
+            return 0
+
+        battery.remainder = battery.remainder - house.output
+
+        cable = Cable(house, battery)
+
+        self.cables.append(cable)
+
+        # sets battery_id for house
+        house.battery_id = battery.id
+
+
+
+    def connect_unlimited(self, house, battery):
         """Connects houses to batteries"""
 
         cable = Cable(house, battery)
@@ -134,68 +156,6 @@ class Neighborhood(object):
         return total_costs
 
 
-    def upper_bound(self):
-        """Returns the neighborhoods upper bound by connecting
-        each house to furthest battery"""
-
-        # find furthest battery for each house and then connect
-        for house in self.houses:
-            distance = 0
-            for battery in self.batteries:
-                current_distance = self.cal_distance(house, battery)
-                if current_distance > distance:
-                    distance = current_distance
-                    far_battery = battery
-            self.connect(house, far_battery)
-
-        total_costs = self.get_total_costs()
-
-        self.disconnect_all()
-
-        return total_costs
-
-    def lower_bound(self):
-        """Returns the neighborhoods lower bound by connecting
-        each house to closest battery"""
-
-        # find closest battery for each house and then connect
-        for house in self.houses:
-            distance = float("inf")
-            for battery in self.batteries:
-                current_distance = self.cal_distance(house, battery)
-                if current_distance < distance:
-                    distance = current_distance
-                    close_battery = battery
-            self.connect(house, close_battery)
-
-        total_costs = self.get_total_costs()
-
-        self.disconnect_all()
-
-        return total_costs
-
-    # def simple_connect(self):
-    #     """Connects each house to closest battery until battery's capacity is used"""
-    #
-    #     close_battery = self.batteries[0]
-    #
-    #     # find closest battery for each house and then connect
-    #     for house in self.houses:
-    #         distance = float("inf")
-    #         for battery in self.batteries:
-    #             if battery.remainder > house.output:
-    #                 current_distance = self.cal_distance(house, battery)
-    #                 if current_distance < distance:
-    #                     distance = current_distance
-    #                     close_battery = battery
-    #         self.connect(house, close_battery)
-    #
-    #         # put this into connect function!
-    #         battery.remainder = battery.remainder - house.output
-    #
-    #     total_costs = self.get_total_costs()
-    #
-    #     return total_costs
 
 if __name__ == "__main__":
     neighborhood1 = Neighborhood("wijk1")
@@ -209,5 +169,9 @@ if __name__ == "__main__":
     print(f"wijk1 lower bound: {neighborhood1.lower_bound()}")
     print(f"wijk2 lower bound: {neighborhood2.lower_bound()}")
     print(f"wijk3 lower bound: {neighborhood3.lower_bound()}")
+
+    print(f"wijk1 simple connect: {neighborhood1.simple_connect()}")
+    print(f"wijk2 simple connect: {neighborhood2.simple_connect()}")
+    print(f"wijk3 simple connect: {neighborhood3.simple_connect()}")
 
     # print(f"simple_connect voor wijk1: {neighborhood1.simple_connect()}")

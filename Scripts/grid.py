@@ -4,7 +4,7 @@ import csv
 import matplotlib.pyplot as plt
 import numpy as np
 
-INPUT_CSV = "wijk1_huizen.csv"
+INPUT_CSV = "Data/wijk1_huizen.csv"
 
 with open(INPUT_CSV, newline='') as csvfile:
     reader = csv.DictReader(csvfile)

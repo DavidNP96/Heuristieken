@@ -95,7 +95,7 @@ class Neighborhood(object):
         """
 
         if (battery.remainder - house.output < 0):
-            return 0
+            raise ValueError
 
         battery.remainder = battery.remainder - house.output
 
@@ -271,19 +271,19 @@ if __name__ == "__main__":
     neighborhood2 = Neighborhood("wijk2")
     neighborhood3 = Neighborhood("wijk3")
     #
-    # print(f"wijk1 upper bound: {neighborhood1.upper_bound()}")
-    # print(f"wijk2 upper bound: {neighborhood2.upper_bound()}")
-    # print(f"wijk3 upper bound: {neighborhood3.upper_bound()}")
-    #
-    # print(f"wijk1 lower bound: {neighborhood1.lower_bound()}")
-    # print(f"wijk2 lower bound: {neighborhood2.lower_bound()}")
-    # print(f"wijk3 lower bound: {neighborhood3.lower_bound()}")
+    print(f"wijk1 upper bound: {neighborhood1.upper_bound()}")
+    print(f"wijk2 upper bound: {neighborhood2.upper_bound()}")
+    print(f"wijk3 upper bound: {neighborhood3.upper_bound()}")
+
+    print(f"wijk1 lower bound: {neighborhood1.lower_bound()}")
+    print(f"wijk2 lower bound: {neighborhood2.lower_bound()}")
+    print(f"wijk3 lower bound: {neighborhood3.lower_bound()}")
 
     neighborhood1.make_connections()
     neighborhood1.make_hist(neighborhood1.costs_random)
-
-    print(f"wijk1 simple connect: {neighborhood1.simple_connect()}")
-    print(f"wijk2 simple connect: {neighborhood2.simple_connect()}")
-    print(f"wijk3 simple connect: {neighborhood3.simple_connect()}")
+    #
+    # print(f"wijk1 simple connect: {neighborhood1.simple_connect()}")
+    # print(f"wijk2 simple connect: {neighborhood2.simple_connect()}")
+    # print(f"wijk3 simple connect: {neighborhood3.simple_connect()}")
 
     # print(f"simple_connect voor wijk1: {neighborhood1.simple_connect()}")

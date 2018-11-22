@@ -2,11 +2,12 @@
 # per huis aan random batterijen connecten
 # opslaan in lijst
 # plot histogram met bins
-from neighborhood import Neighborhood
+# from neighborhood import Neighborhood
 from battery import Battery
 from house import House
 from cable import Cable
 import random
+import matplotlib.pyplot as plt
 
 """
 Makes an analysis of the achievablility of the upper- and lowerbound.
@@ -28,3 +29,15 @@ def make_connections(self, neighborhood):
         neighborhood.cables = []
 
     return self.costs_random
+
+def make_hist(info):
+    """
+    Make a histogram of all the solutions to find the distribution.
+    """
+    info.plot.hist()
+    plt.show()
+
+
+if __name__ == "__main__":
+    self.make_connections("wijk1")
+    make_hist(self.costs_random)

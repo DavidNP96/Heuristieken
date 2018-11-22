@@ -19,10 +19,6 @@ class Neighborhood(object):
     Neighborhood class containing grid and connect function.
     """
     def __init__(self, neighborhood):
-        # MAAK DIT VARIABEL!
-        # GRID_SIZE = 50
-        # TOTAL_HOUSES = 50
-        # TOTAL_BATTERIES = 5
 
         self.houses = self.load_houses(f"Data/{neighborhood}_huizen.csv")
         self.batteries = self.load_batteries(f"Data/{neighborhood}_batterijen.txt")
@@ -115,8 +111,11 @@ class Neighborhood(object):
         Connects houses to batteries.
         """
 
+
+
         if (battery.remainder - house.output < 0):
-            return 0
+            #print(battery.remainder - house.output)
+            return False
 
         battery.remainder = battery.remainder - house.output
 
@@ -127,7 +126,7 @@ class Neighborhood(object):
         # sets battery_id for house
         house.battery_id = battery.id
 
-
+        return True
 
     def connect_unlimited(self, house, battery):
         """Connects houses to batteries"""
@@ -151,6 +150,8 @@ class Neighborhood(object):
         for house in self.houses:
             house.battery_id = None
 
+        for battery in self.batteries:
+            battery.remainder = battery.capacity
 
     def get_cable_length(self):
         """
@@ -192,8 +193,6 @@ class Neighborhood(object):
         total_costs = cable_costs + battery_costs
 
         return total_costs
-
-
 
     def upper_bound(self):
         """
@@ -239,22 +238,36 @@ class Neighborhood(object):
 
         return total_costs
 
-    def make_connections(self):
+    def connect_random(self):
         """
         Append a connection to the connections list.
         """
         self.costs_random = []
-        self.cables = []
+        #self.disconnect_all()
+
+        penalty_count = 0
 
         for i in range(50000):
+            penalty = 0
             for house in self.houses:
                 battery = random.choice(self.batteries)
-                self.connect(house, battery)
-
-            costs = self.get_total_costs()
+                if not self.connect(house, battery):
+                    count = 0
+                    for battery in self.batteries:
+                        count += 1
+                        if battery == random.choice(self.batteries):
+                            break
+                        elif count == 5:
+                            penalty += 900
+            if penalty > 0:
+                penalty_count += 1
+            costs = self.get_total_costs() + penalty
             self.costs_random.append(costs)
-            self.cables = []
+            # print("yeeeah1")
+            self.disconnect_all()
+            # print("yeaah2")
 
+        print (f"Number of incomplete connection attempts: {penalty_count}")
         return self.costs_random
 
     def make_hist(self, info):
@@ -264,44 +277,14 @@ class Neighborhood(object):
         plt.hist(info, bins=15, rwidth=0.8)
         plt.show()
 
-    # def simple_connect(self):
-    #     """Connects each house to closest battery until battery's capacity is used"""
-    #
-    #     close_battery = self.batteries[0]
-    #
-    #     # find closest battery for each house and then connect
-    #     for house in self.houses:
-    #         distance = float("inf")
-    #         for battery in self.batteries:
-    #             if battery.remainder > house.output:
-    #                 current_distance = self.cal_distance(house, battery)
-    #                 if current_distance < distance:
-    #                     distance = current_distance
-    #                     close_battery = battery
-    #         self.connect(house, close_battery)
-    #
-    #         # put this into connect function!
-    #         battery.remainder = battery.remainder - house.output
-    #
-    #     total_costs = self.get_total_costs()
-    #
-    #     return total_costs
 
 if __name__ == "__main__":
     neighborhood1 = Neighborhood("wijk1")
     neighborhood2 = Neighborhood("wijk2")
     neighborhood3 = Neighborhood("wijk3")
 
-    print(f"wijk1 upper bound: {neighborhood1.upper_bound()}")
-    print(f"wijk2 upper bound: {neighborhood2.upper_bound()}")
-    print(f"wijk3 upper bound: {neighborhood3.upper_bound()}")
-
-    print(f"wijk1 lower bound: {neighborhood1.lower_bound()}")
-    print(f"wijk2 lower bound: {neighborhood2.lower_bound()}")
-    print(f"wijk3 lower bound: {neighborhood3.lower_bound()}")
-
-    neighborhood1.lower_bound()
-    neighborhood1.batt_house_plot()
+    costs_random = neighborhood1.connect_random()
+    neighborhood1.make_hist(costs_random)
 
 
 

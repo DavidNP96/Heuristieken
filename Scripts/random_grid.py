@@ -27,7 +27,7 @@ def make_connections(self, neighborhood):
         costs = neighborhood.get_total_costs()
         self.costs_random.append(costs)
         neighborhood.cables = []
-
+ 
     return self.costs_random
 
 def make_hist(info):

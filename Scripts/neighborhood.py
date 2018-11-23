@@ -8,6 +8,7 @@ from cable import Cable
 # import random_grid
 import random
 import matplotlib.pyplot as plt
+import algorithms
 
 # selects proper csv file
 # INPUT_CSV = "wijk1_huizen.csv"
@@ -59,22 +60,21 @@ class Neighborhood(object):
             x_batteries.append(cable.battery.x_location)
             y_batteries.append(cable.battery.y_location)
 
-
         # plt.xlabel('x')
         # plt.ylabel('y')
         # plt.title('SmartGrid')
         # plt.scatter(x_houses, y_houses,  c="b", alpha=0.5, marker=r'^', label="Luck")
         # plt.plot(x_batteries, y_batteries, 'rs')
-
-        for cable in self.cables:
-            lines = plt.plot(cable.house.x_location, cable.house.y_location, cable.battery.x_location, cable.battery.y_location)
+        #
+        # for cable in self.cables:
+        #     lines = plt.plot(cable.house.x_location, cable.house.y_location, cable.battery.x_location, cable.battery.y_location)
             # lines = plt.plot(x_houses, y_houses, x_batteries, y_batteries)
             # plt.hlines(y=cable.house.y_location, xmin=cable.house.x_location, xmax=cable.battery.x_location)
             # plt.vlines(x=cable.house.x_location, ymin=cable.house.y_location, ymax=cable.battery.y_location)
             # use keyword args
             # fig, ax = plt.subplots()
             # ax.plot(cable.house.x_location, cable.house.y_location)
-            plt.setp(lines, color='r', linewidth=1.0)
+            # plt.setp(lines, color='r', linewidth=1.0)
 
 
             # or MATLAB style string value pairs
@@ -124,8 +124,6 @@ class Neighborhood(object):
         Connects houses to batteries.
         """
 
-
-
         if (battery.remainder - house.output < 0):
             #print(battery.remainder - house.output)
             return False
@@ -139,10 +137,30 @@ class Neighborhood(object):
         # sets battery_id for house
         house.battery_id = battery.id
 
+        house.connected = True
+
         return True
 
+    def disconnect(self, house, battery):
+        """
+        Disconnects specific house from battery.
+        """
+
+        for cable in self.cables:
+            if house.id == cable.house.id:
+                print(cable.house.id)
+                battery.remainder += house.output
+                house.battery_id = None
+                house.connected = False
+                self.cables.remove(cable)
+
+        # MISSCHIEN MEER RETURNEN??
+        return self.cables
+
     def connect_unlimited(self, house, battery):
-        """Connects houses to batteries"""
+        """
+        Connects houses to batteries.
+        """
 
         cable = Cable(house, battery)
 
@@ -155,8 +173,8 @@ class Neighborhood(object):
     def disconnect_all(self):
         """
         Disconnects all houses and batteries and removes cables.
-
-        MAYBE ALSO FUNCTION TO DISCONNECT 1 BATTERY FROM 1 HOUSE?"""
+        MAYBE ALSO FUNCTION TO DISCONNECT 1 BATTERY FROM 1 HOUSE?
+        """
 
         self.cables = []
 
@@ -227,7 +245,7 @@ class Neighborhood(object):
 
         # self.disconnect_all()
 
-        return total_costs
+        return total_costs, house, far_battery
 
     def lower_bound(self):
         """
@@ -293,6 +311,15 @@ class Neighborhood(object):
         plt.ylabel("Times achieved")
         plt.show()
 
+    def testen(self):
+        for house in self.houses:
+            house_test = house
+            batt_id_test = house.battery_id
+            for battery in self.batteries:
+                if batt_id_test == battery.id:
+                    battery_test = battery
+                    return house_test, battery_test
+
 
 if __name__ == "__main__":
     neighborhood1 = Neighborhood("wijk1")
@@ -301,9 +328,13 @@ if __name__ == "__main__":
 
     # costs_random = neighborhood1.connect_random()
     # neighborhood1.make_hist(costs_random)
+    #
+    # neighborhood1.upper_bound()
+    # neighborhood1.batt_house_plot()
 
-    neighborhood1.upper_bound()
-    neighborhood1.batt_house_plot()
+    algorithms.simple_connect(neighborhood1)
+    house, battery = neighborhood1.testen()
+    neighborhood1.disconnect(house, battery)
 
     # neighborhood1.make_connections()
     # neighborhood1.make_hist(neighborhood1.costs_random)

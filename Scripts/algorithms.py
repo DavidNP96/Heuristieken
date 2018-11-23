@@ -3,8 +3,10 @@
 from neighborhood import Neighborhood
 
 def upper_bound(neighborhood):
-    """Returns the neighborhoods upper bound by connecting
-    each house to furthest battery"""
+    """
+    Returns the neighborhoods upper bound by connecting
+    each house to furthest battery.
+    """
 
     # find furthest battery for each house and then connect
     for house in neighborhood.houses:
@@ -23,8 +25,10 @@ def upper_bound(neighborhood):
     return total_costs
 
 def lower_bound(neighborhood):
-    """Returns the neighborhoods lower bound by connecting
-    each house to closest battery"""
+    """
+    Returns the neighborhoods lower bound by connecting
+    each house to closest battery.
+    """
 
     # find closest battery for each house and then connect
     for house in neighborhood.houses:
@@ -43,7 +47,9 @@ def lower_bound(neighborhood):
     return total_costs
 
 def simple_connect(neighborhood):
-    """Connects each house to closest battery until battery's capacity is used"""
+    """
+    Connects each house to closest battery until battery's capacity is used.
+    """
 
     close_battery = neighborhood.batteries[0]
 
@@ -66,8 +72,10 @@ def simple_connect(neighborhood):
     return total_costs
 
 def get_vicinity(neighborhood):
-    """Returns list of house ids for each battery.
-    Each battery is different index in outer list."""
+    """
+    Returns list of house ids for each battery.
+    Each battery is different index in outer list.
+    """
 
     close_battery = neighborhood.batteries[0]
 
@@ -92,8 +100,10 @@ def get_vicinity(neighborhood):
 
 
 def output_priority_connect(neighborhood):
-    """Connect function that prioritizes houses with low outputs in connecting
-    to closest batteries."""
+    """
+    Connect function that prioritizes houses with low outputs in connecting
+    to closest batteries.
+    """
 
     # get list of closest houses per battery and
     vic_list = vicinity_list(neighborhood)

@@ -24,6 +24,7 @@ class Neighborhood(object):
         self.houses = self.load_houses(f"Data/{neighborhood}_huizen.csv")
         self.batteries = self.load_batteries(f"Data/{neighborhood}_batterijen.txt")
         self.cables = []
+        self.nearest_houses = get_nearest_houses()
 
 
     def load_houses(self, input_csv):
@@ -274,7 +275,6 @@ class Neighborhood(object):
         Append a connection to the connections list.
         """
         self.costs_random = []
-        #self.disconnect_all()
 
         penalty_count = 0
 
@@ -291,13 +291,9 @@ class Neighborhood(object):
                         elif count == 5:
                             penalty += 900
                             penalty_count += 1
-            # if penalty > 0:
-            #     penalty_count += 1
             costs = self.get_total_costs() + penalty
             self.costs_random.append(costs)
-            # print("yeeeah1")
             self.disconnect_all()
-            # print("yeaah2")
 
         print (f"Number of incomplete connection attempts: {penalty_count}")
         return self.costs_random
@@ -319,6 +315,41 @@ class Neighborhood(object):
                 if batt_id_test == battery.id:
                     battery_test = battery
                     return house_test, battery_test
+
+    def get_nearest_houses(self):
+        """Returns list of house ids for each battery.
+        Each battery is different index in outer list."""
+
+        close_battery = self.batteries[0]
+
+        # initialize list to store house ids for each battery
+        nearest_houses = [[] for i in range(len(self.batteries))]
+
+        # add houses to list at index of closest battery
+        for house in self.houses:
+            # reset distance
+            distance = float("inf")
+            for battery in self.batteries:
+                # check for closest batttery to each house
+                current_distance = self.cal_distance(house, battery)
+                if current_distance < distance:
+                    distance = current_distance
+                    close_battery = battery
+            # add house to closest battery in list - OR ADD HOUSE ID?
+            nearest_houses[close_battery.id].append(house)
+
+        return nearest_houses
+
+    def get_nearest_batteries(self):
+        # initialize list to store battery ids for
+        #nearest_batteries= [[] for i in range(len(self.houses))]
+
+        # add houses to list at index of closest battery
+        for house in self.houses:
+            sort()
+
+
+
 
 
 if __name__ == "__main__":

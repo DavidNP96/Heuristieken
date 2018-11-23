@@ -9,6 +9,7 @@ from cable import Cable
 import algorithms
 import random
 import matplotlib.pyplot as plt
+import algorithms
 
 # selects proper csv file
 # INPUT_CSV = "wijk1_huizen.csv"
@@ -24,6 +25,7 @@ class Neighborhood(object):
         self.houses = self.load_houses(f"Data/{neighborhood}_huizen.csv")
         self.batteries = self.load_batteries(f"Data/{neighborhood}_batterijen.txt")
         self.cables = []
+        self.nearest_houses = get_nearest_houses()
 
 
     def load_houses(self, input_csv):
@@ -74,7 +76,6 @@ class Neighborhood(object):
         plt.title('SmartGrid')
         plt.scatter(x_houses, y_houses,  c="b", alpha=0.5, marker=r'^', label="Luck")
         plt.plot(x_batteries, y_batteries, 'rs')
-
         plt.show()
 
 
@@ -120,8 +121,6 @@ class Neighborhood(object):
         Connects houses to batteries.
         """
 
-
-
         if (battery.remainder - house.output < 0):
             #print(battery.remainder - house.output)
             return False
@@ -135,10 +134,30 @@ class Neighborhood(object):
         # sets battery_id for house
         house.battery_id = battery.id
 
+        house.connected = True
+
         return True
 
+    def disconnect(self, house, battery):
+        """
+        Disconnects specific house from battery.
+        """
+
+        for cable in self.cables:
+            if house.id == cable.house.id:
+                print(cable.house.id)
+                battery.remainder += house.output
+                house.battery_id = None
+                house.connected = False
+                self.cables.remove(cable)
+
+        # MISSCHIEN MEER RETURNEN??
+        return self.cables
+
     def connect_unlimited(self, house, battery):
-        """Connects houses to batteries"""
+        """
+        Connects houses to batteries.
+        """
 
         cable = Cable(house, battery)
 
@@ -151,8 +170,8 @@ class Neighborhood(object):
     def disconnect_all(self):
         """
         Disconnects all houses and batteries and removes cables.
-
-        MAYBE ALSO FUNCTION TO DISCONNECT 1 BATTERY FROM 1 HOUSE?"""
+        MAYBE ALSO FUNCTION TO DISCONNECT 1 BATTERY FROM 1 HOUSE?
+        """
 
         self.cables = []
 
@@ -223,7 +242,7 @@ class Neighborhood(object):
 
         # self.disconnect_all()
 
-        return total_costs
+        return total_costs, house, far_battery
 
     def lower_bound(self):
         """
@@ -252,7 +271,6 @@ class Neighborhood(object):
         Append a connection to the connections list.
         """
         self.costs_random = []
-        #self.disconnect_all()
 
         penalty_count = 0
 
@@ -269,13 +287,9 @@ class Neighborhood(object):
                         elif count == 5:
                             penalty += 900
                             penalty_count += 1
-            # if penalty > 0:
-            #     penalty_count += 1
             costs = self.get_total_costs() + penalty
             self.costs_random.append(costs)
-            # print("yeeeah1")
             self.disconnect_all()
-            # print("yeaah2")
 
         print (f"Number of incomplete connection attempts: {penalty_count}")
         return self.costs_random
@@ -289,6 +303,50 @@ class Neighborhood(object):
         plt.ylabel("Times achieved")
         plt.show()
 
+    def testen(self):
+        for house in self.houses:
+            house_test = house
+            batt_id_test = house.battery_id
+            for battery in self.batteries:
+                if batt_id_test == battery.id:
+                    battery_test = battery
+                    return house_test, battery_test
+
+    def get_nearest_houses(self):
+        """Returns list of house ids for each battery.
+        Each battery is different index in outer list."""
+
+        close_battery = self.batteries[0]
+
+        # initialize list to store house ids for each battery
+        nearest_houses = [[] for i in range(len(self.batteries))]
+
+        # add houses to list at index of closest battery
+        for house in self.houses:
+            # reset distance
+            distance = float("inf")
+            for battery in self.batteries:
+                # check for closest batttery to each house
+                current_distance = self.cal_distance(house, battery)
+                if current_distance < distance:
+                    distance = current_distance
+                    close_battery = battery
+            # add house to closest battery in list - OR ADD HOUSE ID?
+            nearest_houses[close_battery.id].append(house)
+
+        return nearest_houses
+
+    def get_nearest_batteries(self):
+        # initialize list to store battery ids for
+        #nearest_batteries= [[] for i in range(len(self.houses))]
+
+        # add houses to list at index of closest battery
+        for house in self.houses:
+            sort()
+
+
+
+
 
 if __name__ == "__main__":
     neighborhood1 = Neighborhood("wijk1")
@@ -297,11 +355,17 @@ if __name__ == "__main__":
 
     # costs_random = neighborhood1.connect_random()
     # neighborhood1.make_hist(costs_random)
+    #
+    # neighborhood1.upper_bound()
+    # neighborhood1.batt_house_plot()
 
     # neighborhood1.lower_bound()
     algorithms.simple_connect(neighborhood1)
     # neighborhood1.upper_bound()
     neighborhood1.batt_house_plot()
+    algorithms.simple_connect(neighborhood1)
+    house, battery = neighborhood1.testen()
+    neighborhood1.disconnect(house, battery)
 
     # neighborhood1.make_connections()
     # neighborhood1.make_hist(neighborhood1.costs_random)

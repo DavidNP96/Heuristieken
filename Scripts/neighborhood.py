@@ -68,12 +68,16 @@ class Neighborhood(object):
         # plt.plot(x_batteries, y_batteries, 'rs')
 
         for cable in self.cables:
-            lines = plt.plot(x_houses, y_houses, x_batteries, y_batteries)
-        #     plt.hlines(y=cable.house.y_location, xmin=cable.house.x_location, xmax=cable.battery.x_location)
+            lines = plt.plot(cable.house.x_location, cable.house.y_location, cable.battery.x_location, cable.battery.y_location)
+            # lines = plt.plot(x_houses, y_houses, x_batteries, y_batteries)
+            # plt.hlines(y=cable.house.y_location, xmin=cable.house.x_location, xmax=cable.battery.x_location)
             # plt.vlines(x=cable.house.x_location, ymin=cable.house.y_location, ymax=cable.battery.y_location)
             # use keyword args
+            # fig, ax = plt.subplots()
+            # ax.plot(cable.house.x_location, cable.house.y_location)
             plt.setp(lines, color='r', linewidth=1.0)
-            plt.pause()
+
+
             # or MATLAB style string value pairs
             # plt.setp(lines, 'color', 'r', 'linewidth', 2.0)
         plt.show()

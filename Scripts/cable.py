@@ -11,5 +11,4 @@ class Cable(object):
         x_distance = abs(house.x_location - battery.x_location)
         y_distance = abs(house.y_location - battery.y_location)
         self.length = x_distance + y_distance
-
         self.costs = self.length * PRICE

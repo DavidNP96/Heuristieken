@@ -47,6 +47,8 @@ def simple_connect(neighborhood):
 
     close_battery = neighborhood.batteries[0]
 
+    # MAKE VICINITY LIST FOR BATTERIES + USE FOR LOOP + MAKE FUNCTION
+
     # find closest battery for each house and then connect
     for house in neighborhood.houses:
         distance = float("inf")

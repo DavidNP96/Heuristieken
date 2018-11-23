@@ -23,6 +23,7 @@ class Neighborhood(object):
         self.houses = self.load_houses(f"Data/{neighborhood}_huizen.csv")
         self.batteries = self.load_batteries(f"Data/{neighborhood}_batterijen.txt")
         self.cables = []
+        self.nearest_houses = get_nearest_houses()
 
 
     def load_houses(self, input_csv):
@@ -46,6 +47,36 @@ class Neighborhood(object):
                 id += 1
             # print(houses)
             return(houses)
+
+    def batt_house_plot(self):
+        x_houses = []
+        y_houses = []
+        x_batteries = []
+        y_batteries = []
+
+        for cable in self.cables:
+            x_houses.append(cable.house.x_location)
+            y_houses.append(cable.house.y_location)
+            x_batteries.append(cable.battery.x_location)
+            y_batteries.append(cable.battery.y_location)
+
+
+        # plt.xlabel('x')
+        # plt.ylabel('y')
+        # plt.title('SmartGrid')
+        # plt.scatter(x_houses, y_houses,  c="b", alpha=0.5, marker=r'^', label="Luck")
+        # plt.plot(x_batteries, y_batteries, 'rs')
+
+        for cable in self.cables:
+            lines = plt.plot(x_houses, y_houses, x_batteries, y_batteries)
+        #     plt.hlines(y=cable.house.y_location, xmin=cable.house.x_location, xmax=cable.battery.x_location)
+            # plt.vlines(x=cable.house.x_location, ymin=cable.house.y_location, ymax=cable.battery.y_location)
+            # use keyword args
+            plt.setp(lines, color='r', linewidth=1.0)
+            plt.pause()
+            # or MATLAB style string value pairs
+            # plt.setp(lines, 'color', 'r', 'linewidth', 2.0)
+        plt.show()
 
 
     def load_batteries(self, input_txt):
@@ -89,8 +120,6 @@ class Neighborhood(object):
         """
         Connects houses to batteries.
         """
-
-
 
         if (battery.remainder - house.output < 0):
             #print(battery.remainder - house.output)
@@ -187,11 +216,11 @@ class Neighborhood(object):
                 if current_distance > distance:
                     distance = current_distance
                     far_battery = battery
-            self.connect(house, far_battery)
+            self.connect_unlimited(house, far_battery)
 
         total_costs = self.get_total_costs()
 
-        self.disconnect_all()
+        # self.disconnect_all()
 
         return total_costs
 
@@ -209,7 +238,7 @@ class Neighborhood(object):
                 if current_distance < distance:
                     distance = current_distance
                     close_battery = battery
-            self.connect(house, close_battery)
+            self.connect_unlimited(house, close_battery)
 
         total_costs = self.get_total_costs()
 
@@ -222,7 +251,6 @@ class Neighborhood(object):
         Append a connection to the connections list.
         """
         self.costs_random = []
-        #self.disconnect_all()
 
         penalty_count = 0
 
@@ -238,13 +266,10 @@ class Neighborhood(object):
                             break
                         elif count == 5:
                             penalty += 900
-            if penalty > 0:
-                penalty_count += 1
+                            penalty_count += 1
             costs = self.get_total_costs() + penalty
             self.costs_random.append(costs)
-            # print("yeeeah1")
             self.disconnect_all()
-            # print("yeaah2")
 
         print (f"Number of incomplete connection attempts: {penalty_count}")
         return self.costs_random
@@ -254,27 +279,61 @@ class Neighborhood(object):
         Make a histogram of all the solutions to find the distribution.
         """
         plt.hist(info, bins=15, rwidth=0.8)
+        plt.xlabel("Total costs")
+        plt.ylabel("Times achieved")
         plt.show()
+
+    def get_nearest_houses(self):
+        """Returns list of house ids for each battery.
+        Each battery is different index in outer list."""
+
+        close_battery = self.batteries[0]
+
+        # initialize list to store house ids for each battery
+        nearest_houses = [[] for i in range(len(self.batteries))]
+
+        # add houses to list at index of closest battery
+        for house in self.houses:
+            # reset distance
+            distance = float("inf")
+            for battery in self.batteries:
+                # check for closest batttery to each house
+                current_distance = self.cal_distance(house, battery)
+                if current_distance < distance:
+                    distance = current_distance
+                    close_battery = battery
+            # add house to closest battery in list - OR ADD HOUSE ID?
+            nearest_houses[close_battery.id].append(house)
+
+        return nearest_houses
+
+    def get_nearest_batteries(self):
+        # initialize list to store battery ids for
+        #nearest_batteries= [[] for i in range(len(self.houses))]
+
+        # add houses to list at index of closest battery
+        for house in self.houses:
+            sort()
+
+
 
 
 if __name__ == "__main__":
     neighborhood1 = Neighborhood("wijk1")
     neighborhood2 = Neighborhood("wijk2")
     neighborhood3 = Neighborhood("wijk3")
-    #
-    # print(f"wijk1 upper bound: {neighborhood1.upper_bound()}")
-    # print(f"wijk2 upper bound: {neighborhood2.upper_bound()}")
-    # print(f"wijk3 upper bound: {neighborhood3.upper_bound()}")
-    #
-    # print(f"wijk1 lower bound: {neighborhood1.lower_bound()}")
-    # print(f"wijk2 lower bound: {neighborhood2.lower_bound()}")
-    # print(f"wijk3 lower bound: {neighborhood3.lower_bound()}")
 
-    costs_random = neighborhood1.connect_random()
-    neighborhood1.make_hist(costs_random)
+    # costs_random = neighborhood1.connect_random()
+    # neighborhood1.make_hist(costs_random)
 
-    print(f"wijk1 simple connect: {neighborhood1.simple_connect()}")
-    print(f"wijk2 simple connect: {neighborhood2.simple_connect()}")
-    print(f"wijk3 simple connect: {neighborhood3.simple_connect()}")
+    neighborhood1.upper_bound()
+    neighborhood1.batt_house_plot()
+
+    # neighborhood1.make_connections()
+    # neighborhood1.make_hist(neighborhood1.costs_random)
+    #
+    # print(f"wijk1 simple connect: {neighborhood1.simple_connect()}")
+    # print(f"wijk2 simple connect: {neighborhood2.simple_connect()}")
+    # print(f"wijk3 simple connect: {neighborhood3.simple_connect()}")
 
     # print(f"simple_connect voor wijk1: {neighborhood1.simple_connect()}")

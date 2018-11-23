@@ -3,9 +3,10 @@
 import csv
 import matplotlib.pyplot as plt
 import numpy as np
+from neighborhood import Neighborhood
 
-INPUT_CSV = "wijk1_huizen.csv"
-INPUT_TEXT = "wijk1_batterijen.txt"
+INPUT_CSV = "Data/wijk1_huizen.csv"
+INPUT_TEXT = "Data/wijk1_batterijen.txt"
 
 #
 with open(INPUT_CSV, newline='') as csvfile:
@@ -43,7 +44,7 @@ with open(INPUT_TEXT, "r") as f:
 plt.xlabel('x')
 plt.ylabel('y')
 plt.title('SmartGrid')
-plt.scatter(house_x, house_y,  c="b", alpha=0.5, marker=r'^',
-            label="Luck")
+plt.scatter(house_x, house_y,  c="b", alpha=0.5, marker=r'^', label="Luck")
 plt.plot(battery_x, battery_y, 'rs')
+plt.plot()
 plt.show()

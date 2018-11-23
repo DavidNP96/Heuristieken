@@ -65,30 +65,6 @@ def simple_connect(neighborhood):
 
     return total_costs
 
-def get_vicinity(neighborhood):
-    """Returns list of house ids for each battery.
-    Each battery is different index in outer list."""
-
-    close_battery = neighborhood.batteries[0]
-
-    # initialize list to store house ids for each battery
-    vicinity_list = [[] for i in range(len(neighborhood.batteries))]
-
-    # add houses to list at index of closest battery
-    for house in neighborhood.houses:
-        # reset distance
-        distance = float("inf")
-        for battery in neighborhood.batteries:
-            # check for closest batttery to each house
-            current_distance = neighborhood.cal_distance(house, battery)
-            if current_distance < distance:
-                distance = current_distance
-                close_battery = battery
-        # add house to closest battery in list - OR ADD HOUSE ID?
-        vicinity_list[close_battery.id].append(house)
-
-    return vicinity_list
-
 
 
 def output_priority_connect(neighborhood):

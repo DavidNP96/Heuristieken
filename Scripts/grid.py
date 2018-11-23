@@ -40,11 +40,24 @@ with open(INPUT_TEXT, "r") as f:
     print(battery_x)
     print(battery_y)
 
+# function to draw lines between batteries and houses
+# def connectpoints(x,y,p1,p2):
+#     """
+#     Draw connections between batteries and houses
+#     """
+#     for
+#     x1, x2 = x[p1], x[p2]
+#     y1, y2 = y[p1], y[p2]
+    plt.plot([house_x, house_y], [battery_x, battery_y], "k-")
+
+# connectpoints(x,y,0,1)
+# connectpoints(x,y,2,3)
+
 # plots house position in grid for visualization and control
 plt.xlabel('x')
 plt.ylabel('y')
 plt.title('SmartGrid')
 plt.scatter(house_x, house_y,  c="b", alpha=0.5, marker=r'^', label="Luck")
-plt.plot(battery_x, battery_y, 'rs')
+plt.scatter(battery_x, battery_y)
 plt.plot()
 plt.show()

@@ -6,6 +6,7 @@ from battery import Battery
 from cable import Cable
 
 # import random_grid
+import algorithms
 import random
 import matplotlib.pyplot as plt
 
@@ -53,32 +54,27 @@ class Neighborhood(object):
         x_batteries = []
         y_batteries = []
 
-        for cable in self.cables:
-            x_houses.append(cable.house.x_location)
-            y_houses.append(cable.house.y_location)
-            x_batteries.append(cable.battery.x_location)
-            y_batteries.append(cable.battery.y_location)
+        # create two list with house x and y coordinates
+        for house in self.houses:
+            x_houses.append(house.x_location)
+            y_houses.append(house.y_location)
 
-
-        # plt.xlabel('x')
-        # plt.ylabel('y')
-        # plt.title('SmartGrid')
-        # plt.scatter(x_houses, y_houses,  c="b", alpha=0.5, marker=r'^', label="Luck")
-        # plt.plot(x_batteries, y_batteries, 'rs')
+        # create two list with battery x and y coordinates
+        for battery in self.batteries:
+            x_batteries.append(battery.x_location)
+            y_batteries.append(battery.y_location)
 
         for cable in self.cables:
-            lines = plt.plot(cable.house.x_location, cable.house.y_location, cable.battery.x_location, cable.battery.y_location)
-            # lines = plt.plot(x_houses, y_houses, x_batteries, y_batteries)
-            # plt.hlines(y=cable.house.y_location, xmin=cable.house.x_location, xmax=cable.battery.x_location)
-            # plt.vlines(x=cable.house.x_location, ymin=cable.house.y_location, ymax=cable.battery.y_location)
-            # use keyword args
-            # fig, ax = plt.subplots()
-            # ax.plot(cable.house.x_location, cable.house.y_location)
-            plt.setp(lines, color='r', linewidth=1.0)
+            colors = {0 :'r', 1 :'b', 2 : 'y', 3 : 'g', 4 : 'm'}
+            plt.plot([cable.house.x_location, cable.house.x_location],[cable.house.y_location, cable.battery.y_location],colors[cable.battery.id])
+            plt.plot([cable.house.x_location, cable.battery.x_location],[cable.battery.y_location, cable.battery.y_location],colors[cable.battery.id] )
 
+        plt.xlabel('x')
+        plt.ylabel('y')
+        plt.title('SmartGrid')
+        plt.scatter(x_houses, y_houses,  c="b", alpha=0.5, marker=r'^', label="Luck")
+        plt.plot(x_batteries, y_batteries, 'rs')
 
-            # or MATLAB style string value pairs
-            # plt.setp(lines, 'color', 'r', 'linewidth', 2.0)
         plt.show()
 
 
@@ -247,7 +243,7 @@ class Neighborhood(object):
 
         total_costs = self.get_total_costs()
 
-        self.disconnect_all()
+        # self.disconnect_all()
 
         return total_costs
 
@@ -302,7 +298,9 @@ if __name__ == "__main__":
     # costs_random = neighborhood1.connect_random()
     # neighborhood1.make_hist(costs_random)
 
-    neighborhood1.upper_bound()
+    # neighborhood1.lower_bound()
+    algorithms.simple_connect(neighborhood1)
+    # neighborhood1.upper_bound()
     neighborhood1.batt_house_plot()
 
     # neighborhood1.make_connections()

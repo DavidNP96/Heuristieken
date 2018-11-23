@@ -65,8 +65,17 @@ class Neighborhood(object):
         # plt.title('SmartGrid')
         # plt.scatter(x_houses, y_houses,  c="b", alpha=0.5, marker=r'^', label="Luck")
         # plt.plot(x_batteries, y_batteries, 'rs')
-        # plt.plot()
-        # plt.show()
+
+        for cable in self.cables:
+            lines = plt.plot(x_houses, y_houses, x_batteries, y_batteries)
+        #     plt.hlines(y=cable.house.y_location, xmin=cable.house.x_location, xmax=cable.battery.x_location)
+            # plt.vlines(x=cable.house.x_location, ymin=cable.house.y_location, ymax=cable.battery.y_location)
+            # use keyword args
+            plt.setp(lines, color='r', linewidth=1.0)
+            plt.pause()
+            # or MATLAB style string value pairs
+            # plt.setp(lines, 'color', 'r', 'linewidth', 2.0)
+        plt.show()
 
 
     def load_batteries(self, input_txt):
@@ -212,7 +221,7 @@ class Neighborhood(object):
 
         total_costs = self.get_total_costs()
 
-        self.disconnect_all()
+        # self.disconnect_all()
 
         return total_costs
 
@@ -259,8 +268,9 @@ class Neighborhood(object):
                             break
                         elif count == 5:
                             penalty += 900
-            if penalty > 0:
-                penalty_count += 1
+                            penalty_count += 1
+            # if penalty > 0:
+            #     penalty_count += 1
             costs = self.get_total_costs() + penalty
             self.costs_random.append(costs)
             # print("yeeeah1")
@@ -275,6 +285,8 @@ class Neighborhood(object):
         Make a histogram of all the solutions to find the distribution.
         """
         plt.hist(info, bins=15, rwidth=0.8)
+        plt.xlabel("Total costs")
+        plt.ylabel("Times achieved")
         plt.show()
 
 
@@ -283,10 +295,11 @@ if __name__ == "__main__":
     neighborhood2 = Neighborhood("wijk2")
     neighborhood3 = Neighborhood("wijk3")
 
-    costs_random = neighborhood1.connect_random()
-    neighborhood1.make_hist(costs_random)
+    # costs_random = neighborhood1.connect_random()
+    # neighborhood1.make_hist(costs_random)
 
-
+    neighborhood1.upper_bound()
+    neighborhood1.batt_house_plot()
 
     # neighborhood1.make_connections()
     # neighborhood1.make_hist(neighborhood1.costs_random)

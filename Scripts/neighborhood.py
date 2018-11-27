@@ -252,31 +252,52 @@ class Neighborhood(object):
 
     def connect_random(self):
         """
-        Append a connection to the connections list.
+        Randomly connects houses to batteries.
         """
         self.costs_random = []
 
         penalty_count = 0
-
         for i in range(50000):
             penalty = 0
+            temp_batteries
             for house in self.houses:
+                unconnectable_count = 0
                 battery = random.choice(self.batteries)
-                if not self.connect(house, battery):
-                    count = 0
-                    for battery in self.batteries:
-                        count += 1
-                        if battery == random.choice(self.batteries):
-                            break
-                        elif count == 5:
-                            penalty += 900
-                            penalty_count += 1
+                while not self.connect(house, battery):
+                    battery = random.choice(self.batteries)
+                    unconnectable_count += 1
+                    if unconnectable_count == 50:
+                        penalty += 900
+                        penalty_count += 1
+                        break
+
+
             costs = self.get_total_costs() + penalty
             self.costs_random.append(costs)
             self.disconnect_all()
 
         print (f"Number of incomplete connection attempts: {penalty_count}")
         return self.costs_random
+
+        # for i in range(50000):
+        #     penalty = 0
+        #     for house in self.houses:
+        #         battery = random.choice(self.batteries)
+        #         if not self.connect(house, battery):
+        #             count = 0
+        #             for battery in self.batteries:
+        #                 count += 1
+        #                 if battery == random.choice(self.batteries):
+        #                     break
+        #                 elif count == 5:
+        #                     penalty += 900
+        #                     penalty_count += 1
+        #     costs = self.get_total_costs() + penalty
+        #     self.costs_random.append(costs)
+        #     self.disconnect_all()
+        #
+        # print (f"Number of incomplete connection attempts: {penalty_count}")
+        # return self.costs_random
 
     def make_hist(self, info):
         """
@@ -310,14 +331,17 @@ class Neighborhood(object):
             nearest_houses[close_battery.id].append(house)
 
         return nearest_houses
-
-    def get_nearest_batteries(self):
-        # initialize list to store battery ids for
-        #nearest_batteries= [[] for i in range(len(self.houses))]
-
-        # add houses to list at index of closest battery
-        for house in self.houses:
-            sort()
+    #
+    # def get_nearest_batteries(self):
+    #     # initialize list to store battery ids for
+    #     #nearest_batteries= [[] for i in range(len(self.houses))]
+    #
+    #     # add houses to list at index of closest battery
+    #     for house in self.houses:
+    #
+    #         house.x_location
+    #
+    #         sort()
 
 
 

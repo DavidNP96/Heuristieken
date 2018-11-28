@@ -1,2 +1,2 @@
-Scripts/__pycache__/cable.cpython-37.pyc
+**.pyc
 Scripts/.DS_Store

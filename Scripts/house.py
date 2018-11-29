@@ -25,7 +25,7 @@ class House(object):
 
         for battery in battery_list:
             distance =  abs(battery.x_location - self.x_location) +
-                        abs(battery.y_location - self. y_location)
+                        abs(battery.y_location - self.y_location)
 
             distance_list.append(distance)
 

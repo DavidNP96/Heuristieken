@@ -1,15 +1,13 @@
 import csv
-#import matplotlib.pyplot as plt
 #import numpy as np
 from house import House
 from battery import Battery
 from cable import Cable
-
-# import random_grid
 import algorithms
 import random
 import matplotlib.pyplot as plt
 import algorithms
+import hillie
 
 # selects proper csv file
 # INPUT_CSV = "wijk1_huizen.csv"
@@ -25,7 +23,7 @@ class Neighborhood(object):
         self.houses = self.load_houses(f"Data/{neighborhood}_huizen.csv")
         self.batteries = self.load_batteries(f"Data/{neighborhood}_batterijen.txt")
         self.cables = []
-        self.nearest_houses = get_nearest_houses()
+        # self.nearest_houses = get_nearest_houses()
 
 
     def load_houses(self, input_csv):
@@ -145,7 +143,6 @@ class Neighborhood(object):
 
         for cable in self.cables:
             if house.id == cable.house.id:
-                print(cable.house.id)
                 battery.remainder += house.output
                 house.battery_id = None
                 house.connected = False
@@ -383,12 +380,15 @@ if __name__ == "__main__":
     # neighborhood1.batt_house_plot()
 
     # neighborhood1.lower_bound()
-    algorithms.simple_connect(neighborhood1)
-    # neighborhood1.upper_bound()
-    neighborhood1.batt_house_plot()
-    algorithms.simple_connect(neighborhood1)
-    house, battery = neighborhood1.testen()
-    neighborhood1.disconnect(house, battery)
+    # algorithms.simple_connect(neighborhood1)
+    # # neighborhood1.upper_bound()
+    # neighborhood1.batt_house_plot()
+    # algorithms.simple_connect(neighborhood1)
+    # house, battery = neighborhood1.testen()
+    # neighborhood1.disconnect(house, battery)
+
+    neighborhood1.upper_bound()
+    hillie.alg_hillie(neighborhood1)
 
     # neighborhood1.make_connections()
     # neighborhood1.make_hist(neighborhood1.costs_random)

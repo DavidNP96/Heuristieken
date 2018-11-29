@@ -9,8 +9,7 @@ class House(object):
 
         self.connected = False
 
-
-        # empty array to be filled with batteries order in closeness
+        # empty array to be filled with battery ids order in closeness
         self.nearest_battery_ids = []
 
 
@@ -21,25 +20,29 @@ class House(object):
             return 1
 
         distance_list = []
-        nearest_battery_id = [None] * len(battery_list)
+        nearest_battery_ids = [None] * len(battery_list)
 
         for battery in battery_list:
-            distance =  abs(battery.x_location - self.x_location) +
-                        abs(battery.y_location - self. y_location)
+            distance =  abs(battery.x_location - self.x_location) + abs(battery.y_location - self.y_location)
 
             distance_list.append(distance)
 
         # bubble sort using smallest to large distance list to sort battery list
-        for i in range(len(battery_list) - 1)
-            for j in range(len(battery_list) - 1):
+        for i in range(len(battery_list) - 1, 0, -1):
+            for j in range(i):
                 if distance_list[j] > distance_list[j + 1]:
-                    swap_battery = battery_list[j]
+                    temp_battery = battery_list[j]
+                    temp_distance = distance_list[j]
+
                     battery_list[j] = battery_list[j + 1]
-                    battery_list[j + 1] = swap_battery
+                    distance_list[j] = distance_list[j + 1]
+
+                    battery_list[j + 1] = temp_battery
+                    distance_list[j + 1] = temp_distance
 
         # make list with battery ids of nearest to furthest batteries
         for i in range(len(battery_list)):
-            nearest_battery_id[i] = battery_list[i].id
+            nearest_battery_ids[i] = battery_list[i].id
 
 
         self.nearest_battery_ids = nearest_battery_ids

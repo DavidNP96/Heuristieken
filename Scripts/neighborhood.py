@@ -9,7 +9,6 @@ from cable import Cable
 import algorithms
 import random
 import matplotlib.pyplot as plt
-import algorithms
 
 # selects proper csv file
 # INPUT_CSV = "wijk1_huizen.csv"
@@ -25,7 +24,7 @@ class Neighborhood(object):
         self.houses = self.load_houses(f"Data/{neighborhood}_huizen.csv")
         self.batteries = self.load_batteries(f"Data/{neighborhood}_batterijen.txt")
         self.cables = []
-        self.nearest_houses = get_nearest_houses()
+        self.nearest_houses = self.get_nearest_houses()
 
 
     def load_houses(self, input_csv):
@@ -365,12 +364,6 @@ class Neighborhood(object):
             house.get_nearest_batteries(self.batteries)
 
 
-
-
-
-
-
-
 if __name__ == "__main__":
     neighborhood1 = Neighborhood("wijk1")
     neighborhood2 = Neighborhood("wijk2")
@@ -383,12 +376,12 @@ if __name__ == "__main__":
     # neighborhood1.batt_house_plot()
 
     # neighborhood1.lower_bound()
-    algorithms.simple_connect(neighborhood1)
-    # neighborhood1.upper_bound()
-    neighborhood1.batt_house_plot()
-    algorithms.simple_connect(neighborhood1)
-    house, battery = neighborhood1.testen()
-    neighborhood1.disconnect(house, battery)
+    # algorithms.simple_connect(neighborhood1)
+    # # neighborhood1.upper_bound()
+    # neighborhood1.batt_house_plot()
+    # algorithms.simple_connect(neighborhood1)
+    # house, battery = neighborhood1.testen()
+    # neighborhood1.disconnect(house, battery)
 
     # neighborhood1.make_connections()
     # neighborhood1.make_hist(neighborhood1.costs_random)
@@ -398,3 +391,16 @@ if __name__ == "__main__":
     # print(f"wijk3 simple connect: {neighborhood3.simple_connect()}")
 
     # print(f"simple_connect voor wijk1: {neighborhood1.simple_connect()}")
+
+    #print(neighborhood1.houses[0].x_location)
+
+    neighborhood1.get_nearest_batteries()
+
+    # for house in neighborhood1.houses:
+    #     print(f"nearest_battery_ids: {house.nearest_battery_ids}")
+
+
+    simple_connect(neighborhood1)
+
+
+    neighborhood1.batt_house_plot()

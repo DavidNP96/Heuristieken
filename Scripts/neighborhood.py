@@ -1,15 +1,13 @@
 import csv
-#import matplotlib.pyplot as plt
 #import numpy as np
 from house import House
 from battery import Battery
 from cable import Cable
-
-# import random_grid
 import algorithms
 import random
 import matplotlib.pyplot as plt
 import algorithms
+import hillie
 
 # selects proper csv file
 # INPUT_CSV = "wijk1_huizen.csv"
@@ -25,8 +23,7 @@ class Neighborhood(object):
         self.houses = self.load_houses(f"Data/{neighborhood}_huizen.csv")
         self.batteries = self.load_batteries(f"Data/{neighborhood}_batterijen.txt")
         self.cables = []
-        # self.nearest_houses = get_nearest_houses()
-
+        self.nearest_houses = self.get_nearest_houses()
 
     def load_houses(self, input_csv):
         """
@@ -39,6 +36,7 @@ class Neighborhood(object):
             houses = []
 
             id = 0
+
             # creates house object list and uses row for house id
             for row in reader:
                 x_location = int(row["x"])
@@ -145,7 +143,6 @@ class Neighborhood(object):
 
         for cable in self.cables:
             if house.id == cable.house.id:
-                print(cable.house.id)
                 battery.remainder += house.output
                 house.battery_id = None
                 house.connected = False
@@ -365,10 +362,13 @@ class Neighborhood(object):
             house.get_nearest_batteries(self.batteries)
 
     def move_battery(self, battery_id, x_location, y_location):
+        """
+        asks house to move to desireed position
+        """
+        
         for batt in self.batteries:
             if battery_id == batt.id:
                 batt.move_to(x_location, y_location)
-
 
 if __name__ == "__main__":
     neighborhood1 = Neighborhood("wijk1")
@@ -383,6 +383,7 @@ if __name__ == "__main__":
 
     # neighborhood1.lower_bound()
     # algorithms.simple_connect(neighborhood1)
+<<<<<<< HEAD
     # neighborhood1.upper_bound()
     neighborhood1.batt_house_plot()
     neighborhood1.move_battery(4,1,1)
@@ -390,6 +391,16 @@ if __name__ == "__main__":
     # algorithms.simple_connect(neighborhood1)
     # house, battery = neighborhood1.testen()
     # neighborhood1.disconnect(house, battery)
+=======
+    # # neighborhood1.upper_bound()
+    # neighborhood1.batt_house_plot()
+    # algorithms.simple_connect(neighborhood1)
+    # house, battery = neighborhood1.testen()
+    # neighborhood1.disconnect(house, battery)
+
+    neighborhood1.upper_bound()
+    hillie.alg_hillie(neighborhood1)
+>>>>>>> e290a3683bc19d9aa8e5c70f07a9d1dd8096a9e5
 
     # neighborhood1.make_connections()
     # neighborhood1.make_hist(neighborhood1.costs_random)
@@ -399,3 +410,16 @@ if __name__ == "__main__":
     # print(f"wijk3 simple connect: {neighborhood3.simple_connect()}")
 
     # print(f"simple_connect voor wijk1: {neighborhood1.simple_connect()}")
+
+    #print(neighborhood1.houses[0].x_location)
+
+    neighborhood1.get_nearest_batteries()
+
+    # for house in neighborhood1.houses:
+    #     print(f"nearest_battery_ids: {house.nearest_battery_ids}")
+
+
+    simple_connect(neighborhood1)
+
+
+    neighborhood1.batt_house_plot()

@@ -10,6 +10,8 @@ import algorithms
 import random
 import matplotlib.pyplot as plt
 
+#import hillie
+
 # selects proper csv file
 # INPUT_CSV = "wijk1_huizen.csv"
 # BATTERIES_TXT = "wijk1_batterijen.txt"
@@ -267,7 +269,7 @@ class Neighborhood(object):
 
     def connect_random(self):
         """
-        Randomly connects houses to batteries.
+        Randomly connects houses to batteries to create random distribution.
         """
         self.costs_random = []
 
@@ -364,6 +366,32 @@ class Neighborhood(object):
             house.get_nearest_batteries(self.batteries)
 
 
+    def simple_connect_n(self):
+        """
+        Connects each house to closest battery until battery's capacity is used.
+        """
+
+        # MAKE VICINITY LIST FOR BATTERIES + USE FOR LOOP + MAKE FUNCTION
+
+        self.get_nearest_batteries()
+
+        # connect house to closest battery if possible, else second-to-closest etc
+        for house in self.houses:
+            i = 0
+            while(  self.connect(house, self.batteries[house.nearest_battery_ids[i]])
+                    == False and i < len(self.batteries)):
+                    i += 1
+                    #print(i)
+                    #print(f"ja, house id: {house.id}")
+            if i == len(self.batteries):
+                print(f"Unable to connect house {house.id}")
+
+
+        total_costs = self.get_total_costs()
+
+        return total_costs
+
+
 if __name__ == "__main__":
     neighborhood1 = Neighborhood("wijk1")
     neighborhood2 = Neighborhood("wijk2")
@@ -394,13 +422,35 @@ if __name__ == "__main__":
 
     #print(neighborhood1.houses[0].x_location)
 
-    neighborhood1.get_nearest_batteries()
+    #neighborhood1.get_nearest_batteries()
 
     # for house in neighborhood1.houses:
     #     print(f"nearest_battery_ids: {house.nearest_battery_ids}")
 
 
-    simple_connect(neighborhood1)
+    neighborhood1.simple_connect_n()
 
+    # prints closest batteries and connected battery for each house
+    i = 0
+    for house in neighborhood1.houses:
+        print(f"house {i} nearest_batteries: {house.nearest_battery_ids}")
+        print(f"house {i} is connected to battery {house.battery_id}")
+        i += 1
+
+    print(f"total costs simple_connect: {neighborhood1.get_total_costs()}")
+
+    #alg_hillie(neighborhood1)
+
+    print(f"total costs simple_connect + hillclimber: {neighborhood1.get_total_costs()}")
+
+    neighborhood1.get_nearest_batteries()
+
+
+    # print(f"distance house0-battery0: {neighborhood1.cal_distance(neighborhood1.houses[0], neighborhood1.batteries[0])}")
+    # print(f"distance house0-battery1: {neighborhood1.cal_distance(neighborhood1.houses[0], neighborhood1.batteries[1])}")
+    # print(f"distance house0-battery2: {neighborhood1.cal_distance(neighborhood1.houses[0], neighborhood1.batteries[2])}")
+    # print(f"distance house0-battery3: {neighborhood1.cal_distance(neighborhood1.houses[0], neighborhood1.batteries[3])}")
+    # print(f"distance house0-battery4: {neighborhood1.cal_distance(neighborhood1.houses[0], neighborhood1.batteries[4])}")
+    # print(f"house 0 nearest_batteries: {neighborhood1.houses[0].nearest_battery_ids}")
 
     neighborhood1.batt_house_plot()

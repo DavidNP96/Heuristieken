@@ -117,12 +117,13 @@ if __name__ == "__main__":
     neighborhood3 = Neighborhood("wijk3")
 
     print(f"wijk1 lower bound: {lower_bound(neighborhood1)}")
-    print(f"wijk2 lower bound: {lower_bound(neighborhood2)}")
-    print(f"wijk3 lower bound: {lower_bound(neighborhood3)}")
+    # print(f"wijk2 lower bound: {lower_bound(neighborhood2)}")
+    # print(f"wijk3 lower bound: {lower_bound(neighborhood3)}")
 
     print(f"wijk1 simple connect: {simple_connect(neighborhood1)}")
-    print(f"wijk2 simple connect: {simple_connect(neighborhood2)}")
-    print(f"wijk3 simple connect: {simple_connect(neighborhood3)}")
+    # print(f"wijk2 simple connect: {simple_connect(neighborhood2)}")
+    # print(f"wijk3 simple connect: {simple_connect(neighborhood3)}")
 
+    neighborhood1.batt_house_plot()
 
     print(f"wijk1 vicinity: {get_vicinity(neighborhood1)}")

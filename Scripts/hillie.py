@@ -19,7 +19,7 @@ def alg_hillie(self, neighborhood):
             neighborhood.connect(house, cable_2.battery)
             neighborhood.connect(cable_2.house, battery)
             new = neighborhood.get_total_costs()
-
+ 
         if new <= current:
             current = new
         else:

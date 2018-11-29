@@ -12,3 +12,7 @@ class Battery(object):
 
         # Pas dit aan voor variabele prijs!
         self.price = 5000
+
+    def move_to(self, new_x_location, new_y_location):
+        self.x_location = new_x_location
+        self.y_location = new_y_location

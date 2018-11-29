@@ -25,7 +25,7 @@ class Neighborhood(object):
         self.houses = self.load_houses(f"Data/{neighborhood}_huizen.csv")
         self.batteries = self.load_batteries(f"Data/{neighborhood}_batterijen.txt")
         self.cables = []
-        self.nearest_houses = get_nearest_houses()
+        # self.nearest_houses = get_nearest_houses()
 
 
     def load_houses(self, input_csv):
@@ -364,11 +364,10 @@ class Neighborhood(object):
         for house in self.houses:
             house.get_nearest_batteries(self.batteries)
 
-
-
-
-
-
+    def move_battery(self, battery_id, x_location, y_location):
+        for batt in self.batteries:
+            if battery_id == batt.id:
+                batt.move_to(x_location, y_location)
 
 
 if __name__ == "__main__":
@@ -383,12 +382,14 @@ if __name__ == "__main__":
     # neighborhood1.batt_house_plot()
 
     # neighborhood1.lower_bound()
-    algorithms.simple_connect(neighborhood1)
+    # algorithms.simple_connect(neighborhood1)
     # neighborhood1.upper_bound()
     neighborhood1.batt_house_plot()
-    algorithms.simple_connect(neighborhood1)
-    house, battery = neighborhood1.testen()
-    neighborhood1.disconnect(house, battery)
+    neighborhood1.move_battery(4,1,1)
+    neighborhood1.batt_house_plot()
+    # algorithms.simple_connect(neighborhood1)
+    # house, battery = neighborhood1.testen()
+    # neighborhood1.disconnect(house, battery)
 
     # neighborhood1.make_connections()
     # neighborhood1.make_hist(neighborhood1.costs_random)

@@ -6,6 +6,7 @@ class House(object):
         self.output = float(output)
         self.id = id
         self.battery_id = None
+        self.cable_id = None
 
         self.connected = False
 

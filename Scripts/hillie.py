@@ -31,5 +31,4 @@ def alg_hillie(neighborhood):
                 neighborhood.disconnect(house_2, battery_1)
                 neighborhood.connect(house_2, battery_2)
                 neighborhood.connect(house_1, battery_1)
-                print(new)
      # neighborhood.batt_house_plot()

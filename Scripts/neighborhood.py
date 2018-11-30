@@ -365,7 +365,7 @@ class Neighborhood(object):
         """
         asks house to move to desireed position
         """
-        
+
         for batt in self.batteries:
             if battery_id == batt.id:
                 batt.move_to(x_location, y_location)
@@ -382,25 +382,17 @@ if __name__ == "__main__":
     # neighborhood1.batt_house_plot()
 
     # neighborhood1.lower_bound()
-    # algorithms.simple_connect(neighborhood1)
-<<<<<<< HEAD
+    algorithms.simple_connect(neighborhood1)
+
     # neighborhood1.upper_bound()
     neighborhood1.batt_house_plot()
     neighborhood1.move_battery(4,1,1)
     neighborhood1.batt_house_plot()
-    # algorithms.simple_connect(neighborhood1)
-    # house, battery = neighborhood1.testen()
-    # neighborhood1.disconnect(house, battery)
-=======
-    # # neighborhood1.upper_bound()
-    # neighborhood1.batt_house_plot()
-    # algorithms.simple_connect(neighborhood1)
-    # house, battery = neighborhood1.testen()
-    # neighborhood1.disconnect(house, battery)
 
-    neighborhood1.upper_bound()
-    hillie.alg_hillie(neighborhood1)
->>>>>>> e290a3683bc19d9aa8e5c70f07a9d1dd8096a9e5
+
+    # algorithms.sim ple_connect(neighborhood1)
+    # house, battery = neighborhood1.testen()
+    # neighborhood1.disconnect(house, battery)
 
     # neighborhood1.make_connections()
     # neighborhood1.make_hist(neighborhood1.costs_random)

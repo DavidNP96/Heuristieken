@@ -1,5 +1,4 @@
-import neighborhood
-import algorithms
+import neighborhood as n
 import random
 
 def alg_hillie(neighborhood):
@@ -8,8 +7,8 @@ def alg_hillie(neighborhood):
     """
     current = neighborhood.get_total_costs()
     # neighborhood.batt_house_plot()
-    print(current)
-    for i in range(500):
+    # print(current)
+    for i in range(1000):
         for cable_1 in neighborhood.cables:
             house_1 = cable_1.house
             battery_1 = cable_1.battery
@@ -31,4 +30,9 @@ def alg_hillie(neighborhood):
                 neighborhood.disconnect(house_2, battery_1)
                 neighborhood.connect(house_2, battery_2)
                 neighborhood.connect(house_1, battery_1)
+<<<<<<< HEAD:Scripts/hillie.py
      # neighborhood.batt_house_plot()
+=======
+                # print(new)
+    # neighborhood.batt_house_plot()
+>>>>>>> 520033d80713c81e6dbe02db95b859948c47a8b6:Scripts/hillclimber.py

@@ -29,7 +29,7 @@ python neighborhood.py
 ```
 
 ### Results
-To find the statespace, upperbound, lowerbound and plots go to the "results" folder and to the README.
+To find the statespace, upperbound, lowerbound and plots see the README in the "results" folder.
 
 ### Authors
 **Team Niko**  

@@ -19,8 +19,8 @@ class Neighborhood(object):
         """
         Create houses and batteries and make a list for the cables.
         """
-        self.houses = self.load_houses(f"data/{neighborhood}_huizen.csv")
-        self.batteries = self.load_batteries(f"data/{neighborhood}_batterijen.txt")
+        self.houses = self.load_houses(f"{neighborhood}_huizen.csv")
+        self.batteries = self.load_batteries(f"{neighborhood}_batterijen.txt")
         self.cables = []
         # self.nearest_houses = self.get_nearest_houses()
 
@@ -28,21 +28,13 @@ class Neighborhood(object):
         """
         Creates list of house objects.
         """
-        # directory = os.path.dirname(os.path.realpath(__file__))
-        # sys.path.append(os.path.join(directory, "code"))
-        # sys.path.append(os.path.join(directory, "code", "data"))
-        # sys.path.append(os.path.join(directory, "code", "algoritmes"))
+        abspath = os.path.abspath(__file__)
+        abspath = os.path.dirname(abspath)
+        abspath = os.path.dirname(abspath)
+        abspath = os.path.join(abspath, "data")
+        abspath = os.path.join(abspath, input_csv)
 
-        # abspath = os.path.abspath(__file__)
-        # print(abspath)
-        # abspath = os.path.dirname(abspath)
-        # print(abspath)
-        # abspath = os.path.dirname(abspath)
-        # print(abspath)
-        # abspath = os.path.join(abspath, "data", input_csv)
-        # print(abspath)
-
-        with open(input_csv, newline='') as csvfile:
+        with open(abspath, newline='') as csvfile:
             reader = csv.DictReader(csvfile)
 
             # initialize houses list
@@ -68,9 +60,14 @@ class Neighborhood(object):
         """
         Creates list of battery objects.
         """
+        abspath = os.path.abspath(__file__)
+        abspath = os.path.dirname(abspath)
+        abspath = os.path.dirname(abspath)
+        abspath = os.path.join(abspath, "data")
+        abspath = os.path.join(abspath, input_txt)
 
         # opens txt file and starts reading at first battery in file
-        with open(input_txt, "r") as f:
+        with open(abspath, "r") as f:
             next(f)
             text = f.readlines()
 
@@ -344,8 +341,8 @@ class Neighborhood(object):
 
 if __name__ == "__main__":
     neighborhood1 = Neighborhood("wijk1")
-    neighborhood2 = Neighborhood("wijk2")
-    neighborhood3 = Neighborhood("wijk3")
+    # neighborhood2 = Neighborhood("wijk2")
+    # neighborhood3 = Neighborhood("wijk3")
 
     # # dit is om te testen, omdat ie niet werkt. snap niet waarom.
     # uplow.upper_bound(neighborhood1)

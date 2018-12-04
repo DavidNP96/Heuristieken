@@ -27,9 +27,9 @@ def batt_house_plot(neighborhood):
         plt.plot([cable.house.x_location, cable.battery.x_location],
             [cable.battery.y_location, cable.battery.y_location],colors[cable.battery.id] )
 
-    plt.xlabel('x')
-    plt.ylabel('y')
-    plt.title('SmartGrid')
+    plt.xlabel("x")
+    plt.ylabel("y")
+    plt.title("SmartGrid")
     plt.scatter(x_houses, y_houses,  c="b", alpha=0.5, marker=r'^', label="Luck")
     plt.plot(x_batteries, y_batteries, 'rs')
     plt.show()
@@ -39,8 +39,9 @@ def make_hist(info):
     """
     Make a histogram of all the solutions to find the distribution.
     """
-    
+
     plt.hist(info, bins=15, rwidth=0.8)
+    plt.title("Random solution distribution")
     plt.xlabel("Total costs")
     plt.ylabel("Count")
     plt.show()

@@ -24,7 +24,7 @@ def upper_bound(neighborhood):
     # # disconnect all houses and batteries
     # neighborhood.disconnect_all()
 
-    return total_costs, house, far_battery
+    return total_costs
 
 def lower_bound(neighborhood):
     """

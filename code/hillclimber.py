@@ -1,4 +1,3 @@
-import neighborhood as n
 import random
 from copy import deepcopy
 

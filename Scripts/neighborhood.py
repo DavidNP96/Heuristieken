@@ -9,7 +9,8 @@ import random
 import matplotlib.pyplot as plt
 import algorithms
 import hillclimber as h
-
+import sim_annealing as sa
+import greedy as g
 
 
 
@@ -150,6 +151,8 @@ class Neighborhood(object):
 
         house.connected = True
 
+        # print(f"IN CONNECT: house_id: {house.id}")
+
         return True
 
     def disconnect(self, house, battery):
@@ -159,14 +162,16 @@ class Neighborhood(object):
 
         for cable in self.cables:
             if house.id == cable.house.id:
+                # print(f"IN DISCONNECT: house_id: {house.id}")
                 battery.remainder += house.output
                 house.battery_id = None
                 house.cable_id = None
                 house.connected = False
+
                 self.cables.remove(cable)
 
         # MISSCHIEN MEER RETURNEN??
-        return self.cables
+        # return self.cables
 
     def connect_unlimited(self, house, battery):
         """
@@ -204,7 +209,7 @@ class Neighborhood(object):
         """
         total_length = 0
 
-        for cable in cables:
+        for cable in self.cables:
             total_length += cable.length
 
         return total_length
@@ -216,7 +221,7 @@ class Neighborhood(object):
         """
         cable_costs = 0
 
-        for cable in cables:
+        for cable in self.cables:
             cable_costs += cable.price
 
         return cable_costs
@@ -292,11 +297,17 @@ class Neighborhood(object):
         if (cable_1 == cable_2):
             return False
 
-        house_1 = self.houses[cable_1.house.id]
-        house_2 = self.houses[cable_2.house.id]
+        # house_1 = self.houses[cable_1.house.id]
+        # house_2 = self.houses[cable_2.house.id]
+        #
+        # battery_1 = self.batteries[cable_1.battery.id]
+        # battery_2 = self.batteries[cable_2.battery.id]
 
-        battery_1 = self.batteries[cable_1.battery.id]
-        battery_2 = self.batteries[cable_2.battery.id]
+        house_1 = cable_1.house
+        house_2 = cable_2.house
+
+        battery_1 = cable_1.battery
+        battery_2 = cable_2.battery
 
         self.disconnect(house_1, battery_1)
         self.disconnect(house_2, battery_2)
@@ -359,9 +370,9 @@ class Neighborhood(object):
         plt.show()
 
     def testen(self):
-    """
-    function to test results
-    """
+        """
+        function to test results
+        """
         for house in self.houses:
             house_test = house
             batt_id_test = house.battery_id
@@ -495,9 +506,10 @@ if __name__ == "__main__":
     # print(f"simple_connect neighborhood2: {neighborhood2.get_total_costs()}")
     #print(f"simple_connect neighborhood3: {neighborhood3.get_total_costs()}")
 
-    neighborhood1.simple_connect_n()
+    #neighborhood1.random_connect()
+    g.greedy(neighborhood1)
 
-
+    print(f"costs before hillclimber: {neighborhood1.get_total_costs()}")
     # neighborhood1.random_connect()
     # test_neighborhood = copy.deepcopy(neighborhood1)
     #
@@ -526,11 +538,13 @@ if __name__ == "__main__":
 
 
 
-
-
-
+    sa.sim_annealing(neighborhood1)
+    print(f"costs after sim annealing: {neighborhood1.get_total_costs()}")
+    # h.hillclimber(neighborhood1, 50000)
+    # print(f"costs after hillclimber: {neighborhood1.get_total_costs()}")
     # neighborhood1.get_nearest_batteries()
 
+    print(f"number of cables: {len(neighborhood1.cables)}")
 
     # print(f"distance house0-battery0: {neighborhood1.cal_distance(neighborhood1.houses[0], neighborhood1.batteries[0])}")
     # print(f"distance house0-battery1: {neighborhood1.cal_distance(neighborhood1.houses[0], neighborhood1.batteries[1])}")

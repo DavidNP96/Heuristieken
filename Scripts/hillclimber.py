@@ -1,35 +1,27 @@
 import neighborhood as n
 import random
+from copy import deepcopy
 
-def alg_hillie(neighborhood):
+def hillclimber(neighborhood, iterations):
     """
     Hill Climber algorithms.
     """
 
-    current = neighborhood.get_total_costs()
-    # neighborhood.batt_house_plot()
-    # print(current)
-    for i in range(1000):
-        for cable_1 in neighborhood.cables:
-            house_1 = cable_1.house
-            battery_1 = cable_1.battery
-            while True:
-                cable_2 = random.choice(neighborhood.cables)
-                house_2 = cable_2.house
-                battery_2 = cable_2.battery
-                if not cable_1 == cable_2:
-                    break
-            neighborhood.disconnect(house_1, battery_1)
-            neighborhood.disconnect(house_2, battery_2)
+    current_costs = neighborhood.get_total_costs()
 
-            neighborhood.connect(house_1, battery_2)
-            neighborhood.connect(house_2, battery_1)
-            new = neighborhood.get_total_costs()
+    for i in range(iterations):
+        swap_succes = False
 
-            if new > current:
-                neighborhood.disconnect(house_1, battery_2)
-                neighborhood.disconnect(house_2, battery_1)
-                neighborhood.connect(house_2, battery_2)
-                neighborhood.connect(house_1, battery_1)
-                # print(new)
-    # neighborhood.batt_house_plot()
+        while swap_succes != True:
+            cable_1 = random.choice(neighborhood.cables)
+            cable_2 = random.choice(neighborhood.cables)
+
+            swap_succes = neighborhood.swap_connection(cable_1, cable_2)
+
+        new_costs = neighborhood.get_total_costs()
+
+        # swap back if price has not become lower
+        if new_costs <= current_costs:
+            current_costs = new_costs
+        else:
+            neighborhood.swap_connection(neighborhood.cables[-1], neighborhood.cables[-2])

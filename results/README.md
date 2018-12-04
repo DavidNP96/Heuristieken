@@ -3,7 +3,7 @@
 ### Statespace
 #### Stationary
 At first the batteries are stationary. The statespace in this situation is
-5^150^ . This is because there are 5 batteries and per battery it has 150 houses
+5^150. This is because there are 5 batteries and per battery it has 150 houses
 it can connect to.
 
 #### Moving

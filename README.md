@@ -25,7 +25,7 @@ All data is placed in the "data" folder. All python scripts are placed in the "c
 ### Testing
 The code can be tested by using:
 ```
-python neighborhood.py
+python main.py
 ```
 
 ### Results

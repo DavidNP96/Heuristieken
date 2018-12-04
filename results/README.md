@@ -1,15 +1,15 @@
 # Results
 
 ### Statespace
-#### Stationary
+#### Stationary  
 At first the batteries are stationary. The statespace in this situation is
 5^150. This is because there are 5 batteries and per battery it has 150 houses
 it can connect to, so this is the number of different connections that can be made.
 
-#### Moving
+#### Moving  
 When the batteries can be moved the statespace is (2500^5) * (5^150).
 
-#### Different battery types
+#### Different battery types  
 In the last situation there will be 3 different battery types. This makes the
 statespace three times bigger, so it will be (2500^5) * (5^150) * 3.
 

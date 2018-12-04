@@ -9,7 +9,7 @@ def simple_connect(neighborhood):
 
     # disconnect all houses from batteries and find nearest batteries per house
     neighborhood.disconnect_all()
-    neighborhood.get_nearest_batteries()
+    neighborhood.get_all_nearest_batteries()
 
     # connect house to closest battery if possible, else second-to-closest etc.
     for house in neighborhood.houses:
@@ -21,8 +21,6 @@ def simple_connect(neighborhood):
                 if i == len(neighborhood.batteries):
                     print(f"Unable to connect house {house.id}")
                     break
-                #print(i)
-                #print(f"ja, house id: {house.id}")
 
     total_costs = neighborhood.get_total_costs()
 

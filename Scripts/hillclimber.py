@@ -30,9 +30,3 @@ def alg_hillie(neighborhood):
                 neighborhood.disconnect(house_2, battery_1)
                 neighborhood.connect(house_2, battery_2)
                 neighborhood.connect(house_1, battery_1)
-<<<<<<< HEAD:Scripts/hillie.py
-     # neighborhood.batt_house_plot()
-=======
-                # print(new)
-    # neighborhood.batt_house_plot()
->>>>>>> 520033d80713c81e6dbe02db95b859948c47a8b6:Scripts/hillclimber.py

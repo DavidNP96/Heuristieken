@@ -9,6 +9,7 @@ import random
 import matplotlib.pyplot as plt
 import algorithms
 import hillclimber as h
+from kmeans import kmeans
 
 
 
@@ -358,17 +359,17 @@ class Neighborhood(object):
         plt.ylabel("Count")
         plt.show()
 
-    def testen(self):
-    """
-    function to test results
-    """
-        for house in self.houses:
-            house_test = house
-            batt_id_test = house.battery_id
-            for battery in self.batteries:
-                if batt_id_test == battery.id:
-                    battery_test = battery
-                    return house_test, battery_test
+    # def testen(self):
+    # """
+    # function to test results
+    # """
+    #     for house in self.houses:
+    #         house_test = house
+    #         batt_id_test = house.battery_id
+    #         for battery in self.batteries:
+    #             if batt_id_test == battery.id:
+    #                 battery_test = battery
+    #                 return house_test, battery_test
 
     def get_nearest_houses(self):
         """Returns list of house ids for each battery.
@@ -443,7 +444,7 @@ if __name__ == "__main__":
     neighborhood1 = Neighborhood("wijk1")
     neighborhood2 = Neighborhood("wijk2")
     # neighborhood3 = Neighborhood("wijk3")
-
+    kmeans(neighborhood1)
     # costs_random = neighborhood1.connect_random()
     # neighborhood1.make_hist(costs_random)
     #
@@ -451,12 +452,12 @@ if __name__ == "__main__":
     # neighborhood1.batt_house_plot()
 
     # neighborhood1.lower_bound()
-    algorithms.simple_connect(neighborhood1)
-
-    # neighborhood1.upper_bound()
-    neighborhood1.batt_house_plot()
-    neighborhood1.move_battery(4,1,1)
-    neighborhood1.batt_house_plot()
+    # algorithms.simple_connect(neighborhood1)
+    #
+    # # neighborhood1.upper_bound()
+    # neighborhood1.batt_house_plot()
+    # neighborhood1.move_battery(4,1,1)
+    # neighborhood1.batt_house_plot()
 
 
     # algorithms.sim ple_connect(neighborhood1)
@@ -505,7 +506,7 @@ if __name__ == "__main__":
     # print(f"simple_connect neighborhood2: {neighborhood2.get_total_costs()}")
     #print(f"simple_connect neighborhood3: {neighborhood3.get_total_costs()}")
 
-    neighborhood1.simple_connect_n()
+    # neighborhood1.simple_connect_n()
 
 
     # neighborhood1.random_connect()

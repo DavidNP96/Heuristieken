@@ -33,7 +33,7 @@ To find the statespace, upperbound, lowerbound and plots see the README in the "
 
 ### Authors
 **Team Niko**  
-David Pantophlet  
-Joost Vos  
-Xandra Vos
+David Pantophlet (12466638)  
+Joost Vos (10284885)  
+Xandra Vos (10731148)
 

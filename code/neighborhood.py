@@ -8,6 +8,8 @@ import upper_lower as uplow
 import randoms as ran
 import simple_connect as simp
 import os, sys
+import greedy as g
+import sim_annealing as sa
 
 
 class Neighborhood(object):
@@ -341,9 +343,29 @@ class Neighborhood(object):
 
 if __name__ == "__main__":
     neighborhood1 = Neighborhood("wijk1")
-    # neighborhood2 = Neighborhood("wijk2")
-    # neighborhood3 = Neighborhood("wijk3")
+    neighborhood2 = Neighborhood("wijk2")
+    neighborhood3 = Neighborhood("wijk3")
 
     # # dit is om te testen, omdat ie niet werkt. snap niet waarom.
     # uplow.upper_bound(neighborhood1)
     # house.get_nearest_batteries(neighborhood1.batteries)
+
+    g.greedy(neighborhood1)
+    g.greedy(neighborhood2)
+    g.greedy(neighborhood3)
+
+    print(f"costs neighborhood 1 before annealing: {neighborhood1.get_total_costs()}")
+    print(f"costs neighborhood 2 before annealing: {neighborhood2.get_total_costs()}")
+    print(f"costs neighborhood 3 before annealing: {neighborhood3.get_total_costs()}")
+
+    sa.sim_annealing(neighborhood1)
+    sa.sim_annealing(neighborhood2)
+    sa.sim_annealing(neighborhood3)
+
+    print(f"costs neighborhood 1 after annealing: {neighborhood1.get_total_costs()}")
+    print(f"costs neighborhood 2 after annealing: {neighborhood2.get_total_costs()}")
+    print(f"costs neighborhood 3 after annealing: {neighborhood3.get_total_costs()}")
+
+    plots.batt_house_plot(neighborhood1)
+    plots.batt_house_plot(neighborhood2)
+    plots.batt_house_plot(neighborhood3)

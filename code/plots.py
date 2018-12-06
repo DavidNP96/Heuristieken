@@ -10,6 +10,40 @@ def batt_house_plot(neighborhood):
     x_batteries = []
     y_batteries = []
 
+    # # create two list with house x and y coordinates
+    # for house in neighborhood.houses:
+    #     x_houses.append(house.x_location)
+    #     y_houses.append(house.y_location)
+    #
+    # # create two list with battery x and y coordinates
+    # for battery in neighborhood.batteries:
+    #     x_batteries.append(battery.x_location)
+    #     y_batteries.append(battery.y_location)
+
+    colors = ['b', 'g', 'r', 'c', 'm', 'y', 'k', 'w']
+    for cable in neighborhood.cables:
+        plt.plot([cable.house.x_location, cable.house.x_location],
+            [cable.house.y_location, cable.battery.y_location],colors[cable.battery.id])
+        plt.plot([cable.house.x_location, cable.battery.x_location],
+            [cable.battery.y_location, cable.battery.y_location],colors[cable.battery.id])
+
+    plt.xlabel('x')
+    plt.ylabel('y')
+    plt.title('SmartGrid')
+    for house in neighborhood.houses:
+        plt.scatter(house.x_location, house.y_location,  c= colors[house.battery_id] ,s=30, marker=r'^', zorder=8)
+    for battery in neighborhood.batteries:
+        plt.scatter(battery.x_location, battery.y_location, c = colors[battery.id],s=350, marker=r'1',zorder=10)
+    plt.show()
+
+
+def batt_house_animate(neighborhood):
+
+    x_houses = []
+    y_houses = []
+    x_batteries = []
+    y_batteries = []
+
     # create two list with house x and y coordinates
     for house in neighborhood.houses:
         x_houses.append(house.x_location)
@@ -20,19 +54,20 @@ def batt_house_plot(neighborhood):
         x_batteries.append(battery.x_location)
         y_batteries.append(battery.y_location)
 
+    colors = ['b', 'g', 'r', 'c', 'm', 'y', 'k', 'w']
     for cable in neighborhood.cables:
-        colors = {0 :'r', 1 :'b', 2 : 'y', 3 : 'g', 4 : 'm'}
         plt.plot([cable.house.x_location, cable.house.x_location],
             [cable.house.y_location, cable.battery.y_location],colors[cable.battery.id])
         plt.plot([cable.house.x_location, cable.battery.x_location],
-            [cable.battery.y_location, cable.battery.y_location],colors[cable.battery.id] )
+            [cable.battery.y_location, cable.battery.y_location],colors[cable.battery.id])
 
-    plt.xlabel("x")
-    plt.ylabel("y")
-    plt.title("SmartGrid")
-    plt.scatter(x_houses, y_houses,  c="b", alpha=0.5, marker=r'^', label="Luck")
-    plt.plot(x_batteries, y_batteries, 'rs')
-    plt.show()
+    plt.xlabel('x')
+    plt.ylabel('y')
+    plt.title('SmartGrid')
+    for house in neighborhood.houses:
+        plt.scatter(house.x_location, house.y_location,  c= colors[house.battery_id] ,s=30, marker=r'^', zorder=8)
+    for battery in neighborhood.batteries:
+        plt.scatter(battery.x_location, battery.y_location, c = colors[battery.id],s=350, marker=r'1',zorder=10)
 
 
 def make_hist(info):

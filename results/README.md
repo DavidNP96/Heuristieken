@@ -24,10 +24,10 @@ the batteries will not be taken into account.
 
 ### Moving  
 #### Statespace
-When the batteries can be moved the statespace is (2500^5) * (5^150).
+When the batteries can be moved the statespace is (2500^5) * (5^150). There will still be 5^150 different possible connections, but the 5 batteries can be on 2500 different locations on the grid.
 
 #### Lowerbound and upperbound
-VERANDEREN
+K-means and then lowerbound.
 
 | Neighborhood | Upperbound | Lowerbound |
 | ------------ | ---------- | ---------- |
@@ -37,8 +37,7 @@ VERANDEREN
 
 ### Different battery types
 #### Statespace
-In the last situation there will be 3 different battery types. This makes the
-statespace three times bigger, so it will be (2500^5) * (5^150) * 3.
+In the last situation there will be 3 different battery types. The 3 different types of batteries can be on 2500 different positions on the grid, but not on the same position as another battery. Also, there can be as many batteries as you want. So all the grid point have the posibility to have a battery on it. There are 2500 grid points and 150 houses, so the 150 have 2500 possible points to connect to. These two components together give the following statespace: (3^2500!) * 2500^150.
 
 #### Lowerbound and upperbound
 VERANDEREN
@@ -50,7 +49,9 @@ VERANDEREN
 | 3            | €101491    | €42757     |
 
 ## What makes this case difficult?
-NOG DOEN
+- laatste huis kon niet verbonden worden
+- upper- lowerbound bedenken voor punt c en d
+- clusters kiezen k-means
 
 ## Zoekruimte verkleinen
 Misschien huizen weggooien die al goed verbonden zijn. Aangeven wat er veranderd is.

@@ -60,5 +60,7 @@ Misschien huizen weggooien die al goed verbonden zijn. Aangeven wat er veranderd
 - random distribution plot verbinden (bij lower+upperbound)
 - random distribution plot huizen plaatsen (bij lower+upperbound)
 - random connected + simulated annealing connected
+![simann](https://user-images.githubusercontent.com/44001399/49603363-59f81100-f98b-11e8-815e-ef5e024c919e.png)
+
 - random + k means
 

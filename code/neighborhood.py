@@ -3,7 +3,8 @@ from house import House
 from battery import Battery
 from cable import Cable
 import hillclimber as h
-import plots
+import kmeans as km
+import plots as pl
 import upper_lower as uplow
 import randoms as ran
 import simple_connect as simp

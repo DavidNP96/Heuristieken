@@ -14,7 +14,7 @@ def kmeans(neighborhood, iterations):
         # calculate initaial total distance from houses to batteries
     current_distance = 0
     for house in neighborhood.houses:
-        current_distance = current_distance + house.get_shortest_distance
+        current_distance += house.get_shortest_distance(neighborhood.batteries)
 
     for i in range(iterations):
 
@@ -33,7 +33,7 @@ def kmeans(neighborhood, iterations):
         # calculate new total distance from houses to batteries
         new_distance = 0
         for house in neighborhood.houses:
-            new_distance = new_distance + house.get_shortest_distance
+            new_distance = new_distance + house.get_shortest_distance(neighborhood.batteries)
 
         if new_distance  <= current_distance:
             current_distance = new_distance

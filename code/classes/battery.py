@@ -24,10 +24,10 @@ class Battery(object):
             self.x_location = 50
         else:
             self.x_location = self.x_location + move_x
-        if (self.ylocation + move_y > 50):
+        if (self.y_location + move_y > 50):
             self.y_location = 50
         else:
-            self.y_location = self.ylocation + move_y
+            self.y_location = self.y_location + move_y
 
     def move_to(self, new_x_location, new_y_location):
         """

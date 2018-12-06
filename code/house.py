@@ -1,13 +1,18 @@
 class House(object):
-    """Class containing info on house"""
+    """
+    Representation of a house in neighborhood.
+    """
+
     def __init__(self, x_location, y_location, output, id):
+        """
+        Initialize house with needed information.
+        """
         self.x_location = int(x_location)
         self.y_location = int(y_location)
         self.output = float(output)
         self.id = id
         self.battery_id = None
         self.cable_id = None
-
         self.connected = False
 
         # empty array to be filled with battery ids order in closeness
@@ -15,7 +20,9 @@ class House(object):
 
 
     def get_nearest_batteries(self, battery_list):
-
+        """
+        Get nearest batteries for all batteries.
+        """
         if battery_list == None:
             print("Battery list empty")
             return 1

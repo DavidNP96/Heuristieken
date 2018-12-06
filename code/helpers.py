@@ -1,8 +1,9 @@
 # contains helper functions such as sort algorithms
 
-
 def selection_sort(input_list):
-    """Sorts houses based on max_output"""
+    """
+    Sorts houses based on max_output.
+    """
 
     i = 0
 

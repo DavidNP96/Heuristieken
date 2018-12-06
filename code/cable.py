@@ -1,7 +1,13 @@
 class Cable(object):
-    """Cable class for connections between houses and batteries.
-        Calculates cable length and costs of cable."""
+    """
+    Cable class for connections between houses and batteries.
+    Calculates cable length and costs of cable.
+    """
     def __init__(self, house, battery):
+        """
+        Initializes cable object and saves house object, battery objects and
+        the length and price of the cable.
+        """
         PRICE = 9
 
         self.house = house

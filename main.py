@@ -12,6 +12,7 @@ import upper_lower as uplow
 import hillclimber as h
 import randoms as ran
 import simple_connect as simp
+from celluloid import Camera
 
 def main():
 
@@ -28,6 +29,21 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    # main()
 
-    
+    wijk1 = Neighborhood("wijk1")
+    wijk2 = Neighborhood("wijk2")
+    wijk3 = Neighborhood("wijk3")
+
+    simp.simple_connect(wijk1)
+
+    fig = plots.plt.figure()
+    camera = Camera(fig)
+
+    for i in range(100):
+        h.hillclimber(wijk1, 100)
+        plots.batt_house_plot(wijk1)
+        camera.snap()
+
+    animation = camera.animate()
+    animation.save('animation.mp4')

@@ -12,12 +12,17 @@ import upper_lower as uplow
 import hillclimber as h
 import randoms as ran
 import simple_connect as simp
+import kmeans as k
 
 def main():
 
     wijk1 = Neighborhood("wijk1")
     wijk2 = Neighborhood("wijk2")
     wijk3 = Neighborhood("wijk3")
+
+    batt_house_plot()
+    k.kmeans(wijk1)
+    batt_house_plot()
 
     # uplow.upper_bound(wijk1)
     # simp.simple_connect(wijk2)

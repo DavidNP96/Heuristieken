@@ -311,14 +311,15 @@ class Neighborhood(object):
         for house in self.houses:
             house.get_nearest_batteries(self.batteries)
 
-    def move_battery(self, battery_id, x_location, y_location):
-        """
-        Asks house to move to desireed position.
-        """
-
-        for batt in self.batteries:
-            if battery_id == batt.id:
-                batt.move_to(x_location, y_location)
+    # def move_battery(self, battery_id, x_location, y_location):
+    #     """
+    #     Asks house to move to desireed position.
+    #     """
+    #
+    #     for batt in self.batteries:
+    #         if battery_id == batt.id:
+    #             batt.move_to(x_location, y_location)
+    #
 
 
     def testen(self):

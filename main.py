@@ -12,21 +12,27 @@ import upper_lower as uplow
 import hillclimber as h
 import randoms as ran
 import simple_connect as simp
+import kmeans as k
+import sim_annealing as sa
 from celluloid import Camera
 from matplotlib import pyplot as plt
 
 def main():
-
+    #
     wijk1 = Neighborhood("wijk1")
     wijk2 = Neighborhood("wijk2")
     wijk3 = Neighborhood("wijk3")
+    #
+    # batt_house_plot(wijk)
+    # k.kmeans(wijk1)
+    # batt_house_plot()
 
     # uplow.upper_bound(wijk1)
-    # simp.simple_connect(wijk2)
+    # # simp.simple_connect(wijk2)
 
-    # B = plots.batt_house_plot(wijk1)
-    # C = plots.batt_house_plot(wijk2)
-    # D = plots.batt_house_plot(wijk3)
+    B = plots.batt_house_plot(wijk1)
+    C = plots.batt_house_plot(wijk2)
+    D = plots.batt_house_plot(wijk3)
 
 
 if __name__ == "__main__":
@@ -37,8 +43,18 @@ if __name__ == "__main__":
     wijk3 = Neighborhood("wijk3")
 
 
-    # plots.batt_house_animate(wijk1)
+    ran.random_connect(wijk1)
+    print(f"cost before: {wijk1.get_total_costs()}")
+    plots.batt_house_plot(wijk1)
+    k.kmeans(wijk1, 10000)
+    simp.simple_connect(wijk1)
 
+    # sa.sim_annealing(wijk1)
+    h.hillclimber(wijk1, 10000)
+    print(f"cost after: {wijk1.get_total_costs()}")
+    plots.batt_house_plot(wijk1)
+
+    # plots.batt_house_animate(wijk1)
     ran.random_connect(wijk1)
 
     fig = plt.figure()
@@ -52,6 +68,3 @@ if __name__ == "__main__":
         h.hillclimber(wijk1, 500)
         plots.batt_house_animate(wijk1)
         camera.snap()
-
-    animation = camera.animate()
-    animation.save('animation.mp4')

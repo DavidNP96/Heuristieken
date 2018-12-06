@@ -1,6 +1,6 @@
 # Results
 
-## Statespace and upper- lowerbound
+## Statespace, upperbound and lowerbound
 ### Stationary
 #### Statespace
 At first the batteries are stationary. The statespace in this situation is
@@ -44,4 +44,15 @@ VERANDEREN
 | 2            | €96253     | €45268     |
 | 3            | €101491    | €42757     |
 
+## What makes this case difficult?
+NOG DOEN
+
+## Zoekruimte verkleinen
+Misschien huizen weggooien die al goed verbonden zijn. Aangeven wat er veranderd is.
+
+## Plots
+- random distribution plot verbinden (bij lower+upperbound)
+- random distribution plot huizen plaatsen (bij lower+upperbound)
+- random connected + simulated annealing connected
+- random + k means
 

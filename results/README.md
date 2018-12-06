@@ -25,6 +25,7 @@ When the batteries can be moved the statespace is (2500^5) * (5^150).
 
 #### Lowerbound and upperbound
 VERANDEREN
+
 | Neighborhood | Upperbound | Lowerbound |
 | ------------ | ---------- | ---------- |
 | 1            | €103030    | €53188     |
@@ -38,6 +39,7 @@ statespace three times bigger, so it will be (2500^5) * (5^150) * 3.
 
 #### Lowerbound and upperbound
 VERANDEREN
+
 | Neighborhood | Upperbound | Lowerbound |
 | ------------ | ---------- | ---------- |
 | 1            | €103030    | €53188     |

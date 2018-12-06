@@ -19,6 +19,9 @@ the batteries will not be taken into account.
 | 2            | €96253     | €45268     |
 | 3            | €101491    | €42757     |
 
+![random_stationary](https://user-images.githubusercontent.com/44001399/49597905-bd7b4200-f97d-11e8-9c74-5e2a9ab4fab1.png)
+
+
 ### Moving  
 #### Statespace
 When the batteries can be moved the statespace is (2500^5) * (5^150).

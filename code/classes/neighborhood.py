@@ -2,12 +2,6 @@ import csv
 from house import House
 from battery import Battery
 from cable import Cable
-import hillclimber as h
-import kmeans as km
-import plots as pl
-import upper_lower as uplow
-import randoms as ran
-import simple_connect as simp
 import os, sys
 import greedy as g
 import sim_annealing as sa
@@ -32,6 +26,7 @@ class Neighborhood(object):
         Creates list of house objects.
         """
         abspath = os.path.abspath(__file__)
+        abspath = os.path.dirname(abspath)
         abspath = os.path.dirname(abspath)
         abspath = os.path.dirname(abspath)
         abspath = os.path.join(abspath, "data")
@@ -64,6 +59,7 @@ class Neighborhood(object):
         Creates list of battery objects.
         """
         abspath = os.path.abspath(__file__)
+        abspath = os.path.dirname(abspath)
         abspath = os.path.dirname(abspath)
         abspath = os.path.dirname(abspath)
         abspath = os.path.join(abspath, "data")
@@ -151,9 +147,6 @@ class Neighborhood(object):
                 house.cable_id = None
                 house.connected = False
                 self.cables.remove(cable)
-
-        # IETS ANDERS RETURNEN?
-        return self.cables
 
     def connect_unlimited(self, house, battery):
         """
@@ -314,7 +307,6 @@ class Neighborhood(object):
         """
         Gets nearest battery for all houses.
         """
-
         # iterate through houses list and get nearest batteries
         for house in self.houses:
             house.get_nearest_batteries(self.batteries)
@@ -340,33 +332,3 @@ class Neighborhood(object):
                 if batt_id_test == battery.id:
                     battery_test = battery
                     return house_test, battery_test
-
-
-if __name__ == "__main__":
-    neighborhood1 = Neighborhood("wijk1")
-    neighborhood2 = Neighborhood("wijk2")
-    neighborhood3 = Neighborhood("wijk3")
-
-    # # dit is om te testen, omdat ie niet werkt. snap niet waarom.
-    # uplow.upper_bound(neighborhood1)
-    # house.get_nearest_batteries(neighborhood1.batteries)
-
-    g.greedy(neighborhood1)
-    g.greedy(neighborhood2)
-    g.greedy(neighborhood3)
-
-    print(f"costs neighborhood 1 before annealing: {neighborhood1.get_total_costs()}")
-    print(f"costs neighborhood 2 before annealing: {neighborhood2.get_total_costs()}")
-    print(f"costs neighborhood 3 before annealing: {neighborhood3.get_total_costs()}")
-
-    sa.sim_annealing(neighborhood1)
-    sa.sim_annealing(neighborhood2)
-    sa.sim_annealing(neighborhood3)
-
-    print(f"costs neighborhood 1 after annealing: {neighborhood1.get_total_costs()}")
-    print(f"costs neighborhood 2 after annealing: {neighborhood2.get_total_costs()}")
-    print(f"costs neighborhood 3 after annealing: {neighborhood3.get_total_costs()}")
-
-    plots.batt_house_plot(neighborhood1)
-    plots.batt_house_plot(neighborhood2)
-    plots.batt_house_plot(neighborhood3)

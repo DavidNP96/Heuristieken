@@ -10,7 +10,7 @@ def greedy(neighborhood):
 
     # disconnect all houses from batteries and find nearest batteries per house
     neighborhood.disconnect_all()
-    neighborhood.get_nearest_batteries()
+    neighborhood.get_all_nearest_batteries()
 
     # connect house to closest battery if possible, else second-to-closest etc
 
@@ -22,21 +22,19 @@ def greedy(neighborhood):
         while house.battery_id != None:
             house = random.choice(neighborhood.houses)
 
-        i = 0
+        fail_count = 0
         connect_succes = False
 
-        while (connect_succes == False and i < len(neighborhood.batteries)):
+        while (connect_succes == False and fail_count < len(neighborhood.batteries)):
 
-                if (neighborhood.connect(house, neighborhood.batteries[house.nearest_battery_ids[i]])
+                if (neighborhood.connect(house, neighborhood.batteries[house.nearest_battery_ids[fail_count]])
                     == True):
                     connected += 1
                     connect_succes = True
                 else:
-                    i += 1
+                    fail_count += 1
 
-                print(i)
-
-                if i == len(neighborhood.batteries):
+                if fail_count == len(neighborhood.batteries):
                     print(f"Unable to connect house {house.id}. Swapping...")
                     current_cable = neighborhood.cables[0]
                     for cable in neighborhood.cables:
@@ -44,9 +42,10 @@ def greedy(neighborhood):
                             current_cable = cable
                             break
 
-                    while (neighborhood.swap_connection(current_cable, random.choice(neighborhood.cables) == False)):
+                    while (neighborhood.swap_connection(current_cable, random.choice(neighborhood.cables)) == False):
                         print("Trying to swap...")
 
+                    fail_count = 0
     total_costs = neighborhood.get_total_costs()
 
     return total_costs

@@ -3,7 +3,6 @@
 # randoms.py
 
 import random
-import randoms as ran
 import plots
 
 def random_connect(neighborhood):
@@ -26,7 +25,7 @@ def random_connect(neighborhood):
                 while (swap_succes != True):
                     swap_succes = neighborhood.swap_connection(random.choice(neighborhood.cables), random.choice(neighborhood.cables))
             connected = neighborhood.connect(house, battery)
-            # print(f"connected: {connected}")
+
 
 def random_generator(neighborhood, iterations):
     """
@@ -38,7 +37,7 @@ def random_generator(neighborhood, iterations):
 
     # execute random_connect until iterations is reached and append costs to list
     for i in range(iterations):
-        ran.random_connect(neighborhood)
+        random_connect(neighborhood)
         total_costs = neighborhood.get_total_costs()
         costs_random.append(total_costs)
 

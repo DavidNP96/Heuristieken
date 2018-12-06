@@ -43,6 +43,7 @@ def make_hist(info):
     """
 
     plt.hist(info, bins=15, rwidth=0.8)
+    plt.title("Random solution distribution")
     plt.xlabel("Total costs")
     plt.ylabel("Count")
     plt.show()

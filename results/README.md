@@ -119,7 +119,7 @@ These are our end result when we ran our simulated annealing algorithm 10 times 
 | 3 - Average   | €44304.1   | €44706.4   |€48896.8|
 |   - Minimum   | €43999     | €44341     |€47581  |
 
-# here will be a histogram of our runs
+## here will be a histogram of our runs
 
 These are our end result when we ran our simulated annealing algorithm 10000 times with the following coolingscheme: temp = math.log(cooling_rate * temp) and the following parameters:
 
@@ -132,7 +132,7 @@ These are our end result when we ran our simulated annealing algorithm 10000 tim
 | 3 - Average   | €71435.734 | €71390.4   |€71392.5|
 |   - Minimum   | € 65473    | €65743     |€65635  |
 
-# here will be a histogram of our runs
+## here will be a histogram of our runs
 
 
 ## Plots

@@ -19,9 +19,6 @@ def sim_annealing(neighborhood):
     Tmin = 0.1
     cooling_rate = 0.0001
 
-    # zijn deze nodig?
-    steps = 50000
-    updates = 100
 
 
     current_costs = neighborhood.get_total_costs()

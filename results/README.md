@@ -81,8 +81,7 @@ To reduce the statespace we adjusted the hillclimber. First, it selected random 
 
 ## Simmulated Annealing coolingschemes
 
-| Coolingrate ->| 0.0005     | 0.001      | 0.005  |
-| Neighborhood  |            |            |        |
+| Neighborhood  | 0.0005     | 0.001      | 0.005  |
 | ------------  | ---------- | ---------- |------  |
 | 1 - Average   | €56642.2   | €57014.8   |€60706.6|    
 |   - Minimum   | €56347     | €56644     |€59893  |

@@ -103,6 +103,13 @@ When running the hillclimber or simulated annealing our aim is to make shure tha
 
 ## Simmulated Annealing coolingschemes
 
+all schemes are ran with the following: 
+Starting temperature: 5000
+end temperature: 0.1 
+
+These are our end result when we ran our simulated annealing algorithm 10 times with the following coolingscheme: temp = temp * (1 - cooling_rate). We ran the this algorithm only 10 times per neighbourhood, because every iteration took quite some time we are looking to make this go faster for future runs.
+
+                  cooling rates
 | Neighborhood  | 0.0005     | 0.001      | 0.005  |
 | ------------  | ---------- | ---------- |------  |
 | 1 - Average   | €56642.2   | €57014.8   |€60706.6|    
@@ -112,6 +119,20 @@ When running the hillclimber or simulated annealing our aim is to make shure tha
 | 3 - Average   | €44304.1   | €44706.4   |€48896.8|
 |   - Minimum   | €43999     | €44341     |€47581  |
 
+# here will be a histogram of our runs
+
+These are our end result when we ran our simulated annealing algorithm 10000 times with the following coolingscheme: temp = math.log(cooling_rate * temp) and the following parameters:
+
+| Neighborhood  | 0.0005     | 0.001      | 0.005  |
+| ------------  | ---------- | ---------- |------  |
+| 1 - Average   | €75980.1   | €75812.1   |€75998.1|    
+|   - Minimum   | €71233     | €70927     |€71233  |
+| 2 - Average   | €68853.4   | €68913.3   |€68863.9|
+|   - Minimum   | €64609     | €64366     |€64294  |
+| 3 - Average   | €71435.734 | €71390.4   |€71392.5|
+|   - Minimum   | € 65473    | €65743     |€65635  |
+
+# here will be a histogram of our runs
 
 
 ## Plots

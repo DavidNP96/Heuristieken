@@ -119,7 +119,7 @@ To reduce the statespace we adjusted the hillclimber. First, it selected random 
 ![random_connect](https://user-images.githubusercontent.com/44001399/49603454-a17e9d00-f98b-11e8-8a51-9298eacbeaa2.png)
 
 ### Random connected + k-means + hillclimber
-
+![image_after](https://user-images.githubusercontent.com/44001399/49649990-22d93c80-fa2b-11e8-9f6c-b52c8335970a.png)
 
 ### Random connected + k-means + hillclimber + simmulated annealing
 ![simann](https://user-images.githubusercontent.com/44001399/49603363-59f81100-f98b-11e8-815e-ef5e024c919e.png)

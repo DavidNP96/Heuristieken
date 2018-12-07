@@ -114,11 +114,15 @@ To reduce the statespace we adjusted the hillclimber. First, it selected random 
 
 
 ## Plots
-- random distribution plot verbinden (bij lower+upperbound)
-- random distribution plot huizen plaatsen (bij lower+upperbound)
-- random connected + simulated annealing connected
+
+### Random connected + hillclimber
+![random_connect](https://user-images.githubusercontent.com/44001399/49603454-a17e9d00-f98b-11e8-8a51-9298eacbeaa2.png)
+
+### Random connected + k-means + hillclimber
+
+
+### Random connected + k-means + hillclimber + simmulated annealing
 ![simann](https://user-images.githubusercontent.com/44001399/49603363-59f81100-f98b-11e8-815e-ef5e024c919e.png)
 
-- random + k means
-![random_connect](https://user-images.githubusercontent.com/44001399/49603454-a17e9d00-f98b-11e8-8a51-9298eacbeaa2.png)
+
 

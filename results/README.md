@@ -20,7 +20,14 @@ the batteries will not be taken into account.
 | 2            | €96253     | €45268     |
 | 3            | €101491    | €42757     |
 
+#### Random distribution of 10000 runs 
 ![random_stationary](https://user-images.githubusercontent.com/44001399/49597905-bd7b4200-f97d-11e8-9c74-5e2a9ab4fab1.png)
+
+#### Distribution non random
+Hier komt grafiek van distributie van onze oplossingen met de hillclimber.
+
+#### Distribution non random
+Hier komt grafiek van distributie van onze oplossingen met de simmulated annealing.
 
 
 ### Moving  
@@ -45,6 +52,12 @@ We are aware of the fact that we can't use this are reference, because both boun
 | 2            | €96253     | €39895     |
 | 3            | €101491    | €39607     |
 
+#### Random distribution of 10000 random runs
+Hier komt grafiek van random distributie van random plaatsen batterijen.
+
+#### Distribution non random
+Hier komt grafiek van distributie van onze oplossingen met k means, hillclimber en simmulated annealing. 
+
 ### Different battery types
 #### Statespace
 In the last situation there will be 3 different battery types. The 3 different types of batteries can be on 2500 different positions on the grid, but not on the same position as another battery. Also, there can be as many batteries as you want. So all the grid point have the posibility to have a battery on it. There are 2500 grid points and 150 houses, so the 150 have 2500 possible points to connect to. These two components together give the following statespace: (3^2500!) * 2500^150.
@@ -67,7 +80,15 @@ Also in this case we are aware of the fact that we can't use this are reference,
 | 2            | €405000    | €9450      |
 | 3            | €405000    | €9450      |
 
+#### Random distribution of 10000 random runs
+Hier komt grafiek van random distributie van random plaatsen 3 types batterijen.
+
+#### Distribution non random
+Hier komt grafiek van distributie van onze oplossingen. Hiervoor moeten we nog bedenken welke algorithmes handig zijn.
+
 ## What makes this case difficult?
+BEDENK NOG OPLOSSING VOOR K-MEANS/CAPACITEITSPROBLEEM.
+
 The goal of our case is to create the “cheapest” solution to a given neighbourhood. The theoretical solution to this progress is easily thought out, because there are two components that reduces or increases the cost, namely the length of the cables and the price of the chosen battery. For the first question of our case (where the batteries are stationary) this meant that we had to find  a way to connect every house to the nearest battery (which meant that the cable cost are the lowest possible). Exactly this was done by means of our lower bound algorithm. But obviously this solution does not suffice simply because the maximum capacity isn’t taken into account when connecting. So we ran in to one  and probably the main problem of our case namely the fact that the houses have different output and the batteries limited capacity, because this means that although you find the best way to connect houses to batteries. This doesn’t mean that in practice this is the best way. So because the theoretical best way to connect is not available you have no aim where to end, and because of the fact that the space state is so incredibly large it is quite impossible to actually guarantee that that we reached our goal.
 
 We found “good” solutions to our problem by running a hill climber algorithm. But because we only had a limited amount of batteries, we could supply every house with a battery, but not in every way. And this is where capacity and different output again creates a problem, namely that when running the hill climber we couldn’t connect a house with an output too large for any battery, because the batteries are already full. So we had to swap houses between batteries to create space for that one house. This often had a negative effect on the total costs of a neighbourhood, because the swaps that are performed are random. We created a heuristics that made these swaps more efficient by making a priority list of nearest batteries wich the hillclimber runs down.

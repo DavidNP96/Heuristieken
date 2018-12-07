@@ -98,7 +98,7 @@ Eventually we could move the batteries. A big question was where to move the bat
 The final problem includes different types of batteries. this means that in theory you want to find the best positions with the best configuration of batteries. But again the problem is that you can’t find this solution, because the configuration of batteries might not support the most efficient clusters because the houses do not have the same output, so the cable length are not minimal.
 
 ## Making statespace smaller
-To reduce the statespace we adjusted the hillclimber. First, it selected random cables and swapped these. We implemented a function that first makes a priority list of the nearest batteries for each house. The longest cables are the ones which we cost the most, so these are the cables we want to swap. This way the "good" cables stay as they are and the hillclimber has a shorter runtime.
+To reduce the statespace we adjusted the list we put in the hillclimber. First it selected random cables out of the cables list of the neighborhood and swapped these. We implemented a function that first makes a priority list of the nearest batteries for each house. The longest cables are the ones which cost the most, so these are the cables we want to swap. This way the "good" cables stay as they are and the hillclimber has a shorter runtime. This is a tradeoff, because the possibily exists that the better solutions are the swaps with the cables that are already good. That is why we have to test what prerequisites we could use that have the best yield. Maybe we should not only skip the best cables, but also the second best cable, or even the third best cable. This is something we can try next week. 
 
 ## Simmulated Annealing coolingschemes
 

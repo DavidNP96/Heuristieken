@@ -11,15 +11,12 @@ import plots
 import upper_lower as uplow
 import hillclimber as h
 import randoms as ran
+import greedy as grd
 import simple_connect as simp
-<<<<<<< HEAD
 import kmeans as k
 import sim_annealing as sa
 # from celluloid import Camera
-=======
-from celluloid import Camera
 from matplotlib import pyplot as plt
->>>>>>> c1b34f927339d7438ac7c774b3e3972fa97c8a83
 
 def main():
     #
@@ -48,27 +45,29 @@ if __name__ == "__main__":
 
 
     ran.random_connect(wijk1)
-    print(f"cost before: {wijk1.get_total_costs()}")
     plots.batt_house_plot(wijk1)
+    print(f"cost before: {wijk1.get_total_costs()}")
     k.kmeans(wijk1, 10000)
-    simp.simple_connect(wijk1)
-
-    # sa.sim_annealing(wijk1)
+    grd.greedy(wijk1)
     h.hillclimber(wijk1, 10000)
+    sa.sim_annealing(wijk1)
     print(f"cost after: {wijk1.get_total_costs()}")
     plots.batt_house_plot(wijk1)
 
+        # h.hillclimber(wijk1, 10000)
+        # print(f"cost after: {wijk1.get_total_costs()}")
+    #
+    # # plots.batt_house_animate(wijk1)
+    # ran.random_connect(wijk1)
+    #
+    # fig = plt.figure()
+    # camera = Camera(fig)
+    #
     # plots.batt_house_animate(wijk1)
-    ran.random_connect(wijk1)
-
-    fig = plt.figure()
-    camera = Camera(fig)
-
-    plots.batt_house_animate(wijk1)
-    camera.snap()
-
-    for i in range(30):
-        print(i)
-        h.hillclimber(wijk1, 500)
-        plots.batt_house_animate(wijk1)
-        camera.snap()
+    # camera.snap()
+    #
+    # for i in range(30):
+    #     print(i)
+    #     h.hillclimber(wijk1, 500)
+    #     plots.batt_house_animate(wijk1)
+    #     camera.snap()

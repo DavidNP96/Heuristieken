@@ -20,29 +20,21 @@ from celluloid import Camera
 from matplotlib import pyplot as plt
 
 def main():
-    #
+
     wijk1 = Neighborhood("wijk1")
     wijk2 = Neighborhood("wijk2")
     wijk3 = Neighborhood("wijk3")
-    #
-    # batt_house_plot(wijk)
-    # k.kmeans(wijk1)
-    # batt_house_plot()
+
+    plots.batt_house_animate(wijk1)
+
+    k.kmeans(wijk1, 10)
 
     # uplow.upper_bound(wijk1)
     # # simp.simple_connect(wijk2)
 
-    B = plots.batt_house_plot(wijk1)
-    C = plots.batt_house_plot(wijk2)
-    D = plots.batt_house_plot(wijk3)
-
-
-if __name__ == "__main__":
-    # main()
-
-    wijk1 = Neighborhood("wijk1")
-    wijk2 = Neighborhood("wijk2")
-    wijk3 = Neighborhood("wijk3")
+    plots.batt_house_animate(wijk1)
+    # C = plots.batt_house_plot(wijk2)
+    # D = plots.batt_house_plot(wijk3)
 
     wijk1_up = Neighborhood("wijk1")
     wijk2_up = Neighborhood("wijk2")

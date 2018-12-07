@@ -68,12 +68,30 @@ Also in this case we are aware of the fact that we can't use this are reference,
 | 3            | €405000    | €9450      |
 
 ## What makes this case difficult?
-- laatste huis kon niet verbonden worden
-- upper- lowerbound bedenken voor punt c en d
-- clusters kiezen k-means
+The goal of our case is to create the “cheapest” solution to a given neighbourhood. The theoretical solution to this progress is easily thought out, because there are two components that reduces or increases the cost, namely the length of the cables and the price of the chosen battery. For the first question of our case (where the batteries are stationary) this meant that we had to find  a way to connect every house to the nearest battery (which meant that the cable cost are the lowest possible). Exactly this was done by means of our lower bound algorithm. But obviously this solution does not suffice simply because the maximum capacity isn’t taken into account when connecting. So we ran in to one  and probably the main problem of our case namely the fact that the houses have different output and the batteries limited capacity, because this means that although you find the best way to connect houses to batteries. This doesn’t mean that in practice this is the best way. So because the theoretical best way to connect is not available you have no aim where to end, and because of the fact that the space state is so incredibly large it is quite impossible to actually guarantee that that we reached our goal.
 
-## Zoekruimte verkleinen
-Misschien huizen weggooien die al goed verbonden zijn. Aangeven wat er veranderd is.
+We found “good” solutions to our problem by running a hill climber algorithm. But because we only had a limited amount of batteries, we could supply every house with a battery, but not in every way. And this is where capacity and different output again creates a problem, namely that when running the hill climber we couldn’t connect a house with an output too large for any battery, because the batteries are already full. So we had to swap houses between batteries to create space for that one house. This often had a negative effect on the total costs of a neighbourhood, because the swaps that are performed are random. We created a heuristics that made these swaps more efficient by making a priority list of nearest batteries wich the hillclimber runs down.
+
+Eventually we could move the batteries. A big question was where to move the batteries? But eventually that question was quickly answered by our k means algorithm which moves the batteries so that the total distance from each house to a battery is reduced over every iteration. Again output and capacity are our greates enemy. This is because the spots we find might be optimal to reduce total distance, so in theory reduces total cable length, but it might be that a optimal spot for a battery is in the middle of a cluster of houses with high output, which means that all those houses will not fit in the nearest battery. 
+
+The final problem includes different types of batteries. this means that in theory you want to find the best positions with the best configuration of batteries. But again the problem is that you can’t find this solution, because the configuration of batteries might not support the most efficient clusters because the houses do not have the same output, so the cable length are not minimal.
+
+## Making statespace smaller
+To reduce the statespace we adjusted the hillclimber. First, it selected random cables and swapped these. We implemented a function that first makes a priority list of the nearest batteries for each house. The longest cables are the ones which we cost the most, so these are the cables we want to swap. This way the "good" cables stay as they are and the hillclimber has a shorter runtime.
+
+## Simmulated Annealing coolingschemes
+
+| Coolingrate ->| 0.0005     | 0.001      | 0.005  |
+| Neighborhood  |            |            |        |
+| ------------  | ---------- | ---------- |------  |
+| 1 - Average   | €56642.2   | €57014.8   |€60706.6|    
+|   - Minimum   | €56347     | €56644     |€59893  |
+| 2 - Average   | €46860.1   | €47311.9   |€51143.2|
+|   - Minimum   | €46222     | €46636     |€50533  |
+| 3 - Average   | €44304.1   | €44706.4   |€48896.8|
+|   - Minimum   | €43999     | €44341     |€47581  |
+
+
 
 ## Plots
 - random distribution plot verbinden (bij lower+upperbound)

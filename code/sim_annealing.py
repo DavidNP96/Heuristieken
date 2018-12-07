@@ -9,15 +9,15 @@ def acceptance_probability(current_costs, new_costs, temperature):
         return math.exp((current_costs - new_costs) / temperature)
 
 
-def sim_annealing(neighborhood):
+def sim_annealing(neighborhood, Tmax, Tmin, cooling_rate):
     """
     Simulated annealing algorithm.
     """
     # defaults
-    Tmax = 25000
+    # Tmax = 25000
     temp = Tmax
-    Tmin = 0.1
-    cooling_rate = 0.0001
+    # Tmin = 0.1
+    # cooling_rate = 0.0001
 
 
 
@@ -38,7 +38,14 @@ def sim_annealing(neighborhood):
         else:
             neighborhood.swap_connection(neighborhood.cables[-1], neighborhood.cables[-2])
 
-        temp *= 1-cooling_rate
+        # exponential
+        temp = temp * (1 - cooling_rate)
+
+        # # linear, check if cooling is not too fast
+        # temp = temp - cooling_rate
+        #
+        # # logaritmic
+        # temp = log(cooling_rate * temp)
 
 if __name__ == "__main__":
     print(acceptance_probability(2, 38, 10000))

@@ -43,3 +43,14 @@ def random_generator(neighborhood, iterations):
 
     # make histogram of all costs in list
     plots.make_hist(costs_random)
+
+
+def random_locations(neighborhood):
+    """
+    Puts batteries at random locations. IMPLEMENT ALSO THAT BATTERIES CANNOT BE IN SAME PLACE
+    """
+
+    for battery in neighborhood.batteries:
+        x_location = random.randint(-50, 50)
+        y_location = random.randit(-50, 50)
+        battery.move_to(x_location, y_location)

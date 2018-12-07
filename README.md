@@ -13,7 +13,7 @@ should optimize the amount of batteries used, the position of the batteries, and
 
 ### Prerequisites
 This code is completely written in [Python 3.7.1](https://www.python.org/downloads/release/python-371/). All the required 
-packages are inside requirements.txt.
+packages are inside requirements.txt. The packages can be installed by running the code below.
 ```
 pip install -r requirements.txt
 ```
@@ -23,7 +23,7 @@ All data is placed in the "data" folder. All python scripts are placed in the "c
 "results" folder.
 
 ### Testing
-The code can be tested by using:
+Run the code below to get the results of the different algorithms.
 ```
 python main.py
 ```

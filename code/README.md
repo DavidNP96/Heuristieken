@@ -1,5 +1,5 @@
 # Code
-Welke code is waar te vinden?
+This README file contains an explanation where all code can be found.
 
 ### main.py
 This is the main script where the other scripts can be run. 

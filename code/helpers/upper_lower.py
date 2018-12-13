@@ -46,6 +46,6 @@ def lower_bound(neighborhood):
     total_costs = neighborhood.get_total_costs()
 
     # disconnect all houses and batteries
-    neighborhood.disconnect_all()
+    # neighborhood.disconnect_all()
 
     return total_costs

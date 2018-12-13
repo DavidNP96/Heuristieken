@@ -23,7 +23,7 @@ All data is placed in the "data" folder. All python scripts are placed in the "c
 "results" folder.
 
 ### Testing
-The code can be tested by using:
+Run the code below to get the results of the different algorithms.
 ```
 python main.py
 ```

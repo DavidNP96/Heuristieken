@@ -2,24 +2,26 @@
 
 from copy import deepcopy
 import numpy as np
-# import pandas
+import pandas
 from matplotlib import pyplot as plt
 import neighborhood as nb
 import random
 from copy import deepcopy
+import greedy as grd
 
 
 def kmeans(neighborhood, iterations):
 
-    # calculate initaial total distance from houses to batteries
-    current_distance = 0
-    for house in neighborhood.houses:
-        current_distance += house.get_shortest_distance(neighborhood.batteries)
+    # calculate initaial total price
+    current_costs = grd.greedy(neighborhood)
 
     for i in range(iterations):
 
         # select random battery id
         battery = random.choice(neighborhood.batteries)
+
+        # disconnect all houses
+        neighborhood.disconnect_all()
 
         # retreive current battery location
         current_x_loc = battery.x_location
@@ -30,12 +32,10 @@ def kmeans(neighborhood, iterations):
         move_y = random.randint(-5, 5)
         battery.move(move_x, move_y)
 
-        # calculate new total distance from houses to batteries
-        new_distance = 0
-        for house in neighborhood.houses:
-            new_distance = new_distance + house.get_shortest_distance(neighborhood.batteries)
+        # calculate new total costs
+        new_costs = grd.greedy(neighborhood)
 
-        if new_distance  <= current_distance:
-            current_distance = new_distance
+        if new_costs  <= current_costs:
+            current_costs = new_costs
         else:
             battery.move_to(current_x_loc, current_y_loc)

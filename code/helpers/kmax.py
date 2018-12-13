@@ -9,9 +9,9 @@ import random
 from copy import deepcopy
 
 
-def kmeans(neighborhood, iterations):
+def kmeans_max(neighborhood, iterations):
 
-    # calculate initaial total distance from houses to batteries
+        # calculate initaial total distance from houses to batteries
     current_distance = 0
     for house in neighborhood.houses:
         current_distance += house.get_shortest_distance(neighborhood.batteries)
@@ -35,7 +35,7 @@ def kmeans(neighborhood, iterations):
         for house in neighborhood.houses:
             new_distance = new_distance + house.get_shortest_distance(neighborhood.batteries)
 
-        if new_distance  <= current_distance:
+        if new_distance >= current_distance:
             current_distance = new_distance
         else:
             battery.move_to(current_x_loc, current_y_loc)

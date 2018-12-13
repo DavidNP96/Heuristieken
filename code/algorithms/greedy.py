@@ -35,7 +35,7 @@ def greedy(neighborhood):
                     fail_count += 1
 
                 if fail_count == len(neighborhood.batteries):
-                    print(f"Unable to connect house {house.id}. Swapping...")
+                    # print(f"Unable to connect house {house.id}. Swapping...")
                     current_cable = neighborhood.cables[0]
                     for cable in neighborhood.cables:
                         if cable.house.id == house.id:
@@ -43,7 +43,7 @@ def greedy(neighborhood):
                             break
 
                     while (neighborhood.swap_connection(current_cable, random.choice(neighborhood.cables)) == False):
-                        print("Trying to swap...")
+                        # print("Trying to swap...")
 
                     fail_count = 0
     total_costs = neighborhood.get_total_costs()

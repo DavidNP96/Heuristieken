@@ -2,7 +2,6 @@
 
 from copy import deepcopy
 import numpy as np
-# import pandas
 from matplotlib import pyplot as plt
 import neighborhood as nb
 import random
@@ -11,7 +10,7 @@ from copy import deepcopy
 
 def kmeans(neighborhood, iterations):
 
-    # calculate initaial total distance from houses to batteries
+        # calculate initaial total distance from houses to batteries
     current_distance = 0
     for house in neighborhood.houses:
         current_distance += house.get_shortest_distance(neighborhood.batteries)

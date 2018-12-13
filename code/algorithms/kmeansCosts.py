@@ -6,6 +6,8 @@ import pandas
 from matplotlib import pyplot as plt
 import neighborhood as nb
 import random
+import pandas as pd
+import hillclimber as hc
 from copy import deepcopy
 import greedy as grd
 
@@ -13,15 +15,19 @@ import greedy as grd
 def kmeans(neighborhood, iterations):
 
     # calculate initaial total price
-    current_costs = grd.greedy(neighborhood)
+    current_costs = neighborhood.get_total_costs()
 
+    temp_neighborhood = deepcopy(neighborhood)
+
+    plot_list = []
+    plot_list.append(current_costs)
     for i in range(iterations):
 
         # select random battery id
-        battery = random.choice(neighborhood.batteries)
+        battery = random.choice(temp_neighborhood.batteries)
 
         # disconnect all houses
-        neighborhood.disconnect_all()
+        temp_neighborhood.disconnect_all()
 
         # retreive current battery location
         current_x_loc = battery.x_location
@@ -33,9 +39,16 @@ def kmeans(neighborhood, iterations):
         battery.move(move_x, move_y)
 
         # calculate new total costs
-        new_costs = grd.greedy(neighborhood)
+        new_costs = grd.greedy(temp_neighborhood)
+        hc.hillclimber(temp_neighborhood, 2500)
+        new_costs = temp_neighborhood.get_total_costs()
 
         if new_costs  <= current_costs:
             current_costs = new_costs
+            neighborhood = deepcopy(temp_neighborhood)
         else:
             battery.move_to(current_x_loc, current_y_loc)
+        plot_list.append(current_costs)
+
+    df = pd.DataFrame(plot_list)
+    df.to_csv("kc_results.csv")

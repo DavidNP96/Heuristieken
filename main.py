@@ -13,7 +13,6 @@ import kmeansCosts as kc
 import upper_lower as uplow
 import hillclimber as h
 import randoms as ran
-import greedy as grd
 import simple_connect as simp
 import kmeans as k
 import kmax as kmax
@@ -55,7 +54,7 @@ def main():
     # wijk2_up = Neighborhood("wijk2")
     # wijk3_up = Neighborhood("wijk3")
 
-    ran.all_random_locations(wijk1, 10000)
+    # ran.all_random_locations(wijk1, 10000)
 
 
 
@@ -106,7 +105,11 @@ if __name__ == "__main__":
     wijk2 = Neighborhood("wijk2")
     wijk3 = Neighborhood("wijk3")
 
-    kc.kmeans(wijk1, 1000)
+    k.kmeans(wijk1,10000)
+    g.greedy(wijk1)
+    h.hillclimber(wijk1,2500)
+    print(wijk1.get_total_costs())
+    kc.kmeans(wijk1, 500)
     print(wijk1.get_total_costs())
     plots.batt_house_plot(wijk1)
 

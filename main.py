@@ -71,6 +71,8 @@ def main():
     # wijk2_up = Neighborhood("wijk2")
     # wijk3_up = Neighborhood("wijk3")
 
+    # ran.all_random_locations(wijk1, 10000)
+
     #
     # # DIT IS VOOR ANIMATIE
     #     fig = plt.figure()
@@ -111,16 +113,14 @@ def main():
     # ran.random_connect(wijk1)
 if __name__ == "__main__":
     main()
+    k.kmeans(wijk1,10000)
+    g.greedy(wijk1)
+    h.hillclimber(wijk1,2500)
+    print(wijk1.get_total_costs())
+    kc.kmeans(wijk1, 500)
+    print(wijk1.get_total_costs())
+    plots.batt_house_plot(wijk1)
 
-    # wijk1 = Neighborhood("wijk1")
-    # wijk2 = Neighborhood("wijk2")
-    # wijk3 = Neighborhood("wijk3")
-    #
-    #
-    #
-    # kc.kmeans(wijk1, 1000)
-    # print(wijk1.get_total_costs())
-    # plots.batt_house_plot(wijk1)
 
 
 # # DIT IS VOOR ANIMATIE

@@ -1,39 +1,39 @@
-import os, sys
+import os
+import sys
 
-directory = os.path.dirname(os.path.realpath(__file__))
-# sys.path.append(os.path.join(directory, "data"))
-sys.path.append(os.path.join(directory, "code"))
-sys.path.append(os.path.join(directory, "code", "classes"))
-sys.path.append(os.path.join(directory, "code", "algorithms"))
-sys.path.append(os.path.join(directory, "code", "helpers"))
-
-from neighborhood import Neighborhood
-import plots
-import kmeansCosts as kc
-import upper_lower as uplow
-import hillclimber as h
-import randoms as ran
-import greedy as grd
-import simple_connect as simp
-import kmeans as k
-import kmax as kmax
-import sim_annealing as sa
-# from celluloid import Camera
-import greedy as g
 from matplotlib import pyplot as plt
-import hillclimber_test as hilltest
-import greedy
+
+import code.algorithms.greedy as g
+import code.algorithms.hillclimber as h
+import code.algorithms.kmeans as k
+import code.algorithms.kmeansCosts as kc
+import code.algorithms.sim_annealing as sa
+
+from code.classes.neighborhood import Neighborhood
+
+import code.helpers.plots as pt
+import code.helpers.upper_lower as uplow
+import code.helpers.randoms as ran
+import code.helpers.simple_connect as simp
+import code.helpers.kmax as kmax
 
 
 def main():
+    """ This function gives all the outcomes of the different algorithms.
+    """
 
     wijk1 = Neighborhood("wijk1")
     wijk2 = Neighborhood("wijk2")
     wijk3 = Neighborhood("wijk3")
+
+    # ran.all_random_locations(wijk1, 10)
+
+    g.greedy(wijk1)
+
     #
     # plots.batt_house_animate(wijk1)
     #
-    # k.kmeans(wijk1, 10)
+    k.kmeans(wijk1, 10)
     #
     # # uplow.upper_bound(wijk1)
     # # # simp.simple_connect(wijk2)
@@ -70,8 +70,6 @@ def main():
     # wijk1_up = Neighborhood("wijk1")
     # wijk2_up = Neighborhood("wijk2")
     # wijk3_up = Neighborhood("wijk3")
-
-    ran.all_random_locations(wijk1, 10000)
 
     #
     # # DIT IS VOOR ANIMATIE
@@ -112,7 +110,6 @@ def main():
     # # plots.batt_house_animate(wijk1)
     # ran.random_connect(wijk1)
 if __name__ == "__main__":
-
     main()
 
     # wijk1 = Neighborhood("wijk1")

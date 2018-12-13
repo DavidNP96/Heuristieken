@@ -1,11 +1,9 @@
-# Team Niko
-# Heuristieken
-# randoms.py
-
 import random
-import plots
-import greedy as g
+
 import pandas as pd
+
+import code.helpers.plots as pt
+import code.algorithms.greedy as g
 
 def random_connect(neighborhood):
     """
@@ -23,8 +21,7 @@ def random_connect(neighborhood):
             battery = random.choice(neighborhood.batteries)
             unconnectable_count += 1
             if unconnectable_count > 50:
-                swap_succes = neighborhood.swap_connection(random.choice(neighborhood.cables),
-                random.choice(neighborhood.cables))
+                swap_succes = neighborhood.swap_connection(random.choice(neighborhood.cables), random.choice(neighborhood.cables))
                 while (swap_succes != True):
                     swap_succes = neighborhood.swap_connection(random.choice(neighborhood.cables),
                     random.choice(neighborhood.cables))
@@ -36,16 +33,16 @@ def all_random_connect(neighborhood, iterations):
     Makes histogram of executing random connect the given amount of times.
     """
 
-    # make list for all random costs retrieved
+    # Make list for all random costs retrieved
     costs_random = []
 
-    # execute random_connect until iterations is reached and append costs to list
+    # Execute random_connect and append costs to list for all iteration
     for i in range(iterations):
         random_connect(neighborhood)
         total_costs = neighborhood.get_total_costs()
         costs_random.append(total_costs)
 
-    # make histogram of all costs in list
+    # Make histogram of all costs in list
     plots.make_hist(costs_random)
 
 
@@ -62,22 +59,22 @@ def random_locations(neighborhood):
 
 def all_random_locations(neighborhood, iterations):
     """
-    Makes histogram of costs after greey connect algorithm after random
+    Makes histogram of costs after greedy connect algorithm after random
     battery placement.
     """
 
-    # make list for all random costs retrieved
     costs_random = []
 
-    # execute random_connect until iterations is reached and append costs to list
+    # Execute random_connect and append costs to list for all iterations
     for i in range(iterations):
         random_locations(neighborhood)
         g.greedy(neighborhood)
         total_costs = neighborhood.get_total_costs()
         costs_random.append(total_costs)
 
+    # Write costs list to CSV file
     df = pd.DataFrame(costs_random)
     df.to_csv("results_random.csv")
 
-    # make histogram of all costs in list
-    plots.make_hist(costs_random)
+    # Make histogram of all costs in list
+    pt.make_hist(costs_random)

@@ -4,6 +4,7 @@
 
 import matplotlib.pyplot as plt
 
+
 def batt_house_plot(neighborhood):
     x_houses = []
     y_houses = []

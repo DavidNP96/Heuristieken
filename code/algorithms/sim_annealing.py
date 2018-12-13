@@ -2,6 +2,7 @@
 import random
 import math
 
+
 def acceptance_probability(current_costs, new_costs, temperature):
     if new_costs < current_costs:
         return 1.0

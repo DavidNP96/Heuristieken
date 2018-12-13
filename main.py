@@ -20,6 +20,8 @@ import sim_annealing as sa
 # from celluloid import Camera
 import greedy as g
 from matplotlib import pyplot as plt
+import hillclimber_test as hilltest
+import greedy
 
 
 def main():
@@ -27,13 +29,27 @@ def main():
     wijk1 = Neighborhood("wijk1")
     wijk2 = Neighborhood("wijk2")
     wijk3 = Neighborhood("wijk3")
+    #
+    # plots.batt_house_animate(wijk1)
+    #
+    # k.kmeans(wijk1, 10)
+    #
+    # # uplow.upper_bound(wijk1)
+    # # # simp.simple_connect(wijk2)
+
+    # greedy.greedy(wijk1)
+    # plots.batt_house_plot(wijk1)
+    # print(wijk1.get_total_costs())
+    #
+    # h.hillclimber(wijk1, 100)
+    # # hilltest.hillclimber_testing(wijk1, 10000)
+    # plots.batt_house_plot(wijk1)
+    # print(wijk1.get_total_costs())
 
     # plots.batt_house_animate(wijk1)
     #
     # k.kmeans(wijk1, 10)
-
-    # uplow.upper_bound(wijk1)
-    # # simp.simple_connect(wijk2)
+    #
 
     # plots.batt_house_animate(wijk1)
     # C = plots.batt_house_plot(wijk2)
@@ -55,11 +71,6 @@ def main():
     # wijk3_up = Neighborhood("wijk3")
 
     # ran.all_random_locations(wijk1, 10000)
-
-
-
-
-
 
     #
     # # DIT IS VOOR ANIMATIE
@@ -101,10 +112,7 @@ def main():
     # ran.random_connect(wijk1)
 if __name__ == "__main__":
 
-    wijk1 = Neighborhood("wijk1")
-    wijk2 = Neighborhood("wijk2")
-    wijk3 = Neighborhood("wijk3")
-
+    main()
     k.kmeans(wijk1,10000)
     g.greedy(wijk1)
     h.hillclimber(wijk1,2500)
@@ -112,6 +120,7 @@ if __name__ == "__main__":
     kc.kmeans(wijk1, 500)
     print(wijk1.get_total_costs())
     plots.batt_house_plot(wijk1)
+
 
 
 # # DIT IS VOOR ANIMATIE
@@ -304,8 +313,3 @@ if __name__ == "__main__":
     # print(f"lowest sim3 wijk2: {min(sim3_wijk2)}")
     # print(f"average sim3 wijk3: {sum(sim3_wijk3)/10}")
     # print(f"lowest sim3 wijk3: {min(sim3_wijk3)}")
-
-
-
-if __name__ == "__main__":
-    main()

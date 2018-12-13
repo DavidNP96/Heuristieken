@@ -1,3 +1,2 @@
-csv
-random
-matplotlib.pyplot
+matplotlib
+pandas

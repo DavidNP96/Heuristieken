@@ -102,13 +102,15 @@ def main():
     # ran.random_connect(wijk1)
 if __name__ == "__main__":
 
-    wijk1 = Neighborhood("wijk1")
-    wijk2 = Neighborhood("wijk2")
-    wijk3 = Neighborhood("wijk3")
+    main()
 
-    kc.kmeans(wijk1, 1000)
-    print(wijk1.get_total_costs())
-    plots.batt_house_plot(wijk1)
+    # wijk1 = Neighborhood("wijk1")
+    # wijk2 = Neighborhood("wijk2")
+    # wijk3 = Neighborhood("wijk3")
+    #
+    # kc.kmeans(wijk1, 1000)
+    # print(wijk1.get_total_costs())
+    # plots.batt_house_plot(wijk1)
 
 
 # # DIT IS VOOR ANIMATIE
@@ -301,8 +303,3 @@ if __name__ == "__main__":
     # print(f"lowest sim3 wijk2: {min(sim3_wijk2)}")
     # print(f"average sim3 wijk3: {sum(sim3_wijk3)/10}")
     # print(f"lowest sim3 wijk3: {min(sim3_wijk3)}")
-
-
-
-if __name__ == "__main__":
-    main()

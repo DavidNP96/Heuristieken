@@ -2,7 +2,6 @@
 
 from copy import deepcopy
 import numpy as np
-import pandas
 from matplotlib import pyplot as plt
 import neighborhood as nb
 import random

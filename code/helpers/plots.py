@@ -11,16 +11,6 @@ def batt_house_plot(neighborhood):
     x_batteries = []
     y_batteries = []
 
-    # # create two list with house x and y coordinates
-    # for house in neighborhood.houses:
-    #     x_houses.append(house.x_location)
-    #     y_houses.append(house.y_location)
-    #
-    # # create two list with battery x and y coordinates
-    # for battery in neighborhood.batteries:
-    #     x_batteries.append(battery.x_location)
-    #     y_batteries.append(battery.y_location)
-
     colors = ['b', 'g', 'r', 'c', 'm', 'y', 'k', 'w']
     for cable in neighborhood.cables:
         plt.plot([cable.house.x_location, cable.house.x_location],

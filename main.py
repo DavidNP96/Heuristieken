@@ -16,21 +16,34 @@ import kmeans as k
 import sim_annealing as sa
 # from celluloid import Camera
 from matplotlib import pyplot as plt
+import hillclimber_test as hilltest
+import greedy
 
 def main():
 
     wijk1 = Neighborhood("wijk1")
     wijk2 = Neighborhood("wijk2")
     wijk3 = Neighborhood("wijk3")
+    #
+    # plots.batt_house_animate(wijk1)
+    #
+    # k.kmeans(wijk1, 10)
+    #
+    # # uplow.upper_bound(wijk1)
+    # # # simp.simple_connect(wijk2)
 
-    plots.batt_house_animate(wijk1)
+    greedy.greedy(wijk1)
+    plots.batt_house_plot(wijk1)
+    print(wijk1.get_total_costs())
 
-    k.kmeans(wijk1, 10)
+    h.hillclimber(wijk1, 100)
+    # hilltest.hillclimber_testing(wijk1, 10000)
+    plots.batt_house_plot(wijk1)
+    print(wijk1.get_total_costs())
 
-    # uplow.upper_bound(wijk1)
-    # # simp.simple_connect(wijk2)
 
-    plots.batt_house_animate(wijk1)
+    #
+    # plots.batt_house_animate(wijk1)
     # C = plots.batt_house_plot(wijk2)
     # D = plots.batt_house_plot(wijk3)
 

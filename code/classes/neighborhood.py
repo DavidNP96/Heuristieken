@@ -2,7 +2,8 @@ import csv
 from house import House
 from battery import Battery
 from cable import Cable
-import os, sys
+import os
+import sys
 import greedy as g
 import sim_annealing as sa
 
@@ -12,6 +13,8 @@ class Neighborhood(object):
     Neighborhood class containing attributes and methods to setup, modify and
     use a neighborhood.
     """
+
+
     def __init__(self, neighborhood):
         """
         Create houses and batteries and make a list for the cables.
@@ -20,6 +23,7 @@ class Neighborhood(object):
         self.batteries = self.load_batteries(f"{neighborhood}_batterijen.txt")
         self.cables = []
         # self.nearest_houses = self.get_nearest_houses()
+
 
     def load_houses(self, input_csv):
         """
@@ -35,7 +39,6 @@ class Neighborhood(object):
         with open(abspath, newline='') as csvfile:
             reader = csv.DictReader(csvfile)
 
-            # initialize houses list
             houses = []
 
             # set ID for every house to save in house object
@@ -50,7 +53,6 @@ class Neighborhood(object):
                 houses.append(house)
                 id += 1
 
-            # return houses list
             return(houses)
 
 
@@ -86,7 +88,6 @@ class Neighborhood(object):
                 batteries.append(battery)
                 id += 1
 
-            # return list of batteries
             return(batteries)
 
 
@@ -273,6 +274,7 @@ class Neighborhood(object):
         # returns true if both connections were made
         else:
             return True
+
 
     def get_nearest_houses(self):
         """

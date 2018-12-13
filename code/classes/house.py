@@ -46,7 +46,7 @@ class House(object):
 
     def get_nearest_batteries(self, battery_list):
         """
-        Get nearest batteries for all batteries.
+        Get nearest batteries for all houses.
         """
         if battery_list == None:
             print("Battery list empty")
@@ -84,3 +84,5 @@ class House(object):
 
 
         self.nearest_battery_ids = nearest_battery_ids
+
+        return self.nearest_battery_ids

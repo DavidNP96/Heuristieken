@@ -43,6 +43,7 @@ def greedy(neighborhood):
                             break
 
                     while (neighborhood.swap_connection(current_cable, random.choice(neighborhood.cables)) == False):
+                        continue
                         # print("Trying to swap...")
 
                     fail_count = 0

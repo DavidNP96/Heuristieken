@@ -5,6 +5,7 @@
 import random
 import plots
 import greedy as g
+import pandas as pd
 
 def random_connect(neighborhood):
     """
@@ -74,6 +75,9 @@ def all_random_locations(neighborhood, iterations):
         g.greedy(neighborhood)
         total_costs = neighborhood.get_total_costs()
         costs_random.append(total_costs)
+
+    df = pd.DataFrame(costs_random)
+    df.to_csv("results_random.csv")
 
     # make histogram of all costs in list
     plots.make_hist(costs_random)

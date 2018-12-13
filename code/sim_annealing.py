@@ -41,11 +41,11 @@ def sim_annealing(neighborhood, Tmax, Tmin, cooling_rate):
         # exponential
         temp = temp * (1 - cooling_rate)
 
-        # # linear, check if cooling is not too fast
-        # temp = temp - cooling_rate
+        #  linear, check if cooling is not too fast
+        # temp = temp - cooling_rate * 10
         #
         # # logaritmic
-        # temp = log(cooling_rate * temp)
+        # temp = math.log(cooling_rate * temp)
 
 if __name__ == "__main__":
     print(acceptance_probability(2, 38, 10000))

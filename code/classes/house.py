@@ -1,11 +1,13 @@
 class House(object):
-    """
+    """House class.
+
     Representation of a house in neighborhood.
     """
 
     def __init__(self, x_location, y_location, output, id):
-        """
-        Initialize house with needed information.
+        """Initializes house.
+
+        Initialize house object with needed information.
         """
         self.x_location = int(x_location)
         self.y_location = int(y_location)
@@ -15,7 +17,7 @@ class House(object):
         self.cable_id = None
         self.connected = False
 
-        # empty array to be filled with battery ids order in closeness
+        # moet deze blijven??
         self.nearest_battery_ids = []
 
     def get_shortest_distance(self, battery_list):
@@ -25,29 +27,22 @@ class House(object):
 
         distance_list = []
 
-        for battery in battery_list:
-            distance =  abs(battery.x_location - self.x_location) + abs(battery.y_location - self.y_location)
-            distance_list.append(distance)
+        distance_list = self.get_distance_list(battery_list)
 
         return min(distance_list)
 
     def get_nearest_batteries(self, battery_list):
+        """Get nearest batteries.
+
+        Returns list of nearest batteries for all houses.
         """
-        Get nearest batteries for all houses.
-        """
-        if battery_list == None:
+        if battery_list is None:
             print("Battery list empty")
             return 1
 
-        distance_list = []
+        distance_list = self.get_distance_list(battery_list)
+
         nearest_battery_ids = [None] * len(battery_list)
-
-        # make list of distances from house to each battery
-        for battery in battery_list:
-            distance =  abs(battery.x_location - self.x_location) + abs(battery.y_location - self. y_location)
-            distance_list.append(distance)
-
-        # make list of battery ids
         for i in range(len(battery_list)):
             nearest_battery_ids[i] = battery_list[i].id
 
@@ -65,11 +60,21 @@ class House(object):
                     nearest_battery_ids[j + 1] = temp_battery_id
                     distance_list[j + 1] = temp_distance
 
-
-        # make list with battery ids of nearest to furthest batteries
-
-
-
         self.nearest_battery_ids = nearest_battery_ids
 
         return self.nearest_battery_ids
+
+    def get_distance_list(self, battery_list):
+        """Gets distance list.
+
+        Returns list with all distances from the houses to the batteries.
+        """
+        distance_list = []
+
+        for battery in battery_list:
+            x_distance = abs(battery.x_location - self.x_location)
+            y_distance = abs(battery.y_location - self. y_location)
+            distance =  x_distance + y_distance
+            distance_list.append(distance)
+
+        return distance_list

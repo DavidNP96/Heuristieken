@@ -26,20 +26,7 @@ class House(object):
         distance_list = []
 
         for battery in battery_list:
-            distance =  abs(battery.x_location - self.x_location) + abs(battery.y_location - self. y_location)
-            distance_list.append(distance)
-
-        return min(distance_list)
-
-    def get_shortest_distance(self, battery_list):
-        """
-        Sets the distance to the closest battery
-        """
-
-        distance_list = []
-
-        for battery in battery_list:
-            distance =  abs(battery.x_location - self.x_location) + abs(battery.y_location - self. y_location)
+            distance =  abs(battery.x_location - self.x_location) + abs(battery.y_location - self.y_location)
             distance_list.append(distance)
 
         return min(distance_list)

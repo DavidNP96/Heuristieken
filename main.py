@@ -71,7 +71,7 @@ def main():
     # wijk2_up = Neighborhood("wijk2")
     # wijk3_up = Neighborhood("wijk3")
 
-    ran.all_random_locations(wijk1, 10000)
+    ran.all_random_connect(wijk1, 10000)
 
     #
     # # DIT IS VOOR ANIMATIE

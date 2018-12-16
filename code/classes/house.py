@@ -21,11 +21,9 @@ class House(object):
         self.nearest_battery_ids = []
 
     def get_shortest_distance(self, battery_list):
-        """Gets shortest distance.
-
-        Gets distance from the house to the closest battery.
         """
-
+        Sets the distance to the closest battery
+        """
         distance_list = self.get_distance_list(battery_list)
 
         return min(distance_list)

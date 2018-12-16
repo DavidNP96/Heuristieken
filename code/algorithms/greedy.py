@@ -41,7 +41,7 @@ def greedy(neighborhood):
                     random_cable = random.choice(neighborhood.cables)
                     while not neighborhood.swap_connection(current_cable, random_cable):
                         random_cable = random.choice(neighborhood.cables)
-                        continue
+
 
                     fail_count = 0
 

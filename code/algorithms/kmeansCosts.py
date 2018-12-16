@@ -1,8 +1,10 @@
 from copy import deepcopy
 import numpy as np
+
 import random
 
 import pandas
+
 from matplotlib import pyplot as plt
 
 import code.algorithms.greedy as g

@@ -5,19 +5,36 @@ import pandas as pd
 import code.helpers.plots as pt
 import code.algorithms.greedy as g
 
+
 def random_connect(neighborhood):
     """
     Randomly connects all houses to batteries to create random distribution.
     """
 
+    # print("hoi")
+
     neighborhood.disconnect_all()
 
-    # dit is niet helemaal random!!! Probeer random.choice(houses) en dan if house.battery_id != None oid
-    for house in neighborhood.houses:
+    connected_count = 0
+
+    while (connected_count < 150):
+
+        # print(connected_count)
+
+        house = random.choice(neighborhood.houses)
+        while (house.battery_id != None):
+            house = random.choice(neighborhood.houses)
+            #print("1e while")
+
         unconnectable_count = 0
         battery = random.choice(neighborhood.batteries)
         connected = neighborhood.connect(house, battery)
+
+        # if (connected == True):
+        #     connected_count += 1
+
         while (connected != True):
+            # print("2e while")
             battery = random.choice(neighborhood.batteries)
             unconnectable_count += 1
             if unconnectable_count > 50:
@@ -27,6 +44,7 @@ def random_connect(neighborhood):
                     random.choice(neighborhood.cables))
             connected = neighborhood.connect(house, battery)
 
+        connected_count += 1
 
 def all_random_connect(neighborhood, iterations):
     """

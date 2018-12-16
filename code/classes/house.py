@@ -39,8 +39,18 @@ class House(object):
 
         distance_list = self.get_distance_list(battery_list)
 
+        nearest_battery_ids = bubble_sort(battery_list, distance_list)
+
+        return self.nearest_battery_ids
+
+    def bubble_sort(self, battery_list, distance_list):
+        """Bubble sort.
+
+
+        """
         len_batt_list = len(battery_list)
-        nearest_battery_ids = [None] * len(battery_list)
+        nearest_battery_ids = [None] * len_batt_list
+
         for i in range(len_batt_list):
             nearest_battery_ids[i] = battery_list[i].id
 

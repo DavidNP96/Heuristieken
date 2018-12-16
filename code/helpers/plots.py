@@ -1,81 +1,71 @@
-# Team Niko
-# Heuristieken
-# plots.py
-
 import matplotlib.pyplot as plt
 
 
 def batt_house_plot(neighborhood):
-    x_houses = []
-    y_houses = []
-    x_batteries = []
-    y_batteries = []
+    """Plot batteries and houses.
 
-    # # create two list with house x and y coordinates
-    # for house in neighborhood.houses:
-    #     x_houses.append(house.x_location)
-    #     y_houses.append(house.y_location)
-    #
-    # # create two list with battery x and y coordinates
-    # for battery in neighborhood.batteries:
-    #     x_batteries.append(battery.x_location)
-    #     y_batteries.append(battery.y_location)
-
-    colors = ['b', 'g', 'r', 'c', 'm', 'y', 'k', 'w']
-    for cable in neighborhood.cables:
-        plt.plot([cable.house.x_location, cable.house.x_location],
-            [cable.house.y_location, cable.battery.y_location],colors[cable.battery.id])
-        plt.plot([cable.house.x_location, cable.battery.x_location],
-            [cable.battery.y_location, cable.battery.y_location],colors[cable.battery.id])
-
-    plt.xlabel('x')
-    plt.ylabel('y')
-    plt.title('SmartGrid')
-    for house in neighborhood.houses:
-        plt.scatter(house.x_location, house.y_location,  c= colors[house.battery_id] ,s=30, marker=r'^', zorder=8)
-    for battery in neighborhood.batteries:
-        plt.scatter(battery.x_location, battery.y_location, c = colors[battery.id],s=350, marker=r'1',zorder=10)
+    Plots all houses, batteries and cables.
+    """
+    batt_house_animate(neighborhood)
     plt.show()
 
 
 def batt_house_animate(neighborhood):
+    """Animate batteries and houses.
 
-    x_houses = []
-    y_houses = []
-    x_batteries = []
-    y_batteries = []
-
-    # create two list with house x and y coordinates
-    for house in neighborhood.houses:
-        x_houses.append(house.x_location)
-        y_houses.append(house.y_location)
-
-    # create two list with battery x and y coordinates
-    for battery in neighborhood.batteries:
-        x_batteries.append(battery.x_location)
-        y_batteries.append(battery.y_location)
-
+    Plots all houses, batteries and cables to make an animation.
+    """
     colors = ['b', 'g', 'r', 'c', 'm', 'y', 'k', 'w']
-    for cable in neighborhood.cables:
-        plt.plot([cable.house.x_location, cable.house.x_location],
-            [cable.house.y_location, cable.battery.y_location],colors[cable.battery.id])
-        plt.plot([cable.house.x_location, cable.battery.x_location],
-            [cable.battery.y_location, cable.battery.y_location],colors[cable.battery.id])
+    plot_cables(neighborhood, colors)
+
+    plot_houses(neighborhood, colors)
+
+    plot_batteries(neighborhood, colors)
 
     plt.xlabel('x')
     plt.ylabel('y')
     plt.title('SmartGrid')
-    for house in neighborhood.houses:
-        plt.scatter(house.x_location, house.y_location,  c= colors[house.battery_id] ,s=30, marker=r'^', zorder=8)
-    for battery in neighborhood.batteries:
-        plt.scatter(battery.x_location, battery.y_location, c = colors[battery.id],s=350, marker=r'1',zorder=10)
 
+def plot_cables(neighborhood, colors):
+    """Plot cables.
+
+    Plot all the cables of the neighborhood.
+    """
+    for cable in neighborhood.cables:
+        house_x = cable.house.x_location
+        house_y = cable.house.y_location
+        battery_x = cable.battery.x_location
+        battery_y = cable.battery.y_location
+        x_points = [house_x, house_x, battery_x]
+        y_points = [house_y, battery_y, battery_y]
+        plt.plot(x_points, y_points, colors[cable.battery.id])
+
+def plot_houses(neighborhood, colors):
+    """Plot houses.
+
+    Plots all the houses of the neighborhood on the grid.
+    """
+    for house in neighborhood.houses:
+        x = house.x_location
+        y = house.y_location
+        plt.scatter(x, y, c= colors[house.battery_id] ,s=30, marker=r'^', zorder=8)
+
+def plot_batteries(neighborhood, colors):
+    """Plot batteries.
+
+    Plot all the batteries of the neighborhood on the grid.
+    """
+    for battery in neighborhood.batteries:
+        x = battery.x_location
+        y = battery.y_location
+        plt.scatter(x, y, c = colors[battery.id], s=350, marker=r'1',zorder=10)
 
 def make_hist(info):
-    """
-    Make a histogram of all the solutions to find the distribution.
-    """
+    """Make histogram.
 
+    Make a histogram of solutions to find the distribution
+    of the solutions.
+    """
     plt.hist(info, bins=15, rwidth=0.8)
     plt.title("Random solution distribution")
     plt.xlabel("Total costs")

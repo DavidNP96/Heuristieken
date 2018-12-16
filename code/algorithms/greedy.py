@@ -1,22 +1,37 @@
 import random
 
 
-def simple_connect(neighborhood):
-    """
-    Connects each house to closest battery until battery's capacity is used.
+def greedy(neighborhood):
+    """Greedy algorithm.
+
+    Connects random houses to closest battery until battery's capacity is used.
     """
     neighborhood.disconnect_all()
     neighborhood.get_all_nearest_batteries()
 
-    for house in neighborhood.houses:
+    connected = 0
+
+    while connected < 150:
+        house = random.choice(neighborhood.houses)
+
+        while house.battery_id is not None:
+            house = random.choice(neighborhood.houses)
+
         fail_count = 0
-        battery = neighborhood.batteries[house.nearest_battery_ids[fail_count]]
+        connect_succes = False
+
         len_batt = len(neighborhood.batteries)
-        while not neighborhood.connect(house, battery) and fail_count >= len_batt:
-                fail_count += 1
-                battery = neighborhood.batteries[house.nearest_battery_ids[fail_count]]
-                if fail_count == len_batt:
-                    print(f"Unable to connect house {house.id}")
+
+        while not connect_succes and fail_count < len_batt:
+
+                if (neighborhood.connect(house, neighborhood.batteries\
+                    [house.nearest_battery_ids[fail_count]])):
+                    connected += 1
+                    connect_succes = True
+                else:
+                    fail_count += 1
+
+                if fail_count == len(neighborhood.batteries):
                     current_cable = neighborhood.cables[0]
                     for cable in neighborhood.cables:
                         if cable.house.id == house.id:
@@ -25,8 +40,8 @@ def simple_connect(neighborhood):
 
                     random_cable = random.choice(neighborhood.cables)
                     while not neighborhood.swap_connection(current_cable, random_cable):
-                        print("Trying to swap...")
                         random_cable = random.choice(neighborhood.cables)
+
 
                     fail_count = 0
 

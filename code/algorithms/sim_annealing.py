@@ -1,10 +1,11 @@
-#import neighborhood as n
-import random
 import math
 import pandas as pd
-
+import random
 
 def acceptance_probability(current_costs, new_costs, temperature):
+    """
+    AANVULLEN.
+    """
     if new_costs < current_costs:
         return 1.0
     else:
@@ -13,8 +14,9 @@ def acceptance_probability(current_costs, new_costs, temperature):
 
 
 def sim_annealing(neighborhood, Tmax, Tmin, cooling_rate):
-    """
-    Simulated annealing algorithm.
+    """Simulated annealing algorithm.
+
+    Tries to find cheapest neighborhood. AANVULLEN.
     """
     # defaults
     # Tmax = 25000
@@ -23,24 +25,23 @@ def sim_annealing(neighborhood, Tmax, Tmin, cooling_rate):
     # cooling_rate = 0.0001
     plot_list = []
 
-
     current_costs = neighborhood.get_total_costs()
     plot_list.append(current_costs)
 
     while (temp > Tmin):
         swap_succes = False
-        while swap_succes != True:
+        while not swap_succes:
             cable_1 = random.choice(neighborhood.cables)
             cable_2 = random.choice(neighborhood.cables)
             swap_succes = neighborhood.swap_connection(cable_1, cable_2)
 
         new_costs = neighborhood.get_total_costs()
-
-        # swap back if change not accepted
         if (acceptance_probability(current_costs, new_costs, temp) > random.random()):
             current_costs = new_costs
         else:
-            neighborhood.swap_connection(neighborhood.cables[-1], neighborhood.cables[-2])
+            cable_1 = neighborhood.cables[-1]
+            cable_2 = neighborhood.cables[-2]
+            neighborhood.swap_connection(cable_1, cable_2)
         plot_list.append(current_costs)
 
         # exponential

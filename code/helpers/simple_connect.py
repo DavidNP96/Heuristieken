@@ -10,10 +10,11 @@ def simple_connect(neighborhood):
 
     for house in neighborhood.houses:
         fail_count = 0
-        iets = neighborhood.batteries[house.nearest_battery_ids[fail_count]]
+        battery = neighborhood.batteries[house.nearest_battery_ids[fail_count]]
         len_batt = len(neighborhood.batteries)
-        while not neighborhood.connect(house, iets) and fail_count < len_batt:
+        while not neighborhood.connect(house, battery) and fail_count >= len_batt:
                 fail_count += 1
+                battery = neighborhood.batteries[house.nearest_battery_ids[fail_count]]
                 if fail_count == len_batt:
                     print(f"Unable to connect house {house.id}")
                     current_cable = neighborhood.cables[0]

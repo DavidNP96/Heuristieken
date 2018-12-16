@@ -31,9 +31,9 @@ def main():
     g.greedy(wijk1)
 
     #
-    # plots.batt_house_animate(wijk1)
+    pt.batt_house_plot(wijk1)
     #
-    k.kmeans(wijk1, 10)
+
     #
     # # uplow.upper_bound(wijk1)
     # # # simp.simple_connect(wijk2)
@@ -113,13 +113,13 @@ def main():
     # ran.random_connect(wijk1)
 if __name__ == "__main__":
     main()
-    k.kmeans(wijk1,10000)
-    g.greedy(wijk1)
-    h.hillclimber(wijk1,2500)
-    print(wijk1.get_total_costs())
-    kc.kmeans(wijk1, 500)
-    print(wijk1.get_total_costs())
-    plots.batt_house_plot(wijk1)
+    # k.kmeans(wijk1,10000)
+    # g.greedy(wijk1)
+    # h.hillclimber(wijk1,2500)
+    # print(wijk1.get_total_costs())
+    # kc.kmeans(wijk1, 500)
+    # print(wijk1.get_total_costs())
+    # plots.batt_house_plot(wijk1)
 
 
 

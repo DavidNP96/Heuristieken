@@ -29,19 +29,26 @@ def main():
     wijk1 = Neighborhood("wijk1")
     wijk2 = Neighborhood("wijk2")
     wijk3 = Neighborhood("wijk3")
+
+    for i in range(100):
+        g.greedy(wijk1)
+        # uplow.lower_bound(wijk1)
+        # sa.sim_annealing(wijk1, 2000, 0.001, 0.0005)
+        print(wijk1.get_total_costs())
+    # k.kmeans(wijk1, 500)
+    # print(wijk1.get_total_costs())
+    # plots.batt_house_plot(wijk1)
     #
     # plots.batt_house_animate(wijk1)
     #
     # k.kmeans(wijk1, 10)
     #
-    # # uplow.upper_bound(wijk1)
     # # # simp.simple_connect(wijk2)
 
     # greedy.greedy(wijk1)
     # plots.batt_house_plot(wijk1)
     # print(wijk1.get_total_costs())
     #
-    # h.hillclimber(wijk1, 100)
     # # hilltest.hillclimber_testing(wijk1, 10000)
     # plots.batt_house_plot(wijk1)
     # print(wijk1.get_total_costs())
@@ -113,15 +120,6 @@ def main():
 if __name__ == "__main__":
 
     main()
-    k.kmeans(wijk1,10000)
-    g.greedy(wijk1)
-    h.hillclimber(wijk1,2500)
-    print(wijk1.get_total_costs())
-    kc.kmeans(wijk1, 500)
-    print(wijk1.get_total_costs())
-    plots.batt_house_plot(wijk1)
-
-
 
 # # DIT IS VOOR ANIMATIE
 #     fig = plt.figure()

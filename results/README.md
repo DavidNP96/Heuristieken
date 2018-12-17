@@ -30,6 +30,15 @@ Hier komt grafiek van distributie van onze oplossingen met de hillclimber.
 #### Distribution non random
 Hier komt grafiek van distributie van onze oplossingen met de simmulated annealing.
 
+#### Scores hillclimber vs. simmulated annealing
+The hillclimber has 10000 iterations. The simmualated annealing also had 10000 iterations, a Tmax of 500, and a Tmin of 0.001.
+
+| Neighborhood | Min. HC    | Min. sim_an | Mean HC  | Mean sim_an |
+| ------------ | ---------- | ----------  | -------  | ----------- |
+| 1            | €56248     | €56284      | €56590.15| €56630.82   |  
+| 2            | €45628     | €45664      | €46036.84| €46129.08   |  
+| 3            | €43900     | €43945      | €44184.18| €44235.61   |
+
 ### Moving  
 #### Statespace
 In the moving situation there will still be 5^150 different possible connections between batteries and houses, but the 5 batteries can be on 2500 different locations on the grid. This makes the statespace (2500^5) * (5^150). 
@@ -103,13 +112,13 @@ When running the hillclimber or simulated annealing our aim is to make shure tha
 
 ## Simmulated Annealing coolingschemes
 
-all schemes are ran with the following: 
+All schemes are ran with the following data: 
 Starting temperature: 5000
-end temperature: 0.1 
+End temperature: 0.1 
 
 These are our end result when we ran our simulated annealing algorithm 10 times with the following coolingscheme: temp = temp * (1 - cooling_rate). We ran the this algorithm only 10 times per neighbourhood, because every iteration took quite some time we are looking to make this go faster for future runs.
 
-                  cooling rates
+                  Cooling rates
 | Neighborhood  | 0.0005     | 0.001      | 0.005  |
 | ------------  | ---------- | ---------- |------  |
 | 1 - Average   | €56642.2   | €57014.8   |€60706.6|    
@@ -119,7 +128,7 @@ These are our end result when we ran our simulated annealing algorithm 10 times 
 | 3 - Average   | €44304.1   | €44706.4   |€48896.8|
 |   - Minimum   | €43999     | €44341     |€47581  |
 
-## here will be a histogram of our runs
+## Here will be a histogram of our runs
 
 These are our end result when we ran our simulated annealing algorithm 10000 times with the following coolingscheme: temp = math.log(cooling_rate * temp) and the following parameters:
 
@@ -132,7 +141,7 @@ These are our end result when we ran our simulated annealing algorithm 10000 tim
 | 3 - Average   | €71435.734 | €71390.4   |€71392.5|
 |   - Minimum   | € 65473    | €65743     |€65635  |
 
-## here will be a histogram of our runs
+## Here will be a histogram of our runs
 
 
 ## Additional results

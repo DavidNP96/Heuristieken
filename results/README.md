@@ -108,8 +108,7 @@ When running the hillclimber or simulated annealing our aim is to make shure tha
 ![siman_lin_max80_min001_iter10000](https://user-images.githubusercontent.com/44001399/50118235-5d26b300-024f-11e9-9964-f998b0b22f6f.png)
 
 #### Exponential simmulated annealing
-
-
+![siman_exp_max500_min0001_iter10000](https://user-images.githubusercontent.com/44001399/50118397-cefefc80-024f-11e9-8690-26ffe30ce9d8.png)
 
 ## WAT IS DIT
 All schemes are ran with the following data:   

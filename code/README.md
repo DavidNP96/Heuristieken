@@ -26,6 +26,3 @@ a plot of the grid with houses, batteries and cables.
 
 **upper_lower.py**  
 The upper_lower script contains the functions to calculate the upper- and lower bound. 
-
-**animation.py**  
-The animation script contains a function to make an animation of all iterations of a algorithm.

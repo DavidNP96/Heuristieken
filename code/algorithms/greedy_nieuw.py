@@ -14,12 +14,16 @@ def greedy(neighborhood):
     priority_list = []
     house_id_list = []
     for house in neighborhood.houses:
-        distance_list = house.get_shortest_distance(neighborhood.batteries)
+        distance_list = house.get_distance_list(neighborhood.batteries)
         distance_list, b = bubble.bubblesort(distance_list, distance_list)
         distance = distance_list[1] - distance_list[0]
         priority_list.append(distance)
         house_id_list.append(house.id)
-        bubble.bubblesort_rev(priority_list, house_id_list)
+        print(priority_list)
+        print(house_id_list)
+        a,b = bubble.bubblesort_rev(priority_list, house_id_list)
+    print(a)
+    print(b)
 
     # connect house to closest battery if possible, else second-to-closest etc
     connected = 0

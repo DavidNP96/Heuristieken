@@ -32,6 +32,9 @@ python main.py
 ### Results
 To find the statespace, upper bound, lower bound, plots and other results see the README in the "results" folder.
 
+### Presentation
+The powerpoint for the presentation can be found in de "presentation" folder.
+
 ### Authors
 **Team Niko**  
 David Pantophlet (12466638)  

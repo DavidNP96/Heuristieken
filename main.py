@@ -1,6 +1,3 @@
-import os
-import sys
-
 from matplotlib import pyplot as plt
 
 import code.algorithms.greedy as g
@@ -15,7 +12,6 @@ from code.classes.neighborhood import Neighborhood
 import code.helpers.plots as pt
 import code.helpers.upper_lower as uplow
 import code.helpers.randoms as ran
-import code.helpers.simple_connect as simp
 import code.helpers.kmax as kmax
 
 
@@ -28,16 +24,27 @@ def main():
     wijk3 = Neighborhood("wijk3")
 
 
-    gn.greedy(wijk1)
-    pt.batt_house_plot(wijk1)
-    print(wijk1.get_total_costs())
-    h.hillclimber(wijk1, 1000)
-    print(wijk1.get_total_costs())
+    # gn.greedy(wijk1)
+    # pt.batt_house_plot(wijk1)
+    # print(wijk1.get_total_costs())
+    # h.hillclimber(wijk1, 1000)
+    # print(wijk1.get_total_costs())
     # k.kmeans(wijk1, 500)
     # print(wijk1.get_total_costs())
     # plots.batt_house_plot(wijk1)
+    # pt.batt_house_plot(wijk1)
+
+    # ran.all_random_locations(wijk1, 10000)
+    # ran.all_random_connect(wijk1, 10)
+
+    # ran.random_connect(wijk1)
+    # pt.batt_house_plot(wijk1)
+
+    k.kmeans(wijk1, 10000)
+    g.greedy(wijk1)
     pt.batt_house_plot(wijk1)
 
+    # ran.all_random_locations(wijk1, 10000)
 
     # greedy.greedy(wijk1)
     # plots.batt_house_plot(wijk1)

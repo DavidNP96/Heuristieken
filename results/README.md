@@ -32,6 +32,7 @@ Hier komt grafiek van distributie van onze oplossingen met de simmulated anneali
 
 #### Scores hillclimber vs. simmulated annealing
 The hillclimber has 10000 iterations. The simmualated annealing also had 10000 iterations, a Tmax of 500, and a Tmin of 0.001.
+In the table below the minimum and mean of the hillclimber and the simmulated annealing for all neighborhoods are shown.
 
 | Neighborhood | Min. HC    | Min. sim_an | Mean HC  | Mean sim_an |
 | ------------ | ---------- | ----------  | -------  | ----------- |

@@ -2,7 +2,8 @@
 The energy problem is getting bigger and people are trying to reduce their impact on global warming. That's why people put 
 solar panels on their roofs. The downside is that not all the energy gets used, so a lot is returned which reduces the 
 profitability of getting solar panels. In this problem three neighborhoods are considered with 150 houses and 5 batteries. 
-All houses with different power outputs and share the batteries which have a specific capacity.  
+All houses with different power outputs and share the batteries which have a specific capacity. An example of a neighborhood
+is neighborhood 1 which is shown below.
 - The first part of the problem is to connect all houses to a battery. 
 - Then the price of the neighborhood should be considered and optimized. 
 - After this, the batteries can be moved to optimize the costs again. 

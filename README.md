@@ -2,7 +2,8 @@
 The energy problem is getting bigger and people are trying to reduce their impact on global warming. That's why people put 
 solar panels on their roofs. The downside is that not all the energy gets used, so a lot is returned which reduces the 
 profitability of getting solar panels. In this problem three neighborhoods are considered with 150 houses and 5 batteries. 
-All houses with different power outputs and share the batteries which have a specific capacity.  
+All houses with different power outputs and share the batteries which have a specific capacity. An example of a neighborhood
+is neighborhood 1 which is shown below.
 - The first part of the problem is to connect all houses to a battery. 
 - Then the price of the neighborhood should be considered and optimized. 
 - After this, the batteries can be moved to optimize the costs again. 
@@ -20,7 +21,7 @@ pip install -r requirements.txt
 
 ### Structure
 All data is placed in the "data" folder. All python scripts are placed in the "code" folder. All results are placed in the 
-"results" folder.
+"results" folder. For further explanation see the README files in the folders.
 
 ### Testing
 Run the code below to get the results of the different algorithms.
@@ -29,7 +30,7 @@ python main.py
 ```
 
 ### Results
-To find the statespace, upperbound, lowerbound and plots see the README in the "results" folder.
+To find the statespace, upper bound, lower bound, plots and other results see the README in the "results" folder.
 
 ### Authors
 **Team Niko**  

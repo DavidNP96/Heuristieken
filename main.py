@@ -1,6 +1,3 @@
-import os
-import sys
-
 from matplotlib import pyplot as plt
 
 from celluloid import Camera
@@ -19,8 +16,6 @@ from code.classes.neighborhood import Neighborhood
 import code.helpers.plots as pt
 import code.helpers.upper_lower as uplow
 import code.helpers.randoms as ran
-import code.helpers.simple_connect as simp
-import code.helpers.kmax as kmax
 
 
 def main():

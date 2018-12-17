@@ -4,7 +4,6 @@ import random
 import decimal
 
 
-
 def acceptance_probability(current_costs, new_costs, temperature):
     """
     AANVULLEN.

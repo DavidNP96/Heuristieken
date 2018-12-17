@@ -1,7 +1,7 @@
 import csv
 import matplotlib.pyplot as plt
 
-file = "siman_results.csv"
+def lineplot(self, file)
 
 with open(file, "r") as f:
         next(f)

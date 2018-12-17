@@ -8,6 +8,7 @@ import code.algorithms.greedy_nieuw as gn
 import code.algorithms.hillclimber as h
 import code.algorithms.kmeans as k
 import code.algorithms.kmeansCosts as kc
+import pandas as pd
 import code.algorithms.sim_annealing as sa
 import code.algorithms.sim_annealing_new as san
 
@@ -28,6 +29,13 @@ def main():
     wijk2 = Neighborhood("wijk2")
     wijk3 = Neighborhood("wijk3")
 
+    # plot_list = []
+    # for i in range(100000):
+    #     g.greedy(wijk1)
+    #     plot_list.append(wijk1.get_total_costs())
+    #
+    # df = pd.DataFrame(plot_list)
+    # df.to_csv("greedy_100000_results_wijk1")
 
     g.greedy(wijk1)
     # ran.random_connect(wijk1)
@@ -50,7 +58,8 @@ def main():
     #
     # # uplow.upper_bound(wijk1)
     # # # simp.simple_connect(wijk2)
-
+    # df = pd.DataFrame(plot_list2)
+    # df.to_csv("greedy_nieuw_100000_results_wijk1")
 
     # greedy.greedy(wijk1)
     # plots.batt_house_plot(wijk1)

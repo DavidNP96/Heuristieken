@@ -13,7 +13,7 @@ The "classes" folder contains all the scripts of classes. The four different cla
 neighborhood. 
 
 ### Helpers
-The "helpers" folder contains all the supporting scripts. These are the animations, bubblesort, plots, randoms and the
+The "helpers" folder contains all the supporting scripts. These are the animations, plots, randoms and the
 upper_lower.
 
 **randoms.py**  
@@ -29,6 +29,3 @@ The upper_lower script contains the functions to calculate the upper- and lower 
 
 **animation.py**  
 The animation script contains a function to make an animation of all iterations of a algorithm.
-
-**bubblesort.py**  
-checken of dit moet

@@ -40,6 +40,8 @@ def sim_annealing(neighborhood, Tmax, Tmin, cooling_rate):
             cable_2 = neighborhood.cables[-2]
             neighborhood.swap_connection(cable_1, cable_2)
 
+
+
         # exponential
         temp = temp * (1 - cooling_rate)
 

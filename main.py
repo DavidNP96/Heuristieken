@@ -8,6 +8,7 @@ import code.algorithms.hillclimber as h
 import code.algorithms.kmeans as k
 import code.algorithms.kmeansCosts as kc
 import code.algorithms.sim_annealing as sa
+import code.algorithms.sim_annealing_new as san
 
 from code.classes.neighborhood import Neighborhood
 
@@ -26,14 +27,24 @@ def main():
     wijk2 = Neighborhood("wijk2")
     wijk3 = Neighborhood("wijk3")
 
+    g.greedy(wijk1)
+    # ran.random_connect(wijk1)
+
+    print(f"costs before: {wijk1.get_total_costs()}")
+
+
+    # EXP DOES NOT WORK YET
+    san.sim_an_exp(wijk1, 5000, 0.1, 10000)
+
+    print(f"costs after: {wijk1.get_total_costs()}")
     # ran.all_random_locations(wijk1, 10)
 
-    g.greedy(wijk1)
+    # g.greedy(wijk1)
 
     #
     # plots.batt_house_animate(wijk1)
     #
-    k.kmeans(wijk1, 10)
+    # k.kmeans(wijk1, 10)
     #
     # # uplow.upper_bound(wijk1)
     # # # simp.simple_connect(wijk2)
@@ -71,7 +82,7 @@ def main():
     # wijk2_up = Neighborhood("wijk2")
     # wijk3_up = Neighborhood("wijk3")
 
-    ran.all_random_connect(wijk1, 10000)
+    # ran.all_random_connect(wijk1, 10000)
 
 
     #
@@ -114,13 +125,13 @@ def main():
     # ran.random_connect(wijk1)
 if __name__ == "__main__":
     main()
-    k.kmeans(wijk1,10000)
-    g.greedy(wijk1)
-    h.hillclimber(wijk1,2500)
-    print(wijk1.get_total_costs())
-    kc.kmeans(wijk1, 500)
-    print(wijk1.get_total_costs())
-    plots.batt_house_plot(wijk1)
+    # k.kmeans(wijk1,10000)
+    # g.greedy(wijk1)
+    # h.hillclimber(wijk1,2500)
+    # print(wijk1.get_total_costs())
+    # kc.kmeans(wijk1, 500)
+    # print(wijk1.get_total_costs())
+    # plots.batt_house_plot(wijk1)
 
 
 

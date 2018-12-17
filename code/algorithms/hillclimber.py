@@ -1,5 +1,4 @@
 from copy import deepcopy
-# import pandas as pd
 import random
 
 def hillclimber(neighborhood, iterations):
@@ -30,6 +29,3 @@ def hillclimber(neighborhood, iterations):
             cable_2 = neighborhood.cables[-2]
             neighborhood.swap_connection(cable_1, cable_2)
         plot_list.append(current_costs)
-
-    # df = pd.DataFrame(plot_list)
-    # df.to_csv("hill_results.csv")

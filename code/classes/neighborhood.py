@@ -120,9 +120,9 @@ class Neighborhood(object):
                 self.cables.remove(cable)
 
     def connect_unlimited(self, house, battery):
-        """Connects all.
+        """Connects all unlimited.
 
-        Doesn't consider capacity.
+        Connect all houses to batteries. Doesn't consider capacity.
         """
         cable = Cable(house, battery)
         self.cables.append(cable)

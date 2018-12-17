@@ -14,7 +14,7 @@ def kmeans(neighborhood, iterations):
 
     current_distance = 0
     for house in neighborhood.houses:
-        current_distance = current_distance + house.get_shortest_distance(neighborhood.batteries)
+        current_distance += house.get_shortest_distance(neighborhood.batteries)
 
     for i in range(iterations):
         battery = random.choice(neighborhood.batteries)

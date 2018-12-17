@@ -1,13 +1,10 @@
 from matplotlib import pyplot as plt
+import pandas as pd
 
 import code.algorithms.greedy as g
-import code.algorithms.greedy_nieuw as gn
 import code.algorithms.hillclimber as h
 import code.algorithms.kmeans as k
-import code.algorithms.kmeansCosts as kc
-import pandas as pd
 import code.algorithms.sim_annealing as sa
-import code.algorithms.sim_annealing_new as san
 
 from code.classes.neighborhood import Neighborhood
 
@@ -17,287 +14,114 @@ import code.helpers.randoms as ran
 
 
 def main():
-    """ This function gives all the outcomes of the different algorithms.
+    """ Main function
+
+    This function can be used to get the outcomes of all the algorithms.
     """
-
-    # wijk1 = Neighborhood("wijk1")
-    # wijk2 = Neighborhood("wijk2")
-    # wijk3 = Neighborhood("wijk3")
-
-    # plot_list = []
-    # for i in range(100000):
-    #     g.greedy(wijk1)
-    #     plot_list.append(wijk1.get_total_costs())
-    #
-    # df = pd.DataFrame(plot_list)
-    # df.to_csv("greedy_100000_results_wijk1")
-
-    # g.greedy(wijk1)
-    # # # ran.random_connect(wijk1)
-    # #
-    # # print(f"costs before: {wijk1.get_total_costs()}")
-    # #
-    # #
-    # #
-    # san.sim_an_exp(wijk1, 10000, 0.01, 10000)
-    #
-    # print(f"costs after: {wijk1.get_total_costs()}")
-    # ran.all_random_locations(wijk1, 10)
-
     wijk1 = Neighborhood("wijk1")
     wijk2 = Neighborhood("wijk2")
     wijk3 = Neighborhood("wijk3")
 
+    ran.random_connect(wijk1)
+    random1 = wijk1.get_total_costs()
+
+    ran.random_connect(wijk2)
+    random2 = wijk1.get_total_costs()
+
+    ran.random_connect(wijk3)
+    random3 = wijk1.get_total_costs()
+
     g.greedy(wijk1)
+    greedy1 = wijk1.get_total_costs()
 
-    # #san.sim_an_reheat(wijk1, 2000, 0.1, 10000)
-    # san.sim_an_exp(wijk1, 500, 0.001, 10000)
-    #
-    # print(wijk1.get_total_costs())
-    #
-    # # pt.lineplot("sim_an_reheat_results.csv")
-    # pt.lineplot("sim_an_exp_results.csv")
+    g.greedy(wijk2)
+    greedy2 = wijk2.get_total_costs()
 
-    # plot_list = []
-    # for i in range(100000):
-    #     g.greedy(wijk1)
-    #     plot_list.append(wijk1.get_total_costs())
+    g.greedy(wijk3)
+    greedy3 = wijk3.get_total_costs()
 
-    plot_list1 = []
-    plot_list2 = []
-    plot_list3 = []
-    for i in range(1000):
-        print(i)
-        wijk1.disconnect_all()
-        g.greedy(wijk1)
-        san.sim_an_exp(wijk1, 500, 0.001, 10000)
-        plot_list1.append(wijk1.get_total_costs())
+    h.hillclimber(wijk1, 10000)
+    greedyhill1 = wijk1.get_total_costs()
 
-        wijk2.disconnect_all()
-        g.greedy(wijk2)
-        san.sim_an_exp(wijk2, 500, 0.001, 10000)
-        plot_list2.append(wijk2.get_total_costs())
+    h.hillclimber(wijk2, 10000)
+    greedyhill2 = wijk2.get_total_costs()
 
-        wijk3.disconnect_all()
-        g.greedy(wijk3)
-        san.sim_an_exp(wijk3, 500, 0.001, 10000)
-        plot_list3.append(wijk3.get_total_costs())
+    h.hillclimber(wijk3, 10000)
+    greedyhill3 = wijk3.get_total_costs()
 
-    df = pd.DataFrame(plot_list1)
-    df.to_csv("greedy_SimAnExp_Max500_Min0001_iter10000_wijk1.csv")
-    df = pd.DataFrame(plot_list2)
-    df.to_csv("greedy_SimAnExp_Max500_Min0001_iter10000_wijk2.csv")
-    df = pd.DataFrame(plot_list3)
-    df.to_csv("greedy_SimAnExp_Max500_Min0001_iter10000_wijk3.csv")
+    g.greedy(wijk1)
+    sa.sim_an_exp(wijk1, 500, 0.01, 10000)
+    greedysim1 = wijk1.get_total_costs()
 
+    g.greedy(wijk2)
+    sa.sim_an_exp(wijk2, 500, 0.01, 10000)
+    greedysim2 = wijk2.get_total_costs()
 
-    #
-    # # DIT IS VOOR ANIMATIE
-    #     fig = plt.figure()
-    #     camera = Camera(fig)
-    #
-    #     plots.batt_house_animate(wijk1)
-    #     camera.snap()
-    #
-    #     for i in range(30):
-    #         print(i)
-    #         h.hillclimber(wijk1, 500)
-    #         plots.batt_house_animate(wijk1)
-    #         camera.snap()
+    g.greedy(wijk3)
+    sa.sim_an_exp(wijk3, 500, 0.01, 10000)
+    greedysim3 = wijk3.get_total_costs()
 
+    # random + greedy + hillclimber
+    wijk1.disconnect_all()
+    ran.random_locations(wijk1)
+    g.greedy(wijk1)
+    h.hillclimber(wijk1, 10000)
+    ran_gr_hill1 = wijk1.get_total_costs()
+
+    wijk2.disconnect_all()
+    ran.random_locations(wijk2)
+    g.greedy(wijk2)
+    h.hillclimber(wijk2, 10000)
+    ran_gr_hill2 = wijk2.get_total_costs()
+
+    wijk1.disconnect_all()
+    ran.random_locations(wijk3)
+    g.greedy(wijk3)
+    h.hillclimber(wijk3, 10000)
+    ran_gr_hill3 = wijk3.get_total_costs()
+
+    # kmeans + greedy + hillclimber
+    wijk1.disconnect_all()
+    k.kmeans(wijk1, 10000)
+    g.greedy(wijk1)
+    h.hillclimber(wijk1, 10000)
+    k_gr_hill1 = wijk1.get_total_costs()
+
+    wijk2.disconnect_all()
+    k.kmeans(wijk2, 10000)
+    g.greedy(wijk2)
+    h.hillclimber(wijk2, 10000)
+    k_gr_hill2 = wijk2.get_total_costs()
+
+    wijk3.disconnect_all()
+    k.kmeans(wijk3, 10000)
+    g.greedy(wijk3)
+    h.hillclimber(wijk3, 10000)
+    k_gr_hill3 = wijk3.get_total_costs()
+
+    print(f"Wijk 1: \n"
+          f"Costs of random:                                   {random1}\n"
+          f"Costs of greedy:                                   {greedy1}\n"
+          f"Costs of greedy + hillclimber:                     {greedyhill1}\n"
+          f"Costs of greedy + simmulated annealing:            {greedysim1}\n"
+          f"Costs of random placement + greedy + hillclimber:  {ran_gr_hill1}\n"
+          f"Costs of k-means + greedy + hillclimber:           {k_gr_hill1}\n")
+
+    print(f"Wijk 2: \n"
+          f"Costs of random:                                   {random2}\n"
+          f"Costs of greedy:                                   {greedy2}\n"
+          f"Costs of greedy + hillclimber:                     {greedyhill2}\n"
+          f"Costs of greedy + simmulated annealing:            {greedysim2}\n"
+          f"Costs of random placement + greedy + hillclimber:  {ran_gr_hill2}\n"
+          f"Costs of k-means + greedy + hillclimber:           {k_gr_hill2}\n")
+
+    print(f"Wijk 3: \n"
+          f"Costs of random:                                   {random3}\n"
+          f"Costs of greedy:                                   {greedy3}\n"
+          f"Costs of greedy + hillclimber:                     {greedyhill3}\n"
+          f"Costs of greedy + simmulated annealing:            {greedysim3}\n"
+          f"Costs of random placement + greedy + hillclimber:  {ran_gr_hill3}\n"
+          f"Costs of k-means + greedy + hillclimber:           {k_gr_hill3}")
 
 if __name__ == "__main__":
     main()
-
-
-
-# # DIT IS VOOR ANIMATIE
-#     fig = plt.figure()
-#     camera = Camera(fig)
-#
-#     plots.batt_house_animate(wijk1)
-#     camera.snap()
-#
-#     for i in range(30):
-#         print(i)
-#         h.hillclimber(wijk1, 500)
-#         plots.batt_house_animate(wijk1)
-#         camera.snap()
-    #
-    #
-    # total_costs = []
-    # for i in range(10):
-    #     k.kmeans(wijk1,10000)
-    #     g.greedy(wijk1)
-    #     #h.hillclimber(wijk1, 10000)
-    #     sa.sim_annealing(wijk1)
-    #     total_costs.append(wijk1.get_total_costs())
-    #
-    #
-    # print(sum(total_costs)/len(total_costs))
-    # plots.batt_house_plot(wijk1)
-
-    #
-    # lower_costs_1 = []
-    # lower_costs_2 = []
-    # lower_costs_3 = []
-    # upper_costs_1 = []
-    # upper_costs_2 = []
-    # upper_costs_3 = []
-    #
-    # for i in range(10):
-    #     k.kmeans(wijk1, 10000)
-    #     k.kmeans(wijk2, 10000)
-    #     k.kmeans(wijk3, 10000)
-    #     kmax.kmeans_max(wijk1_up, 10000)
-    #     kmax.kmeans_max(wijk2_up, 10000)
-    #     kmax.kmeans_max(wijk3_up, 10000)
-    #     uplow.lower_bound(wijk1)
-    #     uplow.lower_bound(wijk2)
-    #     uplow.lower_bound(wijk3)
-    #     uplow.upper_bound(wijk1_up)
-    #     uplow.upper_bound(wijk2_up)
-    #     uplow.upper_bound(wijk3_up)
-    #
-    #     lower_costs_1.append(wijk1.get_total_costs())
-    #     lower_costs_2.append(wijk2.get_total_costs())
-    #     lower_costs_3.append(wijk3.get_total_costs())
-    #
-    #     upper_costs_1.append(wijk1_up.get_total_costs())
-    #     upper_costs_2.append(wijk2_up.get_total_costs())
-    #     upper_costs_3.append(wijk3_up.get_total_costs())
-    #
-    #
-    # print(f"All lower_1: {lower_costs_1}")
-    # print(f"Average lower_1: {sum(lower_costs_1)/len(lower_costs_1)}")
-    # print(f"All lower_2: {lower_costs_2}")
-    # print(f"Average lower_2: {sum(lower_costs_2)/len(lower_costs_2)}")
-    # print(f"All lower_3: {lower_costs_3}")
-    # print(f"Average lower_3: {sum(lower_costs_3)/len(lower_costs_3)}")
-    #
-    # print(f"All upper_1: {upper_costs_1}")
-    # print(f"Average upper_1: {sum(upper_costs_1)/len(upper_costs_1)}")
-    # print(f"All upper_2: {upper_costs_2}")
-    # print(f"Average upper_2: {sum(upper_costs_2)/len(upper_costs_2)}")
-    # print(f"All upper_3: {upper_costs_3}")
-    # print(f"Average upper_3: {sum(upper_costs_3)/len(upper_costs_3)}")
-
-        # h.hillclimber(wijk1, 10000)
-        # print(f"cost after: {wijk1.get_total_costs()}")
-    #
-    # # plots.batt_house_animate(wijk1)
-    # ran.random_connect(wijk1)
-    #
-    # fig = plt.figure()
-    # camera = Camera(fig)
-    #
-    # plots.batt_house_animate(wijk1)
-    # camera.snap()
-    #
-    # for i in range(30):
-    #     print(i)
-    #     h.hillclimber(wijk1, 500)
-    #     plots.batt_house_animate(wijk1)
-    #     camera.snap()
-
-    # DAVID GEBRUIK DIT VOOR RUNSCHEMA
-    # sim1_wijk1 = []
-    # sim1_wijk2 = []
-    # sim1_wijk3 = []
-    # #
-    # sim2_wijk1 = []
-    # sim2_wijk2 = []
-    # sim2_wijk3 = []
-    # #
-    # sim3_wijk1 = []
-    # sim3_wijk2 = []
-    # sim3_wijk3 = []
-    #
-    # for j in range(10):
-    #     ran.random_connect(wijk1)
-    #     ran.random_connect(wijk2)
-    #     ran.random_connect(wijk3)
-    #
-    #     sa.sim_annealing(wijk1, 5000, 0.1, 0.0005)
-    #     sa.sim_annealing(wijk2, 5000, 0.1, 0.0005)
-    #     sa.sim_annealing(wijk3, 5000, 0.1, 0.0005)
-    #
-    #     sim1_wijk1.append(wijk1.get_total_costs())
-    #     sim1_wijk2.append(wijk2.get_total_costs())
-    #     sim1_wijk3.append(wijk3.get_total_costs())
-    #
-
-    #     wijk1.disconnect_all()
-    #     wijk2.disconnect_all()
-    #     wijk3.disconnect_all()
-    #
-
-    #
-    #
-
-    # for j in range(10):
-    #     ran.random_connect(wijk1)
-    #     ran.random_connect(wijk2)
-    #     ran.random_connect(wijk3)
-
-
-    #     sa.sim_annealing(wijk1, 5000, 0.1, 0.001)
-    #     sa.sim_annealing(wijk2, 5000, 0.1, 0.001)
-    #     sa.sim_annealing(wijk3, 5000, 0.1, 0.001)
-    #
-    #     sim2_wijk1.append(wijk1.get_total_costs())
-    #     sim2_wijk2.append(wijk2.get_total_costs())
-    #     sim2_wijk3.append(wijk3.get_total_costs())
-    #
-    #     wijk1.disconnect_all()
-    #     wijk2.disconnect_all()
-    #     wijk3.disconnect_all()
-
-    #     print(j)
-    #
-    # for j in range(10):
-    #     ran.random_connect(wijk1)
-    #     ran.random_connect(wijk2)
-    #     ran.random_connect(wijk3)
-    #
-    #     sa.sim_annealing(wijk1, 5000, 0.1, 0.005)
-    #     sa.sim_annealing(wijk2, 5000, 0.1, 0.005)
-    #     sa.sim_annealing(wijk3, 5000, 0.1, 0.005)
-    #
-    #     sim3_wijk1.append(wijk1.get_total_costs())
-    #     sim3_wijk2.append(wijk2.get_total_costs())
-    #     sim3_wijk3.append(wijk3.get_total_costs())
-    #
-    #     wijk1.disconnect_all()
-    #     wijk2.disconnect_all()
-    #     wijk3.disconnect_all()
-    #
-    #     print(j)
-
-    #
-    # print(f"average sim1 wijk1: {sum(sim1_wijk1)/10}")
-    # print(f"lowest sim1 wijk1: {min(sim1_wijk1)}")
-    # print(f"average sim1 wijk2: {sum(sim1_wijk2)/10}")
-    # print(f"lowest sim1 wijk2: {min(sim1_wijk2)}")
-    # print(f"average sim1 wijk3: {sum(sim1_wijk3)/10}")
-    # print(f"lowest sim1 wijk3: {min(sim1_wijk3)}")
-    #
-
-    # print(f"average sim2 wijk1: {sum(sim2_wijk1)/10}")
-    # print(f"lowest sim2 wijk1: {min(sim2_wijk1)}")
-
-    #
-    # print(f"average sim2 wijk1: {sum(sim2_wijk1)/10}")
-    # print(f"lowest sim2 wijk1: {min(sim2_wijk1)}")
-
-    # print(f"average sim2 wijk2: {sum(sim2_wijk2)/10}")
-    # print(f"lowest sim2 wijk2: {min(sim2_wijk2)}")
-    # print(f"average sim2 wijk3: {sum(sim2_wijk3)/10}")
-    # print(f"lowest sim2 wijk3: {min(sim2_wijk3)}")
-    #
-    # print(f"average sim3 wijk1: {sum(sim3_wijk1)/10}")
-    # print(f"lowest sim3 wijk1: {min(sim3_wijk1)}")
-    # print(f"average sim3 wijk2: {sum(sim3_wijk2)/10}")
-    # print(f"lowest sim3 wijk2: {min(sim3_wijk2)}")
-    # print(f"average sim3 wijk3: {sum(sim3_wijk3)/10}")
-    # print(f"lowest sim3 wijk3: {min(sim3_wijk3)}")

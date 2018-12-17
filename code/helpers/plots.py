@@ -92,8 +92,7 @@ def make_hist(info):
     Make a histogram of solutions to find the distribution
     of the solutions.
     """
-    plt.hist(info, bins=15, rwidth=0.8)
-    plt.title("Random solution distribution")
+    plt.hist(info, bins=30, rwidth=0.8)
     plt.xlabel("Total costs")
     plt.ylabel("Count")
     plt.show()

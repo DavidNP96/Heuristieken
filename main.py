@@ -10,6 +10,7 @@ import code.algorithms.kmeans as k
 import code.algorithms.kmeansCosts as kc
 import pandas as pd
 import code.algorithms.sim_annealing as sa
+import code.algorithms.sim_annealing_new as san
 
 from code.classes.neighborhood import Neighborhood
 
@@ -36,10 +37,27 @@ def main():
     # df = pd.DataFrame(plot_list)
     # df.to_csv("greedy_100000_results_wijk1")
 
-    # plot_list2 = []
-    gn.greedy(wijk1)
-    print(wijk1.get_total_costs())
+    g.greedy(wijk1)
+    # ran.random_connect(wijk1)
 
+    print(f"costs before: {wijk1.get_total_costs()}")
+
+
+    # EXP DOES NOT WORK YET
+    san.sim_an_exp(wijk1, 5000, 0.1, 10000)
+
+    print(f"costs after: {wijk1.get_total_costs()}")
+    # ran.all_random_locations(wijk1, 10)
+
+    # g.greedy(wijk1)
+
+    #
+    # plots.batt_house_animate(wijk1)
+    #
+    # k.kmeans(wijk1, 10)
+    #
+    # # uplow.upper_bound(wijk1)
+    # # # simp.simple_connect(wijk2)
     # df = pd.DataFrame(plot_list2)
     # df.to_csv("greedy_nieuw_100000_results_wijk1")
 
@@ -74,6 +92,7 @@ def main():
     # wijk2_up = Neighborhood("wijk2")
     # wijk3_up = Neighborhood("wijk3")
 
+
     #
     # # DIT IS VOOR ANIMATIE
     #     fig = plt.figure()
@@ -91,6 +110,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
 
 # # DIT IS VOOR ANIMATIE

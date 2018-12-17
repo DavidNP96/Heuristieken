@@ -22,25 +22,26 @@ def greedy(neighborhood):
 
         len_batt = len(neighborhood.batteries)
 
+        # while (connect_succes == False and fail_count < len(neighborhood.batteries)):
         while not connect_succes and fail_count < len_batt:
 
-                if (neighborhood.connect(house, neighborhood.batteries\
-                    [house.nearest_battery_ids[fail_count]])):
-                    connected += 1
-                    connect_succes = True
-                else:
-                    fail_count += 1
+            if (neighborhood.connect(house, neighborhood.batteries\
+                [house.nearest_battery_ids[fail_count]])):
+                connected += 1
+                connect_succes = True
+            else:
+                fail_count += 1
 
-                if fail_count == len(neighborhood.batteries):
-                    current_cable = neighborhood.cables[0]
-                    for cable in neighborhood.cables:
-                        if cable.house.id == house.id:
-                            current_cable = cable
-                            break
+            if fail_count == len(neighborhood.batteries):
+                current_cable = neighborhood.cables[0]
+                for cable in neighborhood.cables:
+                    if cable.house.id == house.id:
+                        current_cable = cable
+                        break
 
+                random_cable = random.choice(neighborhood.cables)
+                while not neighborhood.swap_connection(current_cable, random_cable):
                     random_cable = random.choice(neighborhood.cables)
-                    while not neighborhood.swap_connection(current_cable, random_cable):
-                        random_cable = random.choice(neighborhood.cables)
 
 
                     fail_count = 0

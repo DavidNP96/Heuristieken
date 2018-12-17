@@ -29,7 +29,6 @@ Hier komt grafiek van distributie van onze oplossingen met de hillclimber.
 #### Distribution non random
 Hier komt grafiek van distributie van onze oplossingen met de simmulated annealing.
 
-
 ### Moving  
 #### Statespace
 In the moving situation there will still be 5^150 different possible connections between batteries and houses, but the 5 batteries can be on 2500 different locations on the grid. This makes the statespace (2500^5) * (5^150). 
@@ -134,6 +133,10 @@ These are our end result when we ran our simulated annealing algorithm 10000 tim
 
 ## here will be a histogram of our runs
 
+
+## Additional results
+All functions have 10000 iterations. The results of all iterations are placed in CSV files in the "csv" folder. The animations
+that are made are placed in a folder in called "animations".
 
 ## Plots
 

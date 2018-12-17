@@ -20,7 +20,7 @@ pip install -r requirements.txt
 
 ### Structure
 All data is placed in the "data" folder. All python scripts are placed in the "code" folder. All results are placed in the 
-"results" folder.
+"results" folder. For further explanation see the README files in the folders.
 
 ### Testing
 Run the code below to get the results of the different algorithms.
@@ -29,7 +29,7 @@ python main.py
 ```
 
 ### Results
-To find the statespace, upperbound, lowerbound and plots see the README in the "results" folder.
+To find the statespace, upper bound, lower bound, plots and other results see the README in the "results" folder.
 
 ### Authors
 **Team Niko**  

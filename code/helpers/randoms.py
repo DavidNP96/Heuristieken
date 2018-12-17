@@ -38,6 +38,7 @@ def random_connect(neighborhood):
 
         connected_count += 1
 
+
 def all_random_connect(neighborhood, iterations):
     """
     Makes histogram of executing random connect the given amount of times.
@@ -77,9 +78,4 @@ def all_random_locations(neighborhood, iterations):
         total_costs = neighborhood.get_total_costs()
         costs_random.append(total_costs)
 
-    # Write costs list to CSV file
-    df = pd.DataFrame(costs_random)
-    df.to_csv("results_random.csv")
-
-    # Make histogram of all costs in list
     pt.make_hist(costs_random)

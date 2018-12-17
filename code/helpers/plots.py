@@ -1,4 +1,24 @@
+import csv
 import matplotlib.pyplot as plt
+
+
+def lineplot(self, file):
+
+    with open(file, "r") as f:
+            next(f)
+            text = f.readlines()
+
+    x = []
+    y = []
+
+    for point in text:
+        point = point.strip("\n")
+        x_point, y_point = point.split(",")
+        x.append(int(x_point))
+        y.append(int(y_point))
+
+    plt.plot(x,y)
+    plt.show()
 
 
 def batt_house_plot(neighborhood):
@@ -26,6 +46,7 @@ def batt_house_animate(neighborhood):
     plt.ylabel('y')
     plt.title('SmartGrid')
 
+
 def plot_cables(neighborhood, colors):
     """Plot cables.
 
@@ -40,6 +61,7 @@ def plot_cables(neighborhood, colors):
         y_points = [house_y, battery_y, battery_y]
         plt.plot(x_points, y_points, colors[cable.battery.id])
 
+
 def plot_houses(neighborhood, colors):
     """Plot houses.
 
@@ -50,6 +72,7 @@ def plot_houses(neighborhood, colors):
         y = house.y_location
         plt.scatter(x, y, c= colors[house.battery_id] ,s=30, marker=r'^', zorder=8)
 
+
 def plot_batteries(neighborhood, colors):
     """Plot batteries.
 
@@ -59,6 +82,7 @@ def plot_batteries(neighborhood, colors):
         x = battery.x_location
         y = battery.y_location
         plt.scatter(x, y, c = colors[battery.id], s=350, marker=r'1',zorder=10)
+
 
 def make_hist(info):
     """Make histogram.

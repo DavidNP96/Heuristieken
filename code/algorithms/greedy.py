@@ -22,6 +22,7 @@ def greedy(neighborhood):
 
         len_batt = len(neighborhood.batteries)
 
+        # while (connect_succes == False and fail_count < len(neighborhood.batteries)):
         while not connect_succes and fail_count < len_batt:
             batt = neighborhood.batteries[house.nearest_battery_ids[fail_count]]
             if neighborhood.connect(house, batt):

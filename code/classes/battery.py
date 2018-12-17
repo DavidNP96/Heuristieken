@@ -17,8 +17,9 @@ class Battery(object):
         self.price = 5000
 
     def move(self, move_x, move_y):
-        """
-        Moves battery.
+        """Moves battery.
+
+        Moves battery a specific amount of steps from current x and y location.
         """
         if  (self.x_location + move_x) > 50:
             self.x_location = 50
@@ -30,8 +31,9 @@ class Battery(object):
             self.y_location = self.y_location + move_y
 
     def move_to(self, new_x_location, new_y_location):
-        """
-        Moves battery to given location.
+        """Moves battery.
+
+        Moves battery to specific location.
         """
         self.x_location = new_x_location
         self.y_location = new_y_location

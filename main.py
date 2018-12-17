@@ -5,14 +5,15 @@ import code.algorithms.greedy_nieuw as gn
 import code.algorithms.hillclimber as h
 import code.algorithms.kmeans as k
 import code.algorithms.kmeansCosts as kc
+import pandas as pd
 import code.algorithms.sim_annealing as sa
+import code.algorithms.sim_annealing_new as san
 
 from code.classes.neighborhood import Neighborhood
 
 import code.helpers.plots as pt
 import code.helpers.upper_lower as uplow
 import code.helpers.randoms as ran
-import code.helpers.kmax as kmax
 
 
 def main():
@@ -23,6 +24,13 @@ def main():
     wijk2 = Neighborhood("wijk2")
     wijk3 = Neighborhood("wijk3")
 
+    # plot_list = []
+    # for i in range(100000):
+    #     g.greedy(wijk1)
+    #     plot_list.append(wijk1.get_total_costs())
+    #
+    # df = pd.DataFrame(plot_list)
+    # df.to_csv("greedy_100000_results_wijk1")
 
     # gn.greedy(wijk1)
     # pt.batt_house_plot(wijk1)
@@ -34,15 +42,17 @@ def main():
     # plots.batt_house_plot(wijk1)
     # pt.batt_house_plot(wijk1)
 
-    # ran.all_random_locations(wijk1, 10000)
-    # ran.all_random_connect(wijk1, 10)
+    ran.all_random_locations(wijk1, 10000)
+    # ran.all_random_connect(wijk1, 10000)
 
     # ran.random_connect(wijk1)
     # pt.batt_house_plot(wijk1)
+    #
+    # k.kmeans(wijk1, 10000)
+    # g.greedy(wijk1)
+    # pt.batt_house_plot(wijk1)
 
-    k.kmeans(wijk1, 10000)
-    g.greedy(wijk1)
-    pt.batt_house_plot(wijk1)
+    # wijk1.get_all_nearest_batteries()
 
     # ran.all_random_locations(wijk1, 10000)
 
@@ -77,6 +87,7 @@ def main():
     # wijk2_up = Neighborhood("wijk2")
     # wijk3_up = Neighborhood("wijk3")
 
+
     #
     # # DIT IS VOOR ANIMATIE
     #     fig = plt.figure()
@@ -94,6 +105,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
 
 # # DIT IS VOOR ANIMATIE

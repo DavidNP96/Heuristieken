@@ -47,6 +47,9 @@ class House(object):
 
         Bubble sort using smallest to large distance list to sort battery list.
         """
+
+        # print(battery_list)
+
         len_batt_list = len(battery_list)
         nearest_battery_ids = [None] * len_batt_list
 

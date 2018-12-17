@@ -25,7 +25,9 @@ Below a histogram of the distribution 10000 runs of the random connect function 
 ![random_connect](https://user-images.githubusercontent.com/44001399/50083703-d93fdd00-01f4-11e9-9704-a7c48703d55a.png)
 
 #### Distribution non random
-Hier komt grafiek van distributie van onze oplossingen met de hillclimber.
+Below a histogram of the distribution 1000 runs of the hillclimber function is shown. 
+![1000_times_hillclimber _10000](https://user-images.githubusercontent.com/44001399/50116684-2a7abb80-024b-11e9-905e-8b077943d5c1.png)
+
 
 #### Distribution non random
 Hier komt grafiek van distributie van onze oplossingen met de simmulated annealing.

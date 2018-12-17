@@ -104,6 +104,14 @@ When running the hillclimber or simulated annealing our aim is to make shure tha
 
 ## Simmulated Annealing coolingschemes
 
+#### Linear simmulated annealing
+![siman_lin_max80_min001_iter10000](https://user-images.githubusercontent.com/44001399/50118235-5d26b300-024f-11e9-9964-f998b0b22f6f.png)
+
+#### Exponential simmulated annealing
+
+
+
+## WAT IS DIT
 All schemes are ran with the following data:   
 Starting temperature: 5000  
 End temperature: 0.1  

@@ -83,11 +83,8 @@ Also in this case we are aware of the fact that we can't use this are reference,
 | 2            | €405000    | €9450      |
 | 3            | €405000    | €9450      |
 
-#### Random distribution of 10000 random runs
-Hier komt grafiek van random distributie van random plaatsen 3 types batterijen.
-
-#### Distribution non random
-Hier komt grafiek van distributie van onze oplossingen. Hiervoor moeten we nog bedenken welke algorithmes handig zijn.
+#### Results
+We didn't have enough time to execute our ideas for this part of the case. That's why this part doesn't contain results.
 
 ## What makes this case difficult?
 The goal of our case is to create the “cheapest” solution to a given neighbourhood. The theoretical solution to this progress is easily thought out, because there are two components that reduces or increases the cost, namely the length of the cables and the price of the chosen battery. For the first question of our case (where the batteries are stationary) this meant that we had to find  a way to connect every house to the nearest battery (which meant that the cable costs are the lowest possible). Exactly this was done by means of our lower bound algorithm. But obviously this solution does not suffice simply because the maximum capacity isn’t taken into account when connecting. So we ran in to one and probably the main problem of our case namely the fact that the houses have different output and the batteries limited capacity, because this means that although you find the best way to connect houses to batteries, this doesn’t mean that in practice this is the best way. So because the theoretical best way to connect is not available you have no aim where to end, and because of the fact that the space state is so incredibly large it is quite impossible to actually guarantee that that we reached our goal.

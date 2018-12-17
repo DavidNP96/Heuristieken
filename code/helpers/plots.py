@@ -2,8 +2,7 @@ import csv
 import matplotlib.pyplot as plt
 
 
-def lineplot(self, file):
-
+def lineplot(file):
     with open(file, "r") as f:
             next(f)
             text = f.readlines()
@@ -17,6 +16,9 @@ def lineplot(self, file):
         x.append(int(x_point))
         y.append(int(y_point))
 
+    plt.xlabel("Iterations")
+    plt.ylabel("Total costs")
+    plt.title("Cost improvement over 10000 runs")
     plt.plot(x,y)
     plt.show()
 

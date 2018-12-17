@@ -9,18 +9,23 @@ The folder "algorithms" contains all algorithm scripts. The different algorithms
 and simmulated annealing. 
 
 ### Classes
-The "classes" folder contains all the scripts of classes. The four different classes are battery, cable, house and neighborhood. 
+The "classes" folder contains all the scripts of classes. The four different classes are battery, cable, house and
+neighborhood. 
 
 ### Helpers
-The "helpers" folder contains all the supporting scripts. These are the animations, bubblesort, plots, randoms and the upper_lower.
+The "helpers" folder contains all the supporting scripts. These are the animations, plots, randoms and the
+upper_lower.
 
+**randoms.py**  
+The random script contains the functions for randomly connecting the houses and batteries and randomly placing the batteries.
+Also, it contains functions to execute the random connect and random placement functions as many times as you put in.
 
+**plots.py**  
+The plots script contains the functions for plotting. The different plots which can be made are a histogram, a lineplot, and  
+a plot of the grid with houses, batteries and cables.
 
-### randoms.py
-?
+**upper_lower.py**  
+The upper_lower script contains the functions to calculate the upper- and lower bound. 
 
-### simple_connect.py
-?
-
-### upper_lower.py
-??
+**animation.py**  
+The animation script contains a function to make an animation of all iterations of a algorithm.

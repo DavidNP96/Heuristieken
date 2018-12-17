@@ -20,9 +20,9 @@ def main():
     """ This function gives all the outcomes of the different algorithms.
     """
 
-    wijk1 = Neighborhood("wijk1")
-    wijk2 = Neighborhood("wijk2")
-    wijk3 = Neighborhood("wijk3")
+    # wijk1 = Neighborhood("wijk1")
+    # wijk2 = Neighborhood("wijk2")
+    # wijk3 = Neighborhood("wijk3")
 
     # plot_list = []
     # for i in range(100000):
@@ -32,60 +32,63 @@ def main():
     # df = pd.DataFrame(plot_list)
     # df.to_csv("greedy_100000_results_wijk1")
 
-    # gn.greedy(wijk1)
-    # pt.batt_house_plot(wijk1)
-    # print(wijk1.get_total_costs())
-    # h.hillclimber(wijk1, 1000)
-    # print(wijk1.get_total_costs())
-    # k.kmeans(wijk1, 500)
-    # print(wijk1.get_total_costs())
-    # plots.batt_house_plot(wijk1)
-    # pt.batt_house_plot(wijk1)
-
-    ran.all_random_locations(wijk1, 10000)
-    # ran.all_random_connect(wijk1, 10000)
-
-    # ran.random_connect(wijk1)
-    # pt.batt_house_plot(wijk1)
-    #
-    # k.kmeans(wijk1, 10000)
     # g.greedy(wijk1)
-    # pt.batt_house_plot(wijk1)
+    # # # ran.random_connect(wijk1)
+    # #
+    # # print(f"costs before: {wijk1.get_total_costs()}")
+    # #
+    # #
+    # #
+    # san.sim_an_exp(wijk1, 10000, 0.01, 10000)
+    #
+    # print(f"costs after: {wijk1.get_total_costs()}")
+    # ran.all_random_locations(wijk1, 10)
 
-    # wijk1.get_all_nearest_batteries()
+    wijk1 = Neighborhood("wijk1")
+    wijk2 = Neighborhood("wijk2")
+    wijk3 = Neighborhood("wijk3")
 
-    # ran.all_random_locations(wijk1, 10000)
+    g.greedy(wijk1)
 
-    # greedy.greedy(wijk1)
-    # plots.batt_house_plot(wijk1)
+    # #san.sim_an_reheat(wijk1, 2000, 0.1, 10000)
+    # san.sim_an_exp(wijk1, 500, 0.001, 10000)
+    #
     # print(wijk1.get_total_costs())
     #
-    # plots.batt_house_plot(wijk1)
-    # print(wijk1.get_total_costs())
+    # # pt.lineplot("sim_an_reheat_results.csv")
+    # pt.lineplot("sim_an_exp_results.csv")
 
-    # plots.batt_house_animate(wijk1)
-    #
-    # k.kmeans(wijk1, 10)
-    #
+    # plot_list = []
+    # for i in range(100000):
+    #     g.greedy(wijk1)
+    #     plot_list.append(wijk1.get_total_costs())
 
-    # plots.batt_house_animate(wijk1)
-    # C = plots.batt_house_plot(wijk2)
-    # D = plots.batt_house_plot(wijk3)
+    plot_list1 = []
+    plot_list2 = []
+    plot_list3 = []
+    for i in range(1000):
+        print(i)
+        wijk1.disconnect_all()
+        g.greedy(wijk1)
+        san.sim_an_exp(wijk1, 500, 0.001, 10000)
+        plot_list1.append(wijk1.get_total_costs())
 
-    #
-    #
-    # k.kmeans(wijk1, 10)
-    #
-    # # uplow.upper_bound(wijk1)
-    # # # simp.simple_connect(wijk2)
-    #
-    # plots.batt_house_animate(wijk1)
-    # # C = plots.batt_house_plot(wijk2)
-    # # D = plots.batt_house_plot(wijk3)
-    #
-    # wijk1_up = Neighborhood("wijk1")
-    # wijk2_up = Neighborhood("wijk2")
-    # wijk3_up = Neighborhood("wijk3")
+        wijk2.disconnect_all()
+        g.greedy(wijk2)
+        san.sim_an_exp(wijk2, 500, 0.001, 10000)
+        plot_list2.append(wijk2.get_total_costs())
+
+        wijk3.disconnect_all()
+        g.greedy(wijk3)
+        san.sim_an_exp(wijk3, 500, 0.001, 10000)
+        plot_list3.append(wijk3.get_total_costs())
+
+    df = pd.DataFrame(plot_list1)
+    df.to_csv("greedy_SimAnExp_Max500_Min0001_iter10000_wijk1.csv")
+    df = pd.DataFrame(plot_list2)
+    df.to_csv("greedy_SimAnExp_Max500_Min0001_iter10000_wijk2.csv")
+    df = pd.DataFrame(plot_list3)
+    df.to_csv("greedy_SimAnExp_Max500_Min0001_iter10000_wijk3.csv")
 
 
     #

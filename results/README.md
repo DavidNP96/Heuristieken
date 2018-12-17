@@ -21,7 +21,7 @@ the batteries will not be taken into account.
 | 3            | €42757     | €101491    |
 
 #### Random distribution of 10000 runs 
-![random_stationary](https://user-images.githubusercontent.com/44001399/49597905-bd7b4200-f97d-11e8-9c74-5e2a9ab4fab1.png)
+![random_connect](https://user-images.githubusercontent.com/44001399/50083703-d93fdd00-01f4-11e9-9704-a7c48703d55a.png)
 
 #### Distribution non random
 Hier komt grafiek van distributie van onze oplossingen met de hillclimber.

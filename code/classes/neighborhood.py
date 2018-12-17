@@ -237,15 +237,3 @@ class Neighborhood(object):
         """
         for house in self.houses:
             house.get_nearest_batteries(self.batteries)
-
-    def testen(self):
-        """
-        Function to test results.
-        """
-        for house in self.houses:
-            house_test = house
-            batt_id_test = house.battery_id
-            for battery in self.batteries:
-                if batt_id_test == battery.id:
-                    battery_test = battery
-                    return house_test, battery_test

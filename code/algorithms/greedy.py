@@ -24,9 +24,8 @@ def greedy(neighborhood):
 
         # while (connect_succes == False and fail_count < len(neighborhood.batteries)):
         while not connect_succes and fail_count < len_batt:
-
-            if (neighborhood.connect(house, neighborhood.batteries\
-                [house.nearest_battery_ids[fail_count]])):
+            batt = neighborhood.batteries[house.nearest_battery_ids[fail_count]]
+            if neighborhood.connect(house, batt):
                 connected += 1
                 connect_succes = True
             else:
@@ -44,7 +43,7 @@ def greedy(neighborhood):
                     random_cable = random.choice(neighborhood.cables)
 
 
-                    fail_count = 0
+                fail_count = 0
 
     total_costs = neighborhood.get_total_costs()
 

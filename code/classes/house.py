@@ -16,17 +16,12 @@ class House(object):
         self.battery_id = None
         self.cable_id = None
         self.connected = False
-
-        # moet deze blijven??
         self.nearest_battery_ids = []
 
     def get_shortest_distance(self, battery_list):
         """
         Sets the distance to the closest battery
         """
-
-        distance_list = []
-
         distance_list = self.get_distance_list(battery_list)
 
         return min(distance_list)
@@ -42,12 +37,25 @@ class House(object):
 
         distance_list = self.get_distance_list(battery_list)
 
+        self.nearest_battery_ids = self.bubble_sort(battery_list, distance_list)
+
+        return self.nearest_battery_ids
+
+    def bubble_sort(self, battery_list, distance_list):
+        """Bubble sort.
+
+
+        Bubble sort using smallest to large distance list to sort battery list.
+        """
+
+        # print(battery_list)
+
         len_batt_list = len(battery_list)
-        nearest_battery_ids = [None] * len(battery_list)
+        nearest_battery_ids = [None] * len_batt_list
+
         for i in range(len_batt_list):
             nearest_battery_ids[i] = battery_list[i].id
 
-        # bubble sort using smallest to large distance list to sort battery list
         for i in range(len_batt_list - 1, 0, -1):
             for j in range(i):
 
@@ -61,9 +69,9 @@ class House(object):
                     nearest_battery_ids[j + 1] = temp_battery_id
                     distance_list[j + 1] = temp_distance
 
-        self.nearest_battery_ids = nearest_battery_ids
+        nearest_battery_ids = nearest_battery_ids
 
-        return self.nearest_battery_ids
+        return nearest_battery_ids
 
     def get_distance_list(self, battery_list):
         """Gets distance list.

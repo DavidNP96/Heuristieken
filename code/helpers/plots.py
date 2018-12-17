@@ -1,8 +1,8 @@
 import csv
 import matplotlib.pyplot as plt
 
-def lineplot(self, file):
 
+def lineplot(file):
     with open(file, "r") as f:
             next(f)
             text = f.readlines()
@@ -16,9 +16,11 @@ def lineplot(self, file):
         x.append(int(x_point))
         y.append(int(y_point))
 
+    plt.xlabel("Iterations")
+    plt.ylabel("Total costs")
+    plt.title("Cost improvement over 10000 runs")
     plt.plot(x,y)
     plt.show()
-
 
 
 def batt_house_plot(neighborhood):
@@ -35,7 +37,9 @@ def batt_house_animate(neighborhood):
 
     Plots all houses, batteries and cables to make an animation.
     """
+
     colors = ["b", "g", "r", "m", "orange"]
+
     plot_cables(neighborhood, colors)
 
     plot_houses(neighborhood, colors)
@@ -45,6 +49,7 @@ def batt_house_animate(neighborhood):
     plt.xlabel('x')
     plt.ylabel('y')
     plt.title('SmartGrid')
+
 
 def plot_cables(neighborhood, colors):
     """Plot cables.
@@ -60,6 +65,7 @@ def plot_cables(neighborhood, colors):
         y_points = [house_y, battery_y, battery_y]
         plt.plot(x_points, y_points, colors[cable.battery.id])
 
+
 def plot_houses(neighborhood, colors):
     """Plot houses.
 
@@ -70,6 +76,7 @@ def plot_houses(neighborhood, colors):
         y = house.y_location
         plt.scatter(x, y, c= colors[house.battery_id] ,s=30, marker=r'^', zorder=8)
 
+
 def plot_batteries(neighborhood, colors):
     """Plot batteries.
 
@@ -79,6 +86,7 @@ def plot_batteries(neighborhood, colors):
         x = battery.x_location
         y = battery.y_location
         plt.scatter(x, y, c = colors[battery.id], s=250, marker="X",zorder=10)
+        
 
 def make_hist(info):
     """Make histogram.

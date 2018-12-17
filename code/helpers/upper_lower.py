@@ -1,5 +1,6 @@
 def upper_bound(neighborhood):
-    """
+    """Upper bound.
+
     Returns the neighborhoods upper bound by connecting each house to furthest
     battery without considering the capacity of the batteries.
     """
@@ -14,12 +15,13 @@ def upper_bound(neighborhood):
         neighborhood.connect_unlimited(house, far_battery)
 
     total_costs = neighborhood.get_total_costs()
-    # neighborhood.disconnect_all()
 
     return total_costs
 
+
 def lower_bound(neighborhood):
-    """
+    """Lower bound.
+
     Returns the neighborhoods lower bound by connecting each house to closest
     battery without considering the capacity of the batteries.
     """
@@ -34,6 +36,5 @@ def lower_bound(neighborhood):
         neighborhood.connect_unlimited(house, close_battery)
 
     total_costs = neighborhood.get_total_costs()
-    # neighborhood.disconnect_all()
 
     return total_costs

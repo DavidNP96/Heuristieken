@@ -1,7 +1,7 @@
+<<<<<<< HEAD
 import os
 import sys
 
-from copy import deepcopy
 from matplotlib import pyplot as plt
 import pandas as pd
 import statistics as st
@@ -19,8 +19,6 @@ from code.classes.neighborhood import Neighborhood
 import code.helpers.plots as pt
 import code.helpers.upper_lower as uplow
 import code.helpers.randoms as ran
-import code.helpers.simple_connect as simp
-import code.helpers.kmax as kmax
 
 
 def main():

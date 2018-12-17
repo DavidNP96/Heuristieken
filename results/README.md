@@ -14,11 +14,11 @@ All houses are connected to the closest battery. The upperbound is the opposite 
 are connected to the furthest battery. However, these situation will not be possible, because the capacity of 
 the batteries will not be taken into account.
 
-| Neighborhood | Upperbound | Lowerbound |
+| Neighborhood | Lowerbound | Upperbound |
 | ------------ | ---------- | ---------- |
-| 1            | €103030    | €53188     |
-| 2            | €96253     | €45268     |
-| 3            | €101491    | €42757     |
+| 1            | €53188     | €103030    |
+| 2            | €45268     | €96253     |
+| 3            | €42757     | €101491    |
 
 #### Random distribution of 10000 runs 
 ![random_stationary](https://user-images.githubusercontent.com/44001399/49597905-bd7b4200-f97d-11e8-9c74-5e2a9ab4fab1.png)
@@ -46,11 +46,11 @@ The upperbound is the situation where all batteries are the furthest away from t
 
 We are aware of the fact that we can't use this are reference, because both bounds will never be reached. 
 
-| Neighborhood | Upperbound | Lowerbound |
+| Neighborhood | Lowerbound | Upperbound |
 | ------------ | ---------- | ---------- |
-| 1            | €103030    | €38932     |
-| 2            | €96253     | €39895     |
-| 3            | €101491    | €39607     |
+| 1            | €6350      | €160000    |
+| 2            | €6350      | €160000    |
+| 3            | €6350      | €160000    |
 
 #### Random distribution of 10000 random runs
 Hier komt grafiek van random distributie van random plaatsen batterijen.

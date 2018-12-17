@@ -115,13 +115,13 @@ When running the hillclimber or simulated annealing our aim is to make shure tha
 
 ## Simmulated Annealing coolingschemes
 
-All schemes are ran with the following data: 
-Starting temperature: 5000
-End temperature: 0.1 
+All schemes are ran with the following data:   
+Starting temperature: 5000  
+End temperature: 0.1  
 
 These are our end result when we ran our simulated annealing algorithm 10 times with the following coolingscheme: temp = temp * (1 - cooling_rate). We ran the this algorithm only 10 times per neighbourhood, because every iteration took quite some time we are looking to make this go faster for future runs.
 
-                  Cooling rates
+### Cooling rates
 | Neighborhood  | 0.0005     | 0.001      | 0.005  |
 | ------------  | ---------- | ---------- |------  |
 | 1 - Average   | €56642.2   | €57014.8   |€60706.6|    

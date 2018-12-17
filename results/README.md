@@ -52,7 +52,8 @@ We are aware of the fact that we can't use this are reference, because both boun
 | 3            | €6350      | €160000    |
 
 #### Random distribution of 10000 random runs
-Hier komt grafiek van random distributie van random plaatsen batterijen.
+![random_placement_2](https://user-images.githubusercontent.com/44001399/50108055-94d43180-0234-11e9-965e-08b97089f987.png)
+
 
 #### Distribution non random
 Hier komt grafiek van distributie van onze oplossingen met k means, hillclimber en simmulated annealing. 

@@ -20,7 +20,8 @@ the batteries will not be taken into account.
 | 2            | €45268     | €96253     |
 | 3            | €42757     | €101491    |
 
-#### Random distribution of 10000 runs 
+#### Random distribution of 10000 runs
+Below a histogram of the distribution 10000 runs of the random connect function is shown. 
 ![random_connect](https://user-images.githubusercontent.com/44001399/50083703-d93fdd00-01f4-11e9-9704-a7c48703d55a.png)
 
 #### Distribution non random
@@ -52,6 +53,8 @@ We are aware of the fact that we can't use this are reference, because both boun
 | 3            | €6350      | €160000    |
 
 #### Random distribution of 10000 random runs
+Below a histogram of the distribution of 10000 runs of the random placement function is shown. After random placement the
+greedy algorithm is used to connect the houses to batteries.
 ![random_placement_2](https://user-images.githubusercontent.com/44001399/50108055-94d43180-0234-11e9-965e-08b97089f987.png)
 
 

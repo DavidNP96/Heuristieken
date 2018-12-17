@@ -4,6 +4,7 @@ import sys
 from matplotlib import pyplot as plt
 
 import code.algorithms.greedy as g
+import code.algorithms.greedy_nieuw as gn
 import code.algorithms.hillclimber as h
 import code.algorithms.kmeans as k
 import code.algorithms.kmeansCosts as kc
@@ -27,6 +28,7 @@ def main():
     wijk2 = Neighborhood("wijk2")
     wijk3 = Neighborhood("wijk3")
 
+
     g.greedy(wijk1)
     # ran.random_connect(wijk1)
 
@@ -49,12 +51,11 @@ def main():
     # # uplow.upper_bound(wijk1)
     # # # simp.simple_connect(wijk2)
 
+
     # greedy.greedy(wijk1)
     # plots.batt_house_plot(wijk1)
     # print(wijk1.get_total_costs())
     #
-    # h.hillclimber(wijk1, 100)
-    # # hilltest.hillclimber_testing(wijk1, 10000)
     # plots.batt_house_plot(wijk1)
     # print(wijk1.get_total_costs())
 
@@ -82,8 +83,6 @@ def main():
     # wijk2_up = Neighborhood("wijk2")
     # wijk3_up = Neighborhood("wijk3")
 
-    # ran.all_random_connect(wijk1, 10000)
-
 
     #
     # # DIT IS VOOR ANIMATIE
@@ -100,38 +99,8 @@ def main():
     #         camera.snap()
 
 
-    # # DAVID GEBRUIK DIT VOOR RUNSCHEMA
-    # sim1_wijk1 = []
-    # sim1_wijk2 = []
-    # sim1_wijk3 = []
-    #
-    # sim2_wijk1 = []
-    # sim2_wijk2 = []
-    # sim2_wijk3 = []
-    #
-
-    # ran.random_connect(wijk1)
-    # print(f"cost before: {wijk1.get_total_costs()}")
-    # plots.batt_house_plot(wijk1)
-    # k.kmeans(wijk1, 10000)
-    # simp.simple_connect(wijk1)
-    #
-    # # sa.sim_annealing(wijk1)
-    # h.hillclimber(wijk1, 10000)
-    # print(f"cost after: {wijk1.get_total_costs()}")
-    # plots.batt_house_plot(wijk1)
-    #
-    # # plots.batt_house_animate(wijk1)
-    # ran.random_connect(wijk1)
 if __name__ == "__main__":
     main()
-    # k.kmeans(wijk1,10000)
-    # g.greedy(wijk1)
-    # h.hillclimber(wijk1,2500)
-    # print(wijk1.get_total_costs())
-    # kc.kmeans(wijk1, 500)
-    # print(wijk1.get_total_costs())
-    # plots.batt_house_plot(wijk1)
 
 
 

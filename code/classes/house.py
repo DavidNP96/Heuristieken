@@ -27,9 +27,13 @@ class House(object):
 
         distance_list = []
 
+        for battery in battery_list:
+            distance =  abs(battery.x_location - self.x_location) + abs(battery.y_location - self. y_location)
+            distance_list.append(distance)
+
         distance_list = self.get_distance_list(battery_list)
 
-        return min(distance_list)
+        return distance_list
 
     def get_nearest_batteries(self, battery_list):
         """Get nearest batteries.
@@ -42,12 +46,13 @@ class House(object):
 
         distance_list = self.get_distance_list(battery_list)
 
+        len_batt_list = len(battery_list)
         nearest_battery_ids = [None] * len(battery_list)
-        for i in range(len(battery_list)):
+        for i in range(len_batt_list):
             nearest_battery_ids[i] = battery_list[i].id
 
         # bubble sort using smallest to large distance list to sort battery list
-        for i in range(len(battery_list) - 1, 0, -1):
+        for i in range(len_batt_list - 1, 0, -1):
             for j in range(i):
 
                 if distance_list[j] > distance_list[j + 1]:
@@ -67,7 +72,7 @@ class House(object):
     def get_distance_list(self, battery_list):
         """Gets distance list.
 
-        Returns list with all distances from the houses to the batteries.
+        Returns list with all distances from the house to the batteries.
         """
         distance_list = []
 

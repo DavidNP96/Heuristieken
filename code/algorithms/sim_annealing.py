@@ -1,6 +1,6 @@
 import math
+import pandas as pd
 import random
-
 
 def acceptance_probability(current_costs, new_costs, temperature):
     """
@@ -10,6 +10,7 @@ def acceptance_probability(current_costs, new_costs, temperature):
         return 1.0
     else:
         return math.exp((current_costs - new_costs) / temperature)
+
 
 
 def sim_annealing(neighborhood, Tmax, Tmin, cooling_rate):
@@ -22,8 +23,10 @@ def sim_annealing(neighborhood, Tmax, Tmin, cooling_rate):
     temp = Tmax
     # Tmin = 0.1
     # cooling_rate = 0.0001
+    plot_list = []
 
     current_costs = neighborhood.get_total_costs()
+    plot_list.append(current_costs)
 
     while (temp > Tmin):
         swap_succes = False
@@ -39,17 +42,22 @@ def sim_annealing(neighborhood, Tmax, Tmin, cooling_rate):
             cable_1 = neighborhood.cables[-1]
             cable_2 = neighborhood.cables[-2]
             neighborhood.swap_connection(cable_1, cable_2)
+        plot_list.append(current_costs)
 
 
 
         # exponential
         temp = temp * (1 - cooling_rate)
 
-        # # linear, check if cooling is not too fast
-        # temp = temp - cooling_rate
+        # linear, check if cooling is not too fast
+        temp = temp - cooling_rate
         #
         # # logaritmic
-        # temp = log(cooling_rate * temp)
+        temp = log(cooling_rate * temp)
+
+
+    df = pd.DataFrame(plot_list)
+    df.to_csv("siman_results.csv")
 
 if __name__ == "__main__":
     print(acceptance_probability(2, 38, 10000))

@@ -1,6 +1,6 @@
 from copy import deepcopy
+# import pandas as pd
 import random
-
 
 def hillclimber(neighborhood, iterations):
     """ Hill Climber algorithm.
@@ -10,7 +10,8 @@ def hillclimber(neighborhood, iterations):
     """
 
     current_costs = neighborhood.get_total_costs()
-
+    plot_list = []
+    plot_list.append(current_costs)
     for i in range(iterations):
         swap_succes = False
 
@@ -28,3 +29,7 @@ def hillclimber(neighborhood, iterations):
             cable_1 = neighborhood.cables[-1]
             cable_2 = neighborhood.cables[-2]
             neighborhood.swap_connection(cable_1, cable_2)
+        plot_list.append(current_costs)
+
+    # df = pd.DataFrame(plot_list)
+    # df.to_csv("hill_results.csv")

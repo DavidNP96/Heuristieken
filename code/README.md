@@ -16,7 +16,7 @@ neighborhood.
 The "helpers" folder contains all the supporting scripts. These are the animations, bubblesort, plots, randoms and the
 upper_lower.
 
-##### randoms.py 
+**randoms.py**  
 The random script contains the functions for randomly connecting the houses and batteries and randomly placing the batteries.
 Also, it contains functions to execute the random connect and random placement functions as many times as you put in.
 

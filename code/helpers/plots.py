@@ -38,7 +38,7 @@ def batt_house_animate(neighborhood):
 
     Plots all houses, batteries and cables to make an animation.
     """
-    colors = ['b', 'g', 'r', 'c', 'm', 'y', 'k', 'w']
+    colors = ['b', 'g', 'r', 'm', 'orange']
     plot_cables(neighborhood, colors)
 
     plot_houses(neighborhood, colors)
@@ -81,7 +81,7 @@ def plot_batteries(neighborhood, colors):
     for battery in neighborhood.batteries:
         x = battery.x_location
         y = battery.y_location
-        plt.scatter(x, y, c = colors[battery.id], s=350, marker=r'1',zorder=10)
+        plt.scatter(x, y, c = colors[battery.id], s=250, marker="X",zorder=10)
 
 def make_hist(info):
     """Make histogram.

@@ -35,8 +35,8 @@ def main():
     print(f"costs before: {wijk1.get_total_costs()}")
 
 
-    # EXP DOES NOT WORK YET
-    san.sim_an_exp(wijk1, 5000, 0.1, 10000)
+
+    san.sim_an_log(wijk1, 1000000, 1, 10000)
 
     print(f"costs after: {wijk1.get_total_costs()}")
     # ran.all_random_locations(wijk1, 10)

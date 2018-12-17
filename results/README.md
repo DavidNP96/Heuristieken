@@ -110,36 +110,6 @@ When running the hillclimber or simulated annealing our aim is to make shure tha
 #### Exponential simmulated annealing
 ![siman_exp_max500_min0001_iter10000](https://user-images.githubusercontent.com/44001399/50118397-cefefc80-024f-11e9-8690-26ffe30ce9d8.png)
 
-## WAT IS DIT
-All schemes are ran with the following data:   
-Starting temperature: 5000  
-End temperature: 0.1  
-
-These are our end result when we ran our simulated annealing algorithm 10 times with the following coolingscheme: temp = temp * (1 - cooling_rate). We ran the this algorithm only 10 times per neighbourhood, because every iteration took quite some time we are looking to make this go faster for future runs.
-
-### Cooling rates
-| Neighborhood  | 0.0005     | 0.001      | 0.005  |
-| ------------  | ---------- | ---------- |------  |
-| 1 - Average   | €56642.2   | €57014.8   |€60706.6|    
-|   - Minimum   | €56347     | €56644     |€59893  |
-| 2 - Average   | €46860.1   | €47311.9   |€51143.2|
-|   - Minimum   | €46222     | €46636     |€50533  |
-| 3 - Average   | €44304.1   | €44706.4   |€48896.8|
-|   - Minimum   | €43999     | €44341     |€47581  |
-
-
-These are our end result when we ran our simulated annealing algorithm 10000 times with the following coolingscheme: temp = math.log(cooling_rate * temp) and the following parameters:
-
-| Neighborhood  | 0.0005     | 0.001      | 0.005  |
-| ------------  | ---------- | ---------- |------  |
-| 1 - Average   | €75980.1   | €75812.1   |€75998.1|    
-|   - Minimum   | €71233     | €70927     |€71233  |
-| 2 - Average   | €68853.4   | €68913.3   |€68863.9|
-|   - Minimum   | €64609     | €64366     |€64294  |
-| 3 - Average   | €71435.734 | €71390.4   |€71392.5|
-|   - Minimum   | € 65473    | €65743     |€65635  |
-
-
 ## Additional results
 All functions have 10000 iterations. The results of all iterations are placed in CSV files in the "csv" folder. The animations
 that are made are placed in a folder in called "animations".
